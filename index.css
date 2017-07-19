@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+html{
+    height: 100vh;
+    width:100vw;
+}
+body{
+    font-family: '微软雅黑' ,Arial, Verdana;
+    height: 100%;
+}
+header {
+    background: url("picture/bk.jpg") no-repeat;
+    background-size: 100%;
+    padding:3% 7%;
+    height: 80vh;
+    float: left;
+}
+p.right{
+    float: right;
+}
+
+.littleHeader a{
+    display: inline-block;
+    padding: 0 5% 0 0;
+}
+a{
+    color:lightgrey;
+    font-style: normal;
+    font-size: 100%;
+    text-decoration: none;
+}
+.Header{
+    width: 70%;
+    line-height: 550%;
+}
+.Header h1{
+    color:gainsboro;
+    font-size: 400%;
+    font-weight: lighter;
+    padding-top: 5%;
+
+}
+#guide{
+    font-weight: 900;
+    color: white;
+    font-size: 200%;
+
+}
+.Button input{
+    background: transparent;
+    color:lightgrey;
+    border: 1px solid lightgrey;
+    font-size: 150%;
+    padding: 2% 4%;
+    margin: 3% 0 ;
+    border-radius:10px;
+}
+.sign{
+    text-align: center;
+    position: relative;
+}
+.sign p{
+    margin:0 auto;
+    padding: 8% 0 0 0 ;
+    color: lightgrey;
+}
+
