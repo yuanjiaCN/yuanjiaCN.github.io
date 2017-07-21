@@ -1,33 +1,30 @@
 *{
     margin: 0;
     padding: 0;
-
+    color:wheat;
 }
 html{
     height: 100vh;
     width:100vw;
 }
 body{
+    background-color: ghostwhite;
     font-family: '微软雅黑' ,Arial, Verdana;
-    height: 100%;
 }
-header {
+h1{
+    color: saddlebrown;
+}
+.first{
     background: url("picture/bk.jpg") no-repeat;
     background-size: 100%;
     padding:3% 7%;
     height: 80vh;
     float: left;
+    margin-bottom:1%;
 }
-p.right{
-    float: right;
-}
-
 .littleHeader a{
     display: inline-block;
     padding: 0 5% 0 0;
-}
-a{
-    color:lightgrey;
     font-style: normal;
     font-size: 100%;
     text-decoration: none;
@@ -37,7 +34,7 @@ a{
     line-height: 550%;
 }
 .Header h1{
-    color:gainsboro;
+    color:peachpuff;
     font-size: 400%;
     font-weight: lighter;
     padding-top: 5%;
@@ -45,18 +42,21 @@ a{
 }
 #guide{
     font-weight: 900;
-    color: white;
+    color: burlywood;
     font-size: 200%;
 
 }
 .Button input{
     background: transparent;
-    color:lightgrey;
     border: 1px solid lightgrey;
     font-size: 150%;
     padding: 2% 4%;
     margin: 3% 0 ;
     border-radius:10px;
+}
+#Button2{
+    background: burlywood;
+    color: black;
 }
 .sign{
     text-align: center;
@@ -64,7 +64,24 @@ a{
 }
 .sign p{
     margin:0 auto;
-    padding: 8% 0 0 0 ;
-    color: lightgrey;
+    padding: 32% 0 0 0 ;
 }
+.content h1{
+    font-size: 400%;
+    border-top: 1px solid lightsteelblue;
+    border-bottom: 1px solid lightsteelblue;
+    width: 100vh;
+}
+.content{
+    margin: 0 0 0 7%;
+    width: 100vh;
+    height: 100vh;
+}
+.content nav a{
+    font-size: 200%;
+    font-style: normal;
+    text-decoration: none;
+    color: rosybrown;
+}
+
 

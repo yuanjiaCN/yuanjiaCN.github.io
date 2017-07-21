@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100vh;
+    width:100vw;
+}
+body{
+    background-color: ghostwhite;
+    font-family: '微软雅黑' ,Arial, Verdana;
+    height: 100%;
+    padding:3% 10%;
+}
+.first{
+    margin-bottom:1%;
+    float: left;
+
+}
+.logo{
+    float:right;
+    width: 20%;
+    height: 10%;
+    background-color: rosybrown;
+    border-radius:100px;
+}
+.littleHeader a{
+    display: inline-block;
+    padding: 0 5% 0 0;
+}
+a{
+    color: saddlebrown;
+    font-style: normal;
+    font-size: 100%;
+    text-decoration: none;
+}
+.contentHeader h1{
+    margin: 5% 0 5% 0;
+    border-bottom: solid 1px gainsboro;
+}
+.content {
+    text-align: center;
+}
+.content h1{
+    margin: 0 auto;
+    font-size: 150%;
+}
+.content ul{
+    text-align: center;
+    margin: 4%;
+    border: dashed 1px grey;
+}
+.content ul li{
+    display: inline-block;
+    color:darkgrey;
+    font-size:80%;
+}
+.date{
+    float: center;
+}
+.read{
+    float: right;
+}
+.left{
+    width: 75%;
+    float: left;
+    border-right: 1px black dashed;
+}
+.right{
+    float: right;
+    width: 20%;
+}

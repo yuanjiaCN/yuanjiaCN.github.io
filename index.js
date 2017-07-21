@@ -5,4 +5,5 @@ $(function () {
     $guide.click(function () {
         $guideP.toggle();
     })
+    $(".first").height($(window).height());
 })
