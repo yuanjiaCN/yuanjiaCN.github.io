@@ -70,3 +70,43 @@ a{
     float: right;
     width: 20%;
 }
+p{
+    line-height: 200%;
+    color: dimgrey;
+}
+.CONTENT div{
+    clear: both;
+    margin-bottom: 7%;
+}
+.cut p{
+    font-size:80%;
+}
+.commentArea{
+    margin: 3% 0;
+    border-top: 1px solid lightblue;
+}
+.commentArea h1{
+    border: 10px saddlebrown solid;
+    display: inline-block;
+    border-radius: 20px;
+    padding: 1% 2%;
+    margin: 3% 0;
+}
+.commentArea form{
+    width: 60%;
+}
+.commentArea form p{
+    margin:3% 0;
+    border: 1px solid dimgrey;
+    width: 70vh;
+    height: 20vh;
+}
+.commentArea form button{
+    border-radius: 8%;
+    background-color: saddlebrown;
+    font-size: 100%;
+    border: 1px solid saddlebrown;
+    padding: 0.5% 2%;
+    float: right;
+    color: white;
+}

@@ -82,6 +82,16 @@ h1{
     font-style: normal;
     text-decoration: none;
     color: rosybrown;
+    margin: 2%;
+}
+.content p{
+    color: black;
+    line-height: 300%;
+}
+.content ul li{
+    display: inline-block;
+    float: right;
+    color:grey;
 }
 
 
