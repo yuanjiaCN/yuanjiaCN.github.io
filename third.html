@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>做博客遇到小问题【1】</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-22 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+                <a href="second.html">上一篇:外边距叠加、行框、行内框、outline属性</a>
+                <br/>
+                <a href="#">下一篇:无</a>
+            </section>
+                <h4>
+                    1.让元素撑满视口
+                </h4>
+                <p class="code">
+                    width: 100vh;
+                </p>
+                <p class="ps">
+                    PS：但是width是指内容的宽度，不包括内边距边框和外边距（IE6解释width为内容+内边距+边框）
+                </p>
+
+                <h4>
+                    2.在页面内点击链接跳转
+                </h4>
+                <p>在标签a中的href中写上要链接到的元素的id即可</p>
+
+
+                <h4>
+                    3.给一个元素设置背景图片，并把它拉宽至铺满整个视口（不要平铺）
+                </h4>
+                <p>css代码：</p>
+                <p class="code">
+                    .first{<br/>
+                    background: url("picture/bk.jpg") no-repeat;<br/>
+                    background-size: 100%;<br/>
+                    }
+                </p>
+
+                <p>jQuery代码：</p>
+                <p class="code">
+                    $(".first").height($(window).height());
+                </p>
+                <p class="ps">
+                    PS：
+                    获取视口高度给这个元素，这个元素不可以再有margin或者padding的top或者bottom属性
+                    如果有了的话，视口高度会加上padding&margin的值
+                    值为正时，背景图片会超过视口高度，继续往下延伸。
+                    其子元素有padding&margin值则不影响
+                </p>
+
+                <h4>
+                    4.让元素位于视口底部(只在打开网页时，并不随着页面浏览继续留在底部)
+                </h4>
+
+                <p>jQuery代码：</p>
+                <p class="code">
+                    $(".sign").offset({ top:0.92*$(window).height()});
+                </p>
+                <p class="ps">PS:
+                直接设置$(window).height()，则这个元素出现在视口底部的后一行
+                修改为display:inline也不行，只能出此下策
+                </p>
+                <h4>
+                    5.不论浏览页面到哪个位置，让元素一直处于视口某个位置
+                </h4>
+                <p>只需在属性中加一句</p>
+                <p class="code">
+                    position:fixed
+                </p>
+
+        </content>
+    </content>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+            <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
+            <a href="first.html">轮播图小心得</a>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+    <a href="second.html">上一篇:外边距叠加、行框、行内框、outline属性</a>
+    <br/>
+    <a href="#">下一篇:无</a>
+</section>
+<section class="commentArea">
+    <h1>评论区</h1>
+    <p>（假装可以写评论）</p>
+    <form>
+        <p>在此填写评论</p>
+        <button>提交</button>
+    </form>
+</section>
+
+<script src="jquery-3.2product.js"></script>
+<link rel="stylesheet" href="indexContent.css">
+</body>

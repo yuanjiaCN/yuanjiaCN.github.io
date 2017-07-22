@@ -3,42 +3,41 @@
     padding: 0;
     color:wheat;
 }
-html{
-    height: 100vh;
-    width:100vw;
-}
 body{
     background-color: ghostwhite;
     font-family: '微软雅黑' ,Arial, Verdana;
 }
 h1{
-    color: saddlebrown;
+    color: darkslategray;
+    font-size: 400%;
+    font-weight: lighter;
 }
+a{
+    text-decoration: none;
+}
+/*首页有背景图片部分*/
 .first{
     background: url("picture/bk.jpg") no-repeat;
     background-size: 100%;
-    padding:3% 7%;
-    height: 80vh;
-    float: left;
-    margin-bottom:1%;
+    padding:0 7%;
 }
-.littleHeader a{
+.sign{
+    text-align: center;
+}
+.sign p{
+    margin: 0 auto;
+}
+.headerNav a{
     display: inline-block;
     padding: 0 5% 0 0;
-    font-style: normal;
     font-size: 100%;
-    text-decoration: none;
 }
-.Header{
+#Header{
     width: 70%;
-    line-height: 550%;
 }
-.Header h1{
+#Header h1{
     color:peachpuff;
-    font-size: 400%;
-    font-weight: lighter;
     padding-top: 5%;
-
 }
 #guide{
     font-weight: 900;
@@ -58,40 +57,49 @@ h1{
     background: burlywood;
     color: black;
 }
-.sign{
-    text-align: center;
-    position: relative;
-}
-.sign p{
-    margin:0 auto;
-    padding: 32% 0 0 0 ;
-}
-.content h1{
-    font-size: 400%;
-    border-top: 1px solid lightsteelblue;
-    border-bottom: 1px solid lightsteelblue;
-    width: 100vh;
-}
-.content{
+/*首页博文区*/
+#content{
     margin: 0 0 0 7%;
-    width: 100vh;
+    width: 100vh;/*让这个元素撑满页面,但是记住width是指内容的宽度，不包括内边距边框和外边距*/
     height: 100vh;
 }
-.content nav a{
-    font-size: 200%;
-    font-style: normal;
-    text-decoration: none;
-    color: rosybrown;
-    margin: 2%;
+#content h1{
+    border-top: 1px solid lightsteelblue;
+    border-bottom: 1px solid lightsteelblue;
 }
-.content p{
-    color: black;
+#content a{
+    font-size: 200%;
+    color: dimgrey;
+    margin: 2%;
+    display: block;
+}
+#content a:visited{
+    color: saddlebrown;
+}
+#content a:hover{
+    color: slategray;
+    border-bottom: dotted 1px slategray;
+}
+#content a:active{
+    color: darkcyan;
+    border-bottom: solid 1px darkcyan;
+}
+#content p{
+    color: grey;
     line-height: 300%;
 }
-.content ul li{
+#content li{
     display: inline-block;
     float: right;
     color:grey;
+}
+#float{
+    position: fixed; /*固定定位*/
+    right:0;
+    top:20vh;
+    border: 1px solid dimgrey;
+    width: 10%;
+    height: 20%;
 }
 
 

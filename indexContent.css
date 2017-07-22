@@ -2,28 +2,21 @@
     margin: 0;
     padding: 0;
 }
-
-body{
+body {
     background-color: ghostwhite;
-    font-family: '微软雅黑' ,Arial, Verdana;
+    font-family: '微软雅黑', Arial, Verdana;
     height: 100%;
-    padding:3% 10%;
+    padding: 3% 10%;
 }
-.first{
-    margin-bottom:1%;
-    float: left;
-
+h2{
+    line-height: 200%;
+    font-weight: 100;
+    color: coral;
+    padding-bottom: 8%;
 }
-.logo{
-    float:right;
-    width: 20%;
-    height: 10%;
-    background-color: rosybrown;
-    border-radius:100px;
-}
-.littleHeader a{
-    display: inline-block;
-    padding: 0 5% 0 0;
+p{
+    line-height: 250%;
+    color: dimgray;
 }
 a{
     color: saddlebrown;
@@ -31,6 +24,23 @@ a{
     font-size: 100%;
     text-decoration: none;
 }
+h4{
+    font-weight: 300;
+    font-size: 130%;
+    margin: 4% 0 2% 0;
+}
+.first{
+    margin-bottom:1%;
+    float: left;
+
+}
+
+.headerNav a{
+    display: inline-block;
+    padding: 0 5% 0 0;
+
+}
+
 .contentHeader h1{
     margin: 5% 0 5% 0;
     border-bottom: solid 1px gainsboro;
@@ -66,24 +76,42 @@ a{
 .right{
     float: right;
     width: 20%;
+    margin: 2%;
 }
-p{
-    line-height: 200%;
-    color: dimgrey;
+.right a{
+    display: inline-block;
+    margin: 4% 0;
 }
 .CONTENT div{
     clear: both;
     margin-bottom: 7%;
 }
-.cut p{
-    font-size:80%;
+.cut{
+    margin-bottom:4%;
+}
+.cut a{
+    font-size:100%;
+    line-height: 200%;
+    display: inline-block;
+}
+.cut a:visited{
+    color: darkgreen;
+}
+.cut a:hover{
+    color: slategray;
+    border-bottom: dotted 1px slategray;
+}
+.cut a:active{
+    color: darkcyan;
+    border-bottom: solid 1px darkcyan;
 }
 .commentArea{
     margin: 3% 0;
     border-top: 1px solid lightblue;
 }
 .commentArea h1{
-    border: 10px saddlebrown solid;
+    border: 10px coral solid;       /*outline为元素框(padding和margin以外)的轮廓，不影响页面布局优于border,
+                                      但是没有outline-radius*/
     display: inline-block;
     border-radius: 20px;
     padding: 1% 2%;
@@ -94,16 +122,30 @@ p{
 }
 .commentArea form p{
     margin:3% 0;
-    border: 1px solid dimgrey;
+    border: 1px solid grey;
     width: 70vh;
     height: 20vh;
 }
 .commentArea form button{
     border-radius: 8%;
-    background-color: saddlebrown;
     font-size: 100%;
-    border: 1px solid saddlebrown;
+    background-color: transparent;
+    border: 1px solid coral;
     padding: 0.5% 2%;
     float: right;
+    color: coral;
+    font-weight: 900;
+}
+
+.strong{
+    font-weight: 600;
+    font-size:105%;
+}
+.ps{
+    color: black;
+}
+.code{
+    background-color: darkslategrey;
     color: white;
+    display: inline-block;
 }
