@@ -44,7 +44,12 @@ $(function () {
     })
     $("#button").click(function () {
         var $name = $("#author").val();
-        var $comment = $("#comment").val()
+        if($("#address").val()=="你是哪里人呀"){
+            $address = "不明地区";
+        }else{
+            $address = $("#address").val();
+        }
+        var $comment = $("#comment").val();
         if($name=="你叫啥呀"){
             $("#author").val("不告诉我名字就不让你评论哼！")
             $("#author").css({
@@ -59,7 +64,7 @@ $(function () {
             alert("评论成功");
             $(".comment>p").hide();
             $(".comment").append("<img src='picture/head.jpg'>");
-            $(".comment").append("<span>"+$name +" 2017.07</span>");
+            $(".comment").append("<span>来自"+" "+$address+" "+"的"+" "+$name+" "+"在2017.07评论</span>");
             $(".comment").append("<div style='border-bottom: 1px dotted #64706c'>"+$comment+"</div>");
             if(!$("#rememberYes").is(":checked")){
                 $("#author").val("你叫啥呀");
