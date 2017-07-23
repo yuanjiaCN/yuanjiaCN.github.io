@@ -1,23 +1,23 @@
 *{
     margin: 0;
     padding: 0;
-    color:wheat;
+    color:#ba9077;
 }
 body{
-    background-color: ghostwhite;
+    background-color: #5a5c51;
     font-family: '微软雅黑' ,Arial, Verdana;
 }
 h1{
-    color: darkslategray;
+    color: #1d2120;
     font-size: 400%;
-    font-weight: lighter;
+    font-weight: #1d2120;
 }
 a{
     text-decoration: none;
 }
 /*首页有背景图片部分*/
 .first{
-    background: url("picture/bk.jpg") no-repeat;
+    background: url("picture/backg.jpg") no-repeat;
     background-size: 100%;
     padding:0 7%;
 }
@@ -36,25 +36,25 @@ a{
     width: 70%;
 }
 #Header h1{
-    color:peachpuff;
+    color:#5a5c51;
     padding-top: 5%;
 }
 #guide{
     font-weight: 900;
-    color: burlywood;
+    color: #ba9077;
     font-size: 200%;
 
 }
 .Button input{
     background: transparent;
-    border: 1px solid lightgrey;
+    border: 1px solid #ba9077;
     font-size: 150%;
     padding: 2% 4%;
     margin: 3% 0 ;
     border-radius:10px;
 }
 #Button2{
-    background: burlywood;
+    background: #ba9077;
     color: black;
 }
 /*首页博文区*/
@@ -64,40 +64,40 @@ a{
     height: 100vh;
 }
 #content h1{
-    border-top: 1px solid lightsteelblue;
-    border-bottom: 1px solid lightsteelblue;
+    border-top: 1px solid #ba9077;
+    border-bottom: 1px solid #ba9077;
 }
 #content a{
     font-size: 200%;
-    color: dimgrey;
+    color: #ba9077;
     margin: 2%;
     display: block;
 }
 #content a:visited{
-    color: saddlebrown;
+    color: #1d2120;
 }
 #content a:hover{
     color: slategray;
     border-bottom: dotted 1px slategray;
 }
 #content a:active{
-    color: darkcyan;
-    border-bottom: solid 1px darkcyan;
+    color: #bcd5d1;
+    border-bottom: solid 1px #bcd5d1;
 }
 #content p{
-    color: grey;
+    color: #bcd5d1;
     line-height: 300%;
 }
 #content li{
     display: inline-block;
     float: right;
-    color:grey;
+    color:#ba9077;
 }
 #float{
     position: fixed; /*固定定位*/
     right:0;
     top:20vh;
-    border: 1px solid dimgrey;
+    border: 1px solid #bcd5d1;
     width: 10%;
     height: 20%;
 }

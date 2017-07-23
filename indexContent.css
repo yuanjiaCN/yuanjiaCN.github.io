@@ -3,7 +3,7 @@
     padding: 0;
 }
 body {
-    background-color: ghostwhite;
+    background-color: #ede9ce;
     font-family: '微软雅黑', Arial, Verdana;
     height: 100%;
     padding: 3% 10%;
@@ -11,39 +11,44 @@ body {
 h2{
     line-height: 200%;
     font-weight: 100;
-    color: coral;
+    color: #935347;
     padding-bottom: 8%;
 }
-p{
-    line-height: 250%;
-    color: dimgray;
-}
-a{
-    color: saddlebrown;
-    font-style: normal;
-    font-size: 100%;
-    text-decoration: none;
+h3{
+    font-weight: 300;
+    font-size: 130%;
+    margin: 4% 0 2% 0;
+    border-top: solid #bcd5d1 1px;
+    padding-top: 1%;
+    width: 100vh;
 }
 h4{
     font-weight: 300;
     font-size: 130%;
     margin: 4% 0 2% 0;
 }
+p{
+    line-height: 250%;
+    color: #935347;
+}
+a{
+    color: #935347;
+    font-style: normal;
+    font-size: 100%;
+    text-decoration: none;
+}
+
 .first{
     margin-bottom:1%;
     float: left;
-
 }
-
 .headerNav a{
     display: inline-block;
     padding: 0 5% 0 0;
-
 }
-
 .contentHeader h1{
     margin: 5% 0 5% 0;
-    border-bottom: solid 1px gainsboro;
+    border-bottom: solid 1px #bcd5d1;
 }
 .content {
     text-align: center;
@@ -55,11 +60,11 @@ h4{
 .content ul{
     text-align: center;
     margin: 4%;
-    border: dashed 1px grey;
+    border: dashed 1px #64706c;
 }
 .content ul li{
     display: inline-block;
-    color:darkgrey;
+    color:#64706c;
     font-size:80%;
 }
 .date{
@@ -71,7 +76,7 @@ h4{
 .left{
     width: 75%;
     float: left;
-    border-right: 1px black dashed;
+    border-right: 1px #64706c dashed;
 }
 .right{
     float: right;
@@ -95,48 +100,42 @@ h4{
     display: inline-block;
 }
 .cut a:visited{
-    color: darkgreen;
+    color: #64706c;
 }
 .cut a:hover{
     color: slategray;
     border-bottom: dotted 1px slategray;
 }
 .cut a:active{
-    color: darkcyan;
-    border-bottom: solid 1px darkcyan;
+    color: #c7ad88;
+    border-bottom: solid 1px #c7ad88;
 }
-.commentArea{
-    margin: 3% 0;
-    border-top: 1px solid lightblue;
+.comment{
+    border-top: solid #bcd5d1 1px;
+    width: 55vw;
 }
-.commentArea h1{
-    border: 10px coral solid;       /*outline为元素框(padding和margin以外)的轮廓，不影响页面布局优于border,
-                                      但是没有outline-radius*/
-    display: inline-block;
-    border-radius: 20px;
+fieldset{
+    width: 40vw;
+    line-height: 200%;
+    padding: 2%;
+    background-color: #e5c79c;
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    color: #423b3b;
+}
+fieldset input[type="text"],textarea{
+    display: block;
+    width: 20vw;
+}
+form input[type="button"]{
+    background: transparent;
+    border: 1px solid #ba9077;
+    font-size: 120%;
     padding: 1% 2%;
-    margin: 3% 0;
+    margin-top:2% ;
+    border-radius:10px;
 }
-.commentArea form{
-    width: 60%;
-}
-.commentArea form p{
-    margin:3% 0;
-    border: 1px solid grey;
-    width: 70vh;
-    height: 20vh;
-}
-.commentArea form button{
-    border-radius: 8%;
-    font-size: 100%;
-    background-color: transparent;
-    border: 1px solid coral;
-    padding: 0.5% 2%;
-    float: right;
-    color: coral;
-    font-weight: 900;
-}
-
 .strong{
     font-weight: 600;
     font-size:105%;
@@ -145,7 +144,16 @@ h4{
     color: black;
 }
 .code{
-    background-color: darkslategrey;
-    color: white;
+    background-color: #64706c;
+    color: #ede9ce;
     display: inline-block;
 }
+.comment div{
+    line-height: 200%;
+    margin: 5%;
+}
+.comment img{
+    width: 5%;
+    height: 5%;
+}
+

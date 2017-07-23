@@ -32,9 +32,7 @@
                 <br/>
                 <a href="#">下一篇:无</a>
             </section>
-                <h4>
-                    1.让元素撑满视口
-                </h4>
+                <h4>1.让元素撑满视口</h4>
                 <p class="code">
                     width: 100vh;
                 </p>
@@ -42,15 +40,11 @@
                     PS：但是width是指内容的宽度，不包括内边距边框和外边距（IE6解释width为内容+内边距+边框）
                 </p>
 
-                <h4>
-                    2.在页面内点击链接跳转
-                </h4>
-                <p>在标签a中的href中写上要链接到的元素的id即可</p>
-
-
-                <h4>
-                    3.给一个元素设置背景图片，并把它拉宽至铺满整个视口（不要平铺）
-                </h4>
+                <h4>2.在页面内点击链接跳转</h4>
+                <p>
+                    在标签a中的href中写上要链接到的元素的id即可
+                </p>
+                <h4>3.给一个元素设置背景图片，并把它拉宽至铺满整个视口（不要平铺）</h4>
                 <p>css代码：</p>
                 <p class="code">
                     .first{<br/>
@@ -58,33 +52,28 @@
                     background-size: 100%;<br/>
                     }
                 </p>
-
                 <p>jQuery代码：</p>
                 <p class="code">
                     $(".first").height($(window).height());
                 </p>
                 <p class="ps">
                     PS：
-                    获取视口高度给这个元素，这个元素不可以再有margin或者padding的top或者bottom属性
-                    如果有了的话，视口高度会加上padding&margin的值
-                    值为正时，背景图片会超过视口高度，继续往下延伸。
+                    获取视口高度给这个元素，这个元素不可以再有margin或者padding的top或者bottom属性<br/>
+                    如果有了的话，视口高度会加上padding&margin的值。<br/>
+                    值为正时，背景图片会超过视口高度，继续往下延伸。<br/>
                     其子元素有padding&margin值则不影响
-                </p>
 
-                <h4>
-                    4.让元素位于视口底部(只在打开网页时，并不随着页面浏览继续留在底部)
-                </h4>
 
+                <h4>4.让元素位于视口底部(只在打开网页时，并不随着页面浏览继续留在底部)</h4>
                 <p>jQuery代码：</p>
                 <p class="code">
                     $(".sign").offset({ top:0.92*$(window).height()});
                 </p>
-                <p class="ps">PS:
-                直接设置$(window).height()，则这个元素出现在视口底部的后一行
+                <p class="ps">
+                PS:
+                    直接设置$(window).height()，则这个元素出现在视口底部的后一行。<br/>
                 修改为display:inline也不行，只能出此下策
-                </p>
-                <h4>
-                    5.不论浏览页面到哪个位置，让元素一直处于视口某个位置
+                <h4>5.不论浏览页面到哪个位置，让元素一直处于视口某个位置
                 </h4>
                 <p>只需在属性中加一句</p>
                 <p class="code">
@@ -92,7 +81,7 @@
                 </p>
 
         </content>
-    </content>
+    </section>
     <aside class="right">
         <h2>其他文章推荐</h2>
         <nav>
@@ -100,7 +89,6 @@
             <a href="first.html">轮播图小心得</a>
         </nav>
     </aside>
-
     <div></div>
 </section>
 <section class="cut">
@@ -108,15 +96,42 @@
     <br/>
     <a href="#">下一篇:无</a>
 </section>
-<section class="commentArea">
-    <h1>评论区</h1>
-    <p>（假装可以写评论）</p>
-    <form>
-        <p>在此填写评论</p>
-        <button>提交</button>
-    </form>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
 </section>
-
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Remember me</legend>
+        <div>
+            <label for="rememberYes">YES</label>
+            <input name="remember" id="rememberYes" type="radio" value="YES">
+            <label for="rememberNo">No</label>
+            <input name="remember" id="rememberNo" type="radio" value="NO">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
 <script src="jquery-3.2product.js"></script>
 <link rel="stylesheet" href="indexContent.css">
+<script src="content.js"></script>
 </body>
