@@ -21,7 +21,6 @@ $(function () {
     $("#address").focus(function () {
         if($(this).val()==this.defaultValue){
             $(this).val("");
-
         }
     })
     $("#address").blur(function () {
@@ -73,5 +72,4 @@ $(function () {
             }
         }
     })
-
 })

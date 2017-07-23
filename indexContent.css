@@ -156,4 +156,6 @@ form input[type="button"]{
     width: 5%;
     height: 5%;
 }
-
+label{
+    cursor: pointer;  /*光标样式 手掌样子 这样可以让游客发现这可以交互*/
+}
