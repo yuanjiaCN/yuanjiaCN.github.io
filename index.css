@@ -1,105 +1,185 @@
 *{
-    margin: 0;
     padding: 0;
-    color:#ba9077;
+    margin: 0;
+    font-family:  "Century Gothic";
+    font-weight: 100;
 }
-body{
-    background-color: #5a5c51;
-    font-family: '微软雅黑' ,Arial, Verdana;
+#index{
+    height: 100%;
+    width: 100%;
+    font-size: 1em;
 }
-h1{
-    color: #1d2120;
-    font-size: 400%;
-    font-weight: #1d2120;
-}
-a{
-    text-decoration: none;
-}
-/*首页有背景图片部分*/
-.first{
-    background: url("picture/backg.jpg") no-repeat;
-    background-size: 100%;
-    padding:0 7%;
-}
-.sign{
-    text-align: center;
-}
-.sign p{
-    margin: 0 auto;
-}
-.headerNav a{
-    display: inline-block;
-    padding: 0 5% 0 0;
-    font-size: 100%;
-}
-#Header{
-    width: 70%;
-}
-#Header h1{
-    color:#5a5c51;
-    padding-top: 5%;
-}
-#guide{
-    font-weight: 900;
-    color: #ba9077;
-    font-size: 200%;
-
-}
-.Button input{
-    background: transparent;
-    border: 1px solid #ba9077;
-    font-size: 150%;
-    padding: 2% 4%;
-    margin: 3% 0 ;
-    border-radius:10px;
-}
-#Button2{
-    background: #ba9077;
+#index a:hover{
     color: black;
 }
-/*首页博文区*/
-#content{
-    margin: 0 0 0 7%;
-    width: 100vh;/*让这个元素撑满页面,但是记住width是指内容的宽度，不包括内边距边框和外边距*/
-    height: 100vh;
+#index a:visited{
+    color:rgb(241,0,97);
 }
-#content h1{
-    border-top: 1px solid #ba9077;
-    border-bottom: 1px solid #ba9077;
+button{
+    font-size: 1em;
+    background-color: rgb(241,0,97);
+    border: none;
+    border-radius: 45px;
+    line-height: 3em;
+    padding: 0 4%;
+    color:white;
+    margin-top:2% ;
 }
-#content a{
-    font-size: 200%;
-    color: #ba9077;
-    margin: 2%;
+p{
+    color: rgb(106,111,116);
+    padding: 8%;
+    line-height: 2em;
+}
+h3{
+    font-size: 1em;
+    line-height: 6em;
+}
+/*首页头部*/
+#index>header{
+    background: url("picture/background(1).jpg") no-repeat;
+    background-size: 100%;
+    height: 100vh;/*神器*/
+}
+
+#index>header ul{
+    color:rgb(241,0,97);
+    position: fixed;
+    font-size: 3em;
+    padding: 3%;
+}
+#index>header li{
+    list-style: none;
+    font-size: 0.8em;
+    line-height: 2em;
+}
+#index>header li:first-child{
+    padding-top:30%;
+}
+#index>header a{
+    text-decoration: none;
+    color: rgb(148,171,145);
+}
+#index>header section{
+    width: 100%;
+    text-align: center;
+}
+#index>header h1{
+    margin: 0 auto;
+    padding-top: 30%;
+    font-size: 3em;
+    color: white;
+    font-weight: 900;
+}
+#index>header p{
+    font-size: 2em;
+    color: white;
+    padding: 0;
+}
+#index>header section a{
+    font-size: 1em;
+    color:rgb(241,0,97);
     display: block;
 }
-#content a:visited{
-    color: #1d2120;
+/*首页介绍部分*/
+#index>article{
+    text-align: center;
+    margin: 10%;
+    padding: 0 15%;
 }
-#content a:hover{
-    color: slategray;
-    border-bottom: dotted 1px slategray;
+#index>article>section{
+    margin: 0 auto;
 }
-#content a:active{
-    color: #bcd5d1;
-    border-bottom: solid 1px #bcd5d1;
+#index>article>section>header{
+    font-size: 2em;
 }
-#content p{
-    color: #bcd5d1;
-    line-height: 300%;
+/*精选博文*/
+#index>.listDecoration{
+    margin:0 9%;
+    text-align: center;
 }
-#content li{
+#index>.listDecoration>header{
+    font-size: 2em;
+    margin: 0 auto;
+}
+#index>.listDecoration>section{
+    float: left;
+    width: 33.33%;
+}
+#index>.listDecoration li{
+    list-style: none;
+    line-height: 2em;
+}
+#index>.listDecoration a{
+    white-space:nowrap;
+    text-overflow: ellipsis;
     display: inline-block;
-    float: right;
-    color:#ba9077;
+    overflow: hidden;
+    width: 90%;
+    text-decoration: none;
+    color: rgb(148,171,145);
 }
-#float{
-    position: fixed; /*固定定位*/
-    right:0;
-    top:20vh;
-    border: 1px solid #bcd5d1;
-    width: 10%;
-    height: 20%;
+#index>.listDecoration a:visited{
+    color:rgb(241,0,97);
 }
-
-
+#index>.listDecoration a:hover{
+    color:black;
+}
+#index>.listDecoration footer{
+    color:rgb(241,0,97);
+    padding: 10%;
+    clear: both;
+}
+#index>.works{
+    text-align: center;
+    margin: 0 7%;
+}
+#index>.works header{
+    font-size: 2em;
+    margin: 0 auto;
+}
+#index>.works p{
+    padding: 2%;
+}
+#index>.works div{
+    width: 31%;
+    height: 50%;
+    background-color: rgb(47,49,110);
+    float: left;
+    margin: 1%;
+}
+#index>.works a{
+    line-height: 10em;
+    color: rgb(101,104,149);
+    font-size: 1.5em;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    width: 90%;
+    text-decoration: none;
+}
+#index>.works a:visited{
+   color:rgb(241,0,97);
+}
+#index>.works a:hover{
+    color:black;
+}
+#index>.works footer{
+    color:rgb(241,0,97);
+    padding: 10%;
+    clear: both;
+}
+#index>footer{
+    text-align: center;
+}
+#index>footer p{
+    padding: 2%;
+    margin: 0 auto;
+    font-size: 2em;
+    color:rgb(241,0,97);
+    font-weight: 900;
+}
+#index>footer a{
+    font-size: 2em;
+    text-decoration: none;
+}
