@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
@@ -134,4 +135,144 @@
 <link rel="stylesheet" href="indexContent.css">
 <script src="jquery-3.2product.js"></script>
 <script src="content.js"></script>
+=======
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>做博客遇到小问题【2】评论区</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-23 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+                <a href="third.html">上一篇:做博客遇到小问题【1】</a>
+                <br/>
+                <a href="fifth.html">下一篇:CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+            </section>
+            <section>
+            <p>
+                今天做了评论部分的功能，虽然因为不会后端，所以这个评论功能只能自娱自乐，但是还是挺有意思的！好了，说一下今天学到的小知识吧
+            </p>
+            <h4>1.textarea设置宽度和高度的方法</h4>
+            <p>
+                使用rows和cols属性，可以设置行、列数
+            </p>
+               <img src="picture/forth(1).jpg"/>
+            <h4>2.为啥我的radio标签可以多选？！</h4>
+            <p>
+                radio只有name设置相同的项才是单选。
+            </p>
+            <h4>3.如何判断radio被选中了</h4>
+            <p>使用is选择器，</p>
+            <p class="code">
+                $("#rememberYes").is(":checked")
+            </p>
+            <h4>4.表单里面有很多好标签！</h4>
+            <p>fieldset元素：用来对相关的信息块进行分组<br/>
+                legend元素：是fieldset的标题，自带样式，在fieldset的顶部垂直居中，并且向右缩进一点，但是最好不要在它上面应用样式，因为各种浏览器处理它们的方式不一致<br/>
+                label元素：用来在每个表单元素中添加有意义的描述性标签，主要是对于辅助设备和屏幕阅读器用户很友好,有显式和隐式两种把标签和表单控件关联起来的方式
+            </p>
+                <img src="picture/forth(3).jpg"/>
+                <img src="picture/forth(2).jpg"/>
+            <p>
+                因为他们之间是关联的，所以标签和表单控件可以写在文档的不同位置，但是感觉并不实用，还是写在一起吧！
+            </p>
+            <p class="code">
+                 label{<br/>
+                 cursor: pointer;  /*光标样式，手掌样子，这样可以让游客发现这可以交互*/<br/>
+                 }
+            </p>
+            <h4>5.一定要长句子里面“”和''的妙用！</h4>
+                <img src="picture/forth(4).jpg"/>
+            <p>如果都用“”就会报错啦，因为系统弄不明白哪两个是配对的</p>
+            <h4>
+                6.如何不浪费时间
+
+            </h4>
+                <p class="strong">
+                    以后做东西一定要事先配好色! <br/>
+                    以后做东西一定要事先配好色！<br/>
+                    以后做东西一定要事先配好色！<br/>
+                </p>
+            </section>
+        </content>
+    </section>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+            <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
+            <a href="first.html">轮播图小心得</a>
+            <a href="third.html">做博客遇到小问题【1】主页</a>
+            <a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+            <a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+    <a href="third.html">上一篇:做博客遇到小问题【1】主页</a>
+    <br/>
+    <a href="fifth.html">下一篇:CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+</section>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Remember me</legend>
+        <div>
+            <label for="rememberYes">YES</label>
+            <input name="remember" id="rememberYes" type="radio" value="YES">
+            <label for="rememberNo">No</label>
+            <input name="remember" id="rememberNo" type="radio" value="NO">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="content.js"></script>
+>>>>>>> origin/master
 </body>
