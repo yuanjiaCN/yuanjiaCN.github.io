@@ -37,7 +37,9 @@ a{
     font-size: 100%;
     text-decoration: none;
 }
-
+img{
+    max-width: 90%;
+}
 .first{
     margin-bottom:1%;
     float: left;
@@ -86,6 +88,11 @@ a{
 .right a{
     display: inline-block;
     margin: 4% 0;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+
 }
 .CONTENT div{
     clear: both;
@@ -98,6 +105,11 @@ a{
     font-size:100%;
     line-height: 200%;
     display: inline-block;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    width: 50%;
 }
 .cut a:visited{
     color: #64706c;
