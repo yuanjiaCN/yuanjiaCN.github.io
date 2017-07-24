@@ -1,73 +1,81 @@
 <!DOCTYPE html>
+<html lang="zh">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8"/>
 </head>
 <body>
-<header class="first">
-    <section class="sign">
-        <p><a href="#content">explore more about me</a></p>
-        <p><a href="#content">↓</a></p>
-        <!--锚点跳转-->
-    </section>
-    <section class="headerNav">
-            <nav>
-             <a href="index.html">主页</a>
-            <a href="#">我</a>
-            <a href="#" id="guide">博文导航</a>
-            <a href="#">技术</a>
-            <a href="#">随笔</a>
-            <a href="#">留言</a>
-            </nav>
-    </section>
-    <section id="Header">
-        <h1>Create Awesome Things For Better Life</h1>
-    </section>
-    <section class="Button">
-        <input type="button" value="something">
-        <input type="button" id="Button2" value="something">
-    </section>
-</header>
-<section id="content">
+<div id="index">
     <header>
-        <h1>博文栏</h1>
+        <nav>
+            <ul>☰
+                <li><a href="#">HOME</a></li>
+                <li><a href="#about">ABOUT ME</a></li>
+                <li><a href="#works">MY WORKS</a></li>
+                <li><a href="#others">OTHERS</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h1>HELLO WORLD</h1>
+            <p>THIS IS YUAN</p>
+            <button>explore more...</button>
+        </section>
     </header>
-    <nav>
-        <a href="first.html">轮播图小心得</a>
-        <p>假装这里甚至还有摘要……</p>
-        <ul>
-            <li>假装可以看阅读量:</li><br/>
-            <li>发布时间：2017-7-21 </li>
-        </ul>
-    </nav>
-    <nav>
-        <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
-        <p>假装这里甚至还有摘要……</p>
-        <ul>
-            <li >假装可以看阅读量:</li><br/>
-            <li>发布时间：2017-7-22 </li>
-        </ul>
-    </nav>
-    <nav>
-        <a href="third.html">做博客遇到小问题【1】</a>
-        <p>假装这里甚至还有摘要……</p>
-        <ul>
-            <li >假装可以看阅读量:</li><br/>
-            <li>发布时间：2017-7-22 </li>
-        </ul>
-    </nav>
-    <nav>
-        <a href="forth.html">做博客遇到小问题【2】评论区</a>
-        <p>假装这里甚至还有摘要……</p>
-        <ul>
-            <li >假装可以看阅读量:</li><br/>
-            <li>发布时间：2017-7-23 </li>
-        </ul>
-    </nav>
-</section>
-<section id="float">
-    假装有个切换颜色的功能
-</section>
+    <article>
+        <section>
+            <header id="about">ABOUT ME</header>
+            <p>努力学习前端各项技能中……假装这里有很多很多很多很多很多很多很多很多
+                很多很多很多很多很多很很多很多很多很多很多很多很多很多很多很多很多很
+                多很多很多很很多多很多多很多很多很多很多很多的介绍</p>
+        </section>
+        <button>know more about...</button>
+    </article>
+    <section class="listDecoration">
+        <header id="works">CHOICENESS</header>
+        <section class="skill">
+            <h3>博客搭建</h3>
+            <ul>
+                <li><a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a>
+                <li><a href="third.html">做博客遇到小问题【1】主页</a></li>
+                <li><a href="forth.html">做博客遇到小问题【2】评论区</a></li>
+            </ul>
+        </section>
+        <section class="study">
+            <h3>看书学习</h3>
+            <ul>
+                <li><a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a></li>
+                <li><a href="second.html">外边距叠加、行框、行内框、outline属性</a>
+                <li><a href="#">敬请期待</a></li>
+            </ul>
+        </section>
+        <section class="others">
+            <h3>杂七杂八随笔</h3>
+            <ul>
+                <li><a href="#">敬请期待</a></li>
+                <li><a href="#">敬请期待</a></li>
+                <li><a href="#">敬请期待</a></li>
+            </ul>
+        </section>
+        <footer>♪♪♪</footer>
+    </section>
+    <section class="works">
+        <header>MY LATEST WORK</header>
+        <p>好像应该说点什么……</p>
+        <div><a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a></div>
+        <div><a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a></div>
+        <div><a href="first.html">轮播图小心得</a></div>
+        <div><a href="second.html">外边距叠加、行框、行内框、outline属性</a></div>
+        <div><a href="third.html">做博客遇到小问题【1】主页</a></div>
+        <div><a href="forth.html">做博客遇到小问题【2】评论区</a></div>
+        <footer>♪♪♪</footer>
+    </section>
+    <footer id="others">
+        <p>都看到这里了，给我点个赞呗</p>
+        <a href="#">☝☝☝</a>
+    </footer>
+</div>
 <link rel="stylesheet" href="index.css">
 <script src="jquery-3.2product.js"></script>
 <script src="index.js"></script>
+<link>
 </body>
+</html>
