@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>博客用到的文字换行、首行渲染、CSS3动画属性</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-25 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+                <a href="sixth.html">上一篇:做博客遇到的小问题【3】溢出、伪选择器</a>
+                <br/>
+                <a href="#">下一篇:无</a>
+            </section>
+            <article>
+
+                <h4>1.文字换行</h4>
+                <p class="code">
+                    word-wrap: break-word;
+                </p>
+                <p>
+                    甚至IE5.5都可以用
+                </p>
+                <p class="code">
+                    This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will break and wrap to the next<br/>
+                </p>
+                <p>
+                    这个特别长的词，如果不是用word-wrap: break-word;<br/>
+                    这个没有空格的词就会溢出到框外。<br/>
+                    这种事经常出现在链接中，所以用a做例子<br/>
+                    css:
+                </p>
+                <p class="code">
+                    a{<br/>
+                    display: block;<br/>
+                    word-wrap: break-word;<br/>
+                    border: 1px solid black;<br/>
+                    width: 10em;<br/>
+                    }<br/>
+                </p>
+                <h4>2.first-line伪元素</h4>
+                <p>
+                    会随着视口自动变化，渲染第一行样式。
+                </p>
+                <h4>3.translate 过渡</h4>
+                <p>
+                    四个属性：
+                </p>
+                <p class="code">
+                    需要过渡的CSS属性名称:transition-property<br/>
+                    过渡效果持续时间:transition-duration<br/>
+                    过渡期间速度变化（ease\linear...）t:ransition-timing-function<br/>
+                    过渡开始前延迟时间:transition-delay<br/>
+                <p>
+                可以简写，但是如果分开来写，就可以定义不同属性的不同更持续时间等<br/>
+                可以设置
+                </p>
+                <p class="code">
+                    *{<br/>
+                    transition:all 1s<br/>
+                    }
+                </p>
+                <p>
+                    如果设置了媒体查询，在改变浏览器大小的时候，就会有很棒的效果出现啦
+                </p>
+                <h4>4.transform 变形 2D 3D</h4>
+                <p>
+                    在safari中需要设置display:block才有效<br/>
+                    2D效果有5个属性<br/>
+                <p class="code">
+                scale缩放元素transform:scale(1.5)<br/>
+                translate在屏幕上移动元素，第一个值是从左到右一定的距离，第二个为从上到下移动的距离，常规单位都可以用，也可以使用负值transform:translate(1.5%,1.5%)<br/>
+                rotate按照一定角度旋转元素transform:rotate(30deg)<br/>
+                skew沿X河Y轴对元素进行斜切transform:skew(10deg,2deg)<br/>
+                matrix：允许以像素精度来控制变形效果（可以综合以上属性）<br/>
+                transform-origin属性：控制变形起点transform-origin:20% 20%<br/>
+                </p>
+                <p>
+                    3D效果很复杂，只能举一个例子
+                </p>
+                <p class="code">
+                    给父元素设置一个perspective:200<br/>
+                    再给子元素设置transform-style:preserve-3d<br/>
+                    再给带有伪类hover的子元素设置transform:rotateY(180deg)
+                </p>
+                <p>
+                    著名的CSS属性可用性查询网站caniuse结果
+                </p>
+                <img src="picture/transforms.jpg"/>
+                <h4>5.animation动画效果</h4>
+                <p>
+                    先写个关键帧规则
+                </p>
+                <p class="code">
+                    @keyframes color {<br/>
+                    from{<br/>
+                        background-color: rgb(37,39,87);<br/>
+                    }<br/>
+                    50%{<br/>
+                        background-color: rgb(16,17,38);<br/>
+                    }<br/>
+                    to{<br/>
+                        background-color: rgb(37,39,87);<br/>
+                    }<br/>
+                }<br/>
+                </p>
+                <p>需要的元素自己引用</p>
+                <p class="code">
+                    .works div{<br/>
+                    animation: color 3s infinite ease-in-out;<br/>
+                    }<br/>
+                </p>
+                <p>
+                    有7个独立动画属性值，但是也可以简写
+                </p>
+                <p class="code">
+                    animation-name	规定需要绑定到选择器的 keyframe 名称。。<br/>
+                    animation-duration	规定完成动画所花费的时间，以秒或毫秒计。<br/>
+                    animation-timing-function	规定动画的速度曲线。<br/>
+                    animation-delay	规定在动画开始之前的延迟。<br/>
+                    animation-iteration-count	规定动画应该播放的次数。<br/>
+                    animation-fill-mode:属性规定动画在播放之前或之后，其动画效果是否可见<br/>
+                    animation-play-state：可以控制动画的播放和暂停running paused
+                </p>
+                <p>animation-fill-mode属性的几个值</p>
+                <p class="code">
+                    none	不改变默认行为。<br/>
+                    forwards	当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。<br/>
+                    backwards	在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。<br/>
+                    both	向前和向后填充模式都被应用。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+            <a href="first.html">轮播图小心得</a>
+            <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
+            <a href="third.html">做博客遇到小问题【1】首页</a>
+            <a href="forth.html">做博客遇到小问题【2】评论区</a>
+            <a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+            <a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+    <a href="sixth.html">上一篇:做博客遇到的小问题【3】溢出、伪选择器</a>
+    <br/>
+    <a href="#">下一篇:无</a>
+</section>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>保存信息</legend>
+        <div>
+            <label for="rememberYes">是</label>
+            <input name="remember" id="rememberYes" type="radio">
+            <label for="rememberNo">否</label>
+            <input name="remember" id="rememberNo" type="radio">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="content.js"></script>
+</body>

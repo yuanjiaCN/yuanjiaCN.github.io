@@ -7,16 +7,17 @@ body {
     font-family: '微软雅黑', Arial, Verdana;
     height: 100%;
     padding: 3% 10%;
+    font-size: 1em;
 }
 h2{
-    line-height: 200%;
+    line-height: 2em;
     font-weight: 100;
     color: #935347;
     padding-bottom: 8%;
 }
 h3{
     font-weight: 300;
-    font-size: 130%;
+    font-size: 1.3em;
     margin: 4% 0 2% 0;
     border-top: solid #bcd5d1 1px;
     padding-top: 1%;
@@ -24,17 +25,15 @@ h3{
 }
 h4{
     font-weight: 300;
-    font-size: 130%;
+    font-size: 1.3em;
     margin: 4% 0 2% 0;
 }
 p{
-    line-height: 250%;
+    line-height: 2.5em;
     color: #935347;
 }
 a{
     color: #935347;
-    font-style: normal;
-    font-size: 100%;
     text-decoration: none;
 }
 img{
@@ -46,10 +45,10 @@ img{
 }
 .headerNav a{
     display: inline-block;
-    padding: 0 5% 0 0;
+    padding-right: 5%;
 }
 .contentHeader h1{
-    margin: 5% 0 5% 0;
+    margin: 5% 0;
     border-bottom: solid 1px #bcd5d1;
 }
 .content {
@@ -57,7 +56,7 @@ img{
 }
 .content h1{
     margin: 0 auto;
-    font-size: 150%;
+    font-size: 1.5em;
 }
 .content ul{
     text-align: center;
@@ -67,7 +66,7 @@ img{
 .content ul li{
     display: inline-block;
     color:#64706c;
-    font-size:80%;
+    font-size:0.8em;
 }
 .date{
     float: center;
@@ -102,8 +101,7 @@ img{
     margin-bottom:4%;
 }
 .cut a{
-    font-size:100%;
-    line-height: 200%;
+    line-height: 2em;
     display: inline-block;
     white-space:nowrap;
     text-overflow: ellipsis;
@@ -124,11 +122,14 @@ img{
 }
 .comment{
     border-top: solid #bcd5d1 1px;
-    width: 55vw;
+    width: 55%;
+}
+.left article{
+    padding-right: 8%;
 }
 fieldset{
-    width: 40vw;
-    line-height: 200%;
+    width: 40%;
+    line-height: 2em;
     padding: 2%;
     background-color: #e5c79c;
     border: none;
@@ -138,30 +139,30 @@ fieldset{
 }
 fieldset input[type="text"],textarea{
     display: block;
-    width: 20vw;
+    width: 80%;
 }
 form input[type="button"]{
     background: transparent;
     border: 1px solid #ba9077;
-    font-size: 120%;
+    font-size: 1.2em;
     padding: 1% 2%;
     margin-top:2% ;
-    border-radius:10px;
+    border-radius:15%;
 }
 .strong{
     font-weight: 600;
-    font-size:105%;
+    font-size:1.05em;
 }
 .ps{
     color: black;
 }
 .code{
-    background-color: #64706c;
-    color: #ede9ce;
+    background-color: rgba(100,112,108,0.2);
+    color: rgb(100,112,108);
     display: inline-block;
 }
 .comment div{
-    line-height: 200%;
+    line-height: 2em;
     margin: 5%;
 }
 .comment img{

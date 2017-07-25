@@ -1,19 +1,69 @@
+/*关键帧申明*/
+@keyframes color {
+    from{
+        background-color: rgb(37,39,87);
+    }
+    50%{
+        background-color: rgb(16,17,38);
+    }
+    to{
+        background-color: rgb(37,39,87);
+    }
+}
+@keyframes come {
+    from{
+        color: transparent;
+        transform: translate(-3%,0);
+    }
+    to{
+        color: white;
+    }
+}
+@keyframes downAndUpRight {
+    from{
+        color: transparent;
+    }
+    50%{
+        transform: translate(0,20%);
+    }
+    to{
+        transform: rotate(5deg);
+    }
+}
+@keyframes downAndUpLeft {
+    from{
+        color: transparent;
+    }
+    50%{
+        transform: translate(0,20%);
+    }
+    to{
+        transform: rotate(-5deg);
+    }
+}
+@keyframes move {
+
+    30%{
+        transform: translate(-10%,0);
+    }
+    60%{
+        transform: translate(10%,0);
+    }
+}
 *{
     padding: 0;
     margin: 0;
     font-family:  "Century Gothic";
     font-weight: 100;
+    transition: all 0.5s ease ;
 }
 #index{
     height: 100%;
     width: 100%;
     font-size: 1em;
 }
-#index a:hover{
-    color: black;
-}
-#index a:visited{
-    color:rgb(241,0,97);
+a:hover{
+    color: darkslategrey;
 }
 button{
     font-size: 1em;
@@ -23,7 +73,11 @@ button{
     line-height: 3em;
     padding: 0 4%;
     color:white;
-    margin-top:2% ;
+    margin-top:2%;
+}
+button:hover{
+    transform: scale(1.2);
+    cursor:pointer
 }
 p{
     color: rgb(106,111,116);
@@ -37,31 +91,46 @@ h3{
 /*首页头部*/
 #index>header{
     background: url("picture/background(1).jpg") no-repeat;
-    background-size: 100%;
-    height: 100vh;/*神器*/
+    background-size: 100%;/*控制宽度*/
+    height: 100vh;/*神器，高度填满视口*/
 }
 
 #index>header ul{
     color:rgb(241,0,97);
     position: fixed;
     font-size: 3em;
-    padding: 3%;
+    padding: 3% 6%;
+
 }
 #index>header li{
     list-style: none;
     font-size: 0.8em;
-    line-height: 2em;
+    line-height: 3em;
+}
+#index>header li:nth-child(odd){
+    animation: downAndUpLeft 1.5s ;
+    transform: rotate(-5deg);
+}
+#index>header li:nth-child(even){
+    animation: downAndUpRight 1.5s ;
+    transform: rotate(5deg);
 }
 #index>header li:first-child{
-    padding-top:30%;
+    padding-top:10%;
 }
 #index>header a{
     text-decoration: none;
     color: rgb(148,171,145);
 }
+#index>header a:hover{
+    transform: translate(20%,0);
+    display: block;
+    color:darkslategrey ;
+}
 #index>header section{
     width: 100%;
     text-align: center;
+
 }
 #index>header h1{
     margin: 0 auto;
@@ -69,11 +138,13 @@ h3{
     font-size: 3em;
     color: white;
     font-weight: 900;
+    animation: come 1.5s;
 }
 #index>header p{
     font-size: 2em;
     color: white;
     padding: 0;
+    animation: come 1.5s ;
 }
 #index>header section a{
     font-size: 1em;
@@ -86,30 +157,36 @@ h3{
     margin: 10%;
     padding: 0 15%;
 }
-#index>article>section{
+#index>article:hover header{
+    animation: move 1.5s;
+}
+article section{
     margin: 0 auto;
 }
-#index>article>section>header{
+article header{
     font-size: 2em;
 }
 /*精选博文*/
-#index>.listDecoration{
+.listDecoration{
     margin:0 9%;
     text-align: center;
 }
-#index>.listDecoration>header{
+.listDecoration>header{
     font-size: 2em;
     margin: 0 auto;
 }
-#index>.listDecoration>section{
+.listDecoration>header:hover{
+    animation: move 1.5s;
+}
+.listDecoration>section{
     float: left;
     width: 33.33%;
 }
-#index>.listDecoration li{
+.listDecoration li{
     list-style: none;
     line-height: 2em;
 }
-#index>.listDecoration a{
+.listDecoration a{
     white-space:nowrap;
     text-overflow: ellipsis;
     display: inline-block;
@@ -117,40 +194,55 @@ h3{
     width: 90%;
     text-decoration: none;
     color: rgb(148,171,145);
+    transition: all 0.5s;
 }
-#index>.listDecoration a:visited{
+.listDecoration a:visited{
     color:rgb(241,0,97);
 }
-#index>.listDecoration a:hover{
-    color:black;
+.listDecoration a:hover{
+    color: darkslategrey;
+    transform: translate(0,-20%);
 }
 #index>.listDecoration footer{
     color:rgb(241,0,97);
     padding: 10%;
     clear: both;
 }
-#index>.works{
+.works{
     text-align: center;
     margin: 0 7%;
 }
-#index>.works header{
+.works header{
     font-size: 2em;
     margin: 0 auto;
 }
-#index>.works p{
+.works header:hover{
+    animation: move 1.5s;
+}
+.works p{
     padding: 2%;
 }
-#index>.works div{
+.works div{
     width: 31%;
     height: 50%;
     background-color: rgb(47,49,110);
     float: left;
     margin: 1%;
+    animation: color 3s infinite ease-in-out;
 }
-#index>.works a{
-    line-height: 10em;
-    color: rgb(101,104,149);
-    font-size: 1.5em;
+.works div:hover{
+    width: 31%;
+    height: 50%;
+    transform: scale(1.2);
+    float: left;
+    margin: 1%;
+    animation:paused;
+}
+
+.works a{
+    line-height: 12em;
+    color: rgb(193,203,232);
+    font-size: 1.2em;
     white-space:nowrap;
     text-overflow: ellipsis;
     display: inline-block;
@@ -158,13 +250,15 @@ h3{
     width: 90%;
     text-decoration: none;
 }
-#index>.works a:visited{
-   color:rgb(241,0,97);
+.works a:visited{
+   color:rgb(350,193,233);
 }
-#index>.works a:hover{
-    color:black;
+.works a:hover{
+    color:rgb(193,232,197);
+
+
 }
-#index>.works footer{
+.works footer{
     color:rgb(241,0,97);
     padding: 10%;
     clear: both;
