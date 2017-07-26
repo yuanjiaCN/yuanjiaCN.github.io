@@ -365,11 +365,11 @@ article header{
         margin-bottom:3% ;
     }
     #index>header li:nth-child(odd){
-        animation: come 1.5s ;
+        animation: none ;
         transform: none;
     }
     #index>header li:nth-child(even){
-        animation: come 1.5s ;
+        animation: none ;
         transform: none;
     }
 }
