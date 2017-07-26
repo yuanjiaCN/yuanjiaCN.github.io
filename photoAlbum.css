@@ -1,0 +1,154 @@
+@keyframes come {
+    from{
+        color: transparent;
+        transform: translate(-3%,0);
+    }
+}
+@keyframes leftAndRight {
+    from{
+    }
+    33%{
+        transform: rotate(-5deg);
+    }
+    66%{
+        transform: rotate(5deg);
+    }
+}
+@keyframes upAndDown {
+    from{
+        transform: translate(0,10%);
+    }
+    33%{
+        transform: translate(0,-10%);
+    }
+    66%{
+        transform: translate(0,10%);
+    }
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Andalus;
+    transition: all 1s;
+}
+body{
+    background-color: rgb(221,221,221);
+}
+
+#album{
+    height: 100%;
+    width: 100%;
+    font-size: 1em;
+    text-align: center;
+}
+#album>div{
+    font-size: 3em;
+    margin: 0 auto;
+    line-height: 2em;
+}
+#album #home{
+    animation: leftAndRight 1s;
+}
+#album>div>a{
+    color: rgb(56,182,230);
+    text-decoration: none;
+}
+#album #back{
+    position: fixed;
+    bottom: 0;
+    right: 5%;
+}
+#album #back:hover{
+    transform: rotate(360deg);
+}
+#album>nav{
+    background-color: rgb(214,238,246);
+    padding: 0 5%;
+}
+#album>nav header{
+    font-size: 3em;
+    float: left;
+    line-height: 2.333em;
+    animation: come 1s;
+}
+
+#album>nav li{
+    display: inline-block;
+    float: right;
+    width: 12%;
+    text-align: center;
+    animation: upAndDown 1s;
+}
+#album>nav a{
+    display: inline-block;
+    font-size: 2em;
+    line-height: 3.5em;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    width: 100%;
+}
+#album>nav a:hover{
+    background-color: rgb(56,182,230);
+}
+.clear{
+    clear: both;
+    height: 0;
+}
+
+#album>article>div{
+    display: inline-block;
+    width: 24.7%;
+    position: relative;
+    background :linear-gradient(to top, black 0%,transparent 70%);
+    float: left;
+    overflow: hidden;
+}
+#album>article>div:hover img{
+    opacity: 0.5;
+}
+#album>article>div:hover .introduction{
+    opacity: 1;
+}
+#album>article figure{
+    height: auto;
+    font-size:0;
+}
+.top{
+    position: absolute;
+    top:20%;
+    width: 100%;
+}
+.top>div{
+    width: 100%;
+    text-align: center;
+}
+.title{
+    font-size: 3em;
+    color:white;
+    font-weight: 900;
+    margin: 0 auto;
+    opacity: 1;
+}
+.bottom{
+    position: absolute;
+    bottom:10%;
+    width: 100%;
+}
+.bottom>div{
+    width: 100%;
+    text-align: center;
+}
+.introduction{
+    font-size: 1.5em;
+    color:white;
+    margin: 0 auto;
+    line-height: 1em;
+    opacity: 0;
+}
+img{
+    max-width: 100%;
+    vertical-align:top
+}
+
