@@ -361,12 +361,16 @@ article header{
     }
     #index>header li{
         display: block;
-        font-size: 1em;
+        font-size: 0.5em;
         margin-bottom:3% ;
     }
-    #index>header>section>button{
-        position: relative;
-        bottom:0;
+    #index>header li:nth-child(odd){
+        animation: come 1.5s ;
+        transform: none;
+    }
+    #index>header li:nth-child(even){
+        animation: come 1.5s ;
+        transform: none;
     }
 }
 @media screen and (max-width: 450px) {    /*手机竖屏*/
