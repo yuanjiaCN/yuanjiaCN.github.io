@@ -14,7 +14,7 @@
         transform: rotate(5deg);
     }
 }
-@keyframes upAndDown {
+@keyframes upAndDown{
     from{
         transform: translate(0,10%);
     }
@@ -25,7 +25,6 @@
         transform: translate(0,10%);
     }
 }
-
 *{
     padding: 0;
     margin: 0;
@@ -46,8 +45,6 @@ body{
     font-size: 3em;
     margin: 0 auto;
     line-height: 2em;
-}
-#album #home{
     animation: leftAndRight 1s;
 }
 #album>div>a{
@@ -60,7 +57,7 @@ body{
     right: 5%;
 }
 #album #back:hover{
-    transform: rotate(360deg);
+    transform:rotate(360deg);
 }
 #album>nav{
     background-color: rgb(214,238,246);
@@ -76,7 +73,7 @@ body{
 #album>nav li{
     display: inline-block;
     float: right;
-    width: 12%;
+    width: 18%;
     text-align: center;
     animation: upAndDown 1s;
 }
@@ -89,8 +86,11 @@ body{
     font-weight: 700;
     width: 100%;
 }
-#album>nav a:hover{
+#italic{
     background-color: rgb(56,182,230);
+}
+.gardening{
+    display: none;
 }
 .clear{
     clear: both;
