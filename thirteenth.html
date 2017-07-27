@@ -21,65 +21,44 @@
     <section>
         <content class="left">
             <header class="content">
-                <h1>做博客遇到小问题【2】评论区</h1>
+                <h1>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</h1>
                 <ul>
-                    <li class="date">发布时间：2017-7-23 </li>
+                    <li class="date">发布时间：2017-7-27 </li>
                     <li class="read">假装可以看阅读量:</li>
                 </ul>
             </header>
             <section class="cut">
-                <a href="third.html">上一篇:做博客遇到小问题【1】</a>
+                <a href="twelfth.html">上一篇:css3媒体查询；A元素hover时改变B元素背景色</a>
                 <br/>
-                <a href="fifth.html">下一篇:CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+                <a href="#">下一篇:无</a>
             </section>
-            <section>
-                <article>
-            <p>
-                今天做了评论部分的功能，虽然因为不会后端，所以这个评论功能只能自娱自乐，但是还是挺有意思的！好了，说一下今天学到的小知识吧
-            </p>
-            <h4>1.textarea设置宽度和高度的方法</h4>
-            <p>
-                使用rows和cols属性，可以设置行、列数
-            </p>
-               <img src="picture/forth(1).jpg"/>
-            <h4>2.为啥我的radio标签可以多选？！</h4>
-            <p>
-                radio只有name设置相同的项才是单选。
-            </p>
-            <h4>3.如何判断radio被选中了</h4>
-            <p>使用is选择器，</p>
-            <p class="code">
-                $("#rememberYes").is(":checked")
-            </p>
-            <h4>4.表单里面有很多好标签！</h4>
-            <p>fieldset元素：用来对相关的信息块进行分组<br/>
-                legend元素：是fieldset的标题，自带样式，在fieldset的顶部垂直居中，并且向右缩进一点，但是最好不要在它上面应用样式，因为各种浏览器处理它们的方式不一致<br/>
-                label元素：用来在每个表单元素中添加有意义的描述性标签，主要是对于辅助设备和屏幕阅读器用户很友好,有显式和隐式两种把标签和表单控件关联起来的方式
-            </p>
-                <img src="picture/forth(3).jpg"/>
-                <img src="picture/forth(2).jpg"/>
-            <p>
-                因为他们之间是关联的，所以标签和表单控件可以写在文档的不同位置，但是感觉并不实用，还是写在一起吧！
-            </p>
-            <p class="code">
-                 label{<br/>
-                 cursor: pointer;  /*光标样式，手掌样子，这样可以让游客发现这可以交互*/<br/>
-                 }
-            </p>
-            <h4>5.一定要长句子里面“”和''的妙用！</h4>
-                <img src="picture/forth(4).jpg"/>
-            <p>如果都用“”就会报错啦，因为系统弄不明白哪两个是配对的</p>
-            <h4>
-                6.如何不浪费时间
-
-            </h4>
-                <p class="strong">
-                    以后做东西一定要事先配好色! <br/>
-                    以后做东西一定要事先配好色！<br/>
-                    以后做东西一定要事先配好色！<br/>
+            <article>
+                <h4>1.图片不拉伸</h4>
+                <p>
+                    要想让，width和height只能定一个（不包括min,max）
                 </p>
-                </article>
-            </section>
+                <p>
+                    然后突然发现，其实定height和width都是max前缀的时候，系统就会自己判断不拉伸了，如果觉得周围留白一点好看，
+                    也可以设置90%，然后设置5%的margin
+                </p>
+                <h4>2.背景图片随滚轮移动</h4>
+                <p>背景图片随滚轮移动，平铺拉伸</p>
+                <p class="code">
+                    background: url("picture/1.jpg")  no-repeat fixed;<br/>
+                    background-size:100%;
+                </p>
+                <p>
+                    效果就是现在客官们看到的啦~
+                </p>
+                <p>
+                    首行缩进2个中文字
+                </p>
+                <p class="code">
+                    text-indent:2em;
+                </p>
+
+
+            </article>
         </content>
     </section>
     <aside class="right">
@@ -87,7 +66,8 @@
         <nav>
             <a href="first.html">轮播图小心得</a>
             <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
-            <a href="third.html">做博客遇到小问题【1】主页</a>
+            <a href="third.html">做博客遇到小问题【1】首页</a>
+            <a href="forth.html">做博客遇到小问题【2】评论区</a>
             <a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
             <a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a>
             <a href="seventh.html">博客用到的文字换行、首行渲染、CSS3动画属性</a>
@@ -96,15 +76,15 @@
             <a href="tenth.html">transition不支持display;图片下方有一小条背景溢出的处理方法</a>
             <a href="eleventh.html">html5、css3表单相关</a>
             <a href="twelfth.html">css3媒体查询；A元素hover时改变B元素背景色</a>
-            <a href="thirteenth.html">图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</a>
         </nav>
     </aside>
+
     <div></div>
 </section>
 <section class="cut">
-    <a href="third.html">上一篇:做博客遇到小问题【1】主页</a>
+    <a href="twelfth.html">上一篇:css3媒体查询；A元素hover时改变B元素背景色</a>
     <br/>
-    <a href="">下一篇:CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+    <a href="#">下一篇:无</a>
 </section>
 <section class="comment">
     <h4>最新评论</h4>

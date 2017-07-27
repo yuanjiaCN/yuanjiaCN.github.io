@@ -121,7 +121,6 @@ body{
     position: relative;
     background :linear-gradient(to top, black 0%,transparent 70%);
     float: left;
-    overflow: hidden;
 }
 #album>article>div:hover img{
     opacity: 0.5;

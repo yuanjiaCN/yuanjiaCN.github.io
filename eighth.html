@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>实现不定长度的标题和段落在不同尺寸的图片上在同一个位置水平居中（垂直可调）</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-26 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+                <a href="seventh.html">上一篇:博客用到的文字换行、首行渲染、CSS3动画属性</a>
+                <br/>
+                <a href="ninth.html">下一篇:让背景图片浮在图片上方</a>
+            </section>
+            <article>
+                <p>
+                    想要实现的是一行多个图片，有很多列，但是不一定每一行的图片尺寸要相同，数目也可以不同，每个图片上有一个标题和一句简介。
+                </p>
+                <p>
+                    一开始想到的是我最近特别喜欢的vh和vw属性，但是由于我的每一张图片并不一定是相同大小的，也不一定只有一列，这样的话就和百分比强行定义top和left属性没区别了，所以不考虑。
+                </p>
+                <p class="strong">
+                    而且vw,vh的确好用，但是兼容性不太好，作用和百分比布局差不多，但是在层层嵌套的情况下百分比比较难控制
+                    这时候可以考虑用vw,vh(不需要考虑父元素或者祖先元素有没有设置vw,vh)
+                </p>
+                <p>
+                    然后想的是让标题和简介都在图片下方隐藏，并排好格式然后隐藏，（毕竟不用考虑在图片上定位，只需要在图片下水平居中就好了）.发生鼠标事件的时候
+                    （或者设置animation让它一开始就动画以后停在我需要它停的位置），才用css的transform或者animation让他出现，并移到应该有的位置。
+
+                <p>
+                    但是想想依然不行，第一标题往上浮动多少不好判断，因为我不知道图片有多长。
+                    第二标题和简介之间的距离不好判断，毕竟我的图片是不定宽和长的，但是简介由于不知道图片具体有多长，
+                    只能设置与标题的margin值，如果图片很短，简介就会溢出图片，如果图片很长，简介就会显得和标题挤在一起，所以也排除
+                </p>
+                <p>
+                    然后说我最后想到的方法：
+                </p>
+                <p>
+                    先放上代码们，html:
+                </p>
+                <img src="picture/eighthHtml.jpg"/>
+                <p>
+                    css代码:
+                </p>
+                <img src="picture/eighthcss1.jpg"/><br/>
+                <img src="picture/eighthcss2.jpg"/><br/>
+                <p>
+                    最后效果，设计的是平时图片上只有标题，鼠标移到图片上方显示简介
+                </p>
+                <img src="picture/ninth1.jpg"/></br>
+                <img src="picture/ninth2.jpg"/>
+                <p>
+                    因为想要以后添加图片都可以不用再编辑样式，而是直接在HTML中插入图片并使用已有的class，
+                    所以标题和简介应该和图片在同一个元素内。
+                    （否则根据图片所在位置不同，标题和段落想要position定位到每个图片的同一个位置的数据都会不同
+                    （因为图片所在位置各不相同），
+                    如果在同一个元素内，我只需设置从顶部往下多少margin是标题，从底部往上多少是个简介就好，
+                    因为是同一个父元素，所以position:relative会从图片的左上角计算)
+                </p>
+                <p>
+                    由于父元素使用position:relative 标题元素使用positon:absolute的话，
+                    就不能设置margin:0 auto水平居中了，虽然可以用left强行居中，但是这样在浏览器大小改变的时候，
+                    就会很难看，毕竟图片是设置了max-width:100%的响应式，会根据浏览器窗口大小而改变图片大小
+                    所以我就在子元素外部又包了一层div，后来想想这层DIV是必须的，因为每张图片都需要配不同的文字在不同的div里
+                </p>
+                <p>
+                    这下好了，div设置为position:absolute和top属性，OK问题又来了，要想设置水平居中，
+                    需要父元素设置text-align:center,子元素再设置margin:0 auto;
+                    没错，我又给标题元素和简介元素包上了一层div。
+                </p>
+                <p>
+                    至此！成功！
+                </p>
+                <p>
+                    虽然多了一层冗余的div,好在是实现这个功能了，而且以后添加新的图片也会非常方便（你就安慰自己吧）
+                </p>
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+            <a href="first.html">轮播图小心得</a>
+            <a href="second.html">外边距叠加、行框、行内框、outline属性</a>
+            <a href="third.html">做博客遇到小问题【1】首页</a>
+            <a href="forth.html">做博客遇到小问题【2】评论区</a>
+            <a href="fifth.html">CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>
+            <a href="sixth.html">做博客遇到的小问题【3】溢出、伪选择器</a>
+            <a href="seventh.html">博客用到的文字换行、首行渲染、CSS3动画属性</a>
+            <a href="ninth.html">让背景图片浮在图片上方</a>
+            <a href="tenth.html">transition不支持display;图片下方有一小条背景溢出的处理方法</a>
+            <a href="eleventh.html">html5、css3表单相关</a>
+            <a href="twelfth.html">css3媒体查询；A元素hover时改变B元素背景色</a>
+            <a href="thirteenth.html">图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</a>
+
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+    <a href="seventh.html">上一篇:博客用到的文字换行、首行渲染、CSS3动画属性</a>
+    <br/>
+    <a href="ninth.html">下一篇:让背景图片浮在图片上方</a>
+</section>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>保存信息</legend>
+        <div>
+            <label for="rememberYes">是</label>
+            <input name="remember" id="rememberYes" type="radio">
+            <label for="rememberNo">否</label>
+            <input name="remember" id="rememberNo" type="radio">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="content.js"></script>
+</body>
