@@ -91,6 +91,12 @@ h3{
     font-size: 1.2em;
     line-height: 6em;
 }
+.skip{
+    display: block;
+    color: rgb(241,0,97);
+    font-weight: 900;
+    text-decoration: none;
+}
 /*首页头部*/
 html,body,#index{
     height: 100%;
@@ -120,11 +126,11 @@ html,body,#index{
     animation: downAndUpRight 1.5s ;
     transform: rotate(5deg);
 }
-#index>header a{
+#index>header ul a{
     text-decoration: none;
     color: rgb(148,171,145);
 }
-#index>header a:hover{
+#index>header ul a:hover{
     transform: translate(20%,0);
     display: block;
     color:darkslategrey ;

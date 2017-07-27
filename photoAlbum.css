@@ -33,13 +33,30 @@
 }
 body{
     background-color: rgb(221,221,221);
+    width: 100%;
+    height: 100%;
 }
-
 #album{
     height: 100%;
     width: 100%;
     font-size: 1em;
     text-align: center;
+}
+#album>section{
+    z-index: 100;
+    width: 0;
+    height: 0;
+    position: fixed;
+}
+#album>section>div{
+    text-align: center;
+    height: 100%;
+}
+#album>section img{
+    max-width: 90%;
+    max-height: 90%;
+    margin: 5% auto;
+    display: none;
 }
 #album>div{
     font-size: 3em;
@@ -50,6 +67,9 @@ body{
 #album>div>a{
     color: rgb(56,182,230);
     text-decoration: none;
+}
+#home:hover{
+    transform: scale(1.2);
 }
 #album #back{
     position: fixed;
@@ -69,7 +89,6 @@ body{
     line-height: 2.333em;
     animation: come 1s;
 }
-
 #album>nav li{
     display: inline-block;
     float: right;
@@ -86,17 +105,16 @@ body{
     font-weight: 700;
     width: 100%;
 }
-#italic{
+.ita #italic{
     background-color: rgb(56,182,230);
 }
-.gardening{
-    display: none;
+.gar #gardening{
+    background-color:rgb(229,116,55) ;
 }
 .clear{
     clear: both;
     height: 0;
 }
-
 #album>article>div{
     display: inline-block;
     width: 24.7%;

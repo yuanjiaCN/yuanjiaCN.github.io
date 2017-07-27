@@ -4,48 +4,54 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<div id="album">
+<div id="album" class="ita">
+    <section id="show">
+        <div>
+            <img src="#"/>
+        </div>
+    </section>
     <div id="home"><a href="index.html">HOME</a></div>
     <div id="back"><a href="#home">↑</a></div>
+
     <nav>
-            <header>PHOTO ALBUM</header>
+        <header>PHOTO ALBUM</header>
         <ul>
             <li><a href="#">……</a></li>
-            <li><a href="#">GARDENING❀</a></li>
-            <li><a href="#">ITALIC✎</a></li>
+            <li><a href="gardening.html" id="gardening">GARDENING❀</a></li>
+            <li><a href="#" id="italic">ITALIC✎</a></li>
         </ul>
         <div class="clear"> </div>
     </nav>
-    <article>
+    <article class="italic">
         <div><!--设置position:relative-->
             <figure>
-                <img src="picture/italic2(little).jpg"/>
+                <img src="picture/italic2(little).jpg" original="picture/original/italic2.jpg"/>
             </figure>
             <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
                 <div><!--设置width:100%，text-align:center; -->
                     <p class="title">italic</p><!--设置margin:0 auto;-->
                 </div>
             </div>
-            <div class="bottom"><div><p class="introduction">on the third day of learning ITALIC</p></div></div>
+            <div class="bottom"><div><p class="introduction">on the third day of practise italic</p></div></div>
         </div>
         <div><!--设置position:relative-->
             <figure>
-                <img src="picture/italic(little).jpg"/>
+                <img src="picture/italic(little).jpg" original="picture/original/italic.jpg" />
             </figure>
             <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
                 <div><!--设置width:100%，text-align:center; -->
                     <p class="title">italic</p><!--设置margin:0 auto;-->
                 </div>
             </div>
-            <div class="bottom"><div><p class="introduction">on the forth day of learning ITALIC</p></div></div>
+            <div class="bottom"><div><p class="introduction">on the forth day of practise italic</p></div></div>
         </div>
-
     </article>
     <footer>
-
     </footer>
 </div>
 
 <link rel="stylesheet" href="photoAlbum.css">
+<script src="jquery-3.2product.js"></script>
+<script src="photoAlbum.js"></script>
 </body>
 </html>
