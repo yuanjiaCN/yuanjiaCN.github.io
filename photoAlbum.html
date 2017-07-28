@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 </head>
 <body>
-<div id="album" class="ita">
+<div id="album">
     <section id="show">
         <div>
             <img src="#"/>
@@ -13,18 +13,27 @@
     </section>
     <div id="home"><a href="index.html">HOME</a></div>
     <div id="back"><a href="#home">↑</a></div>
-
     <nav>
         <header>PHOTO ALBUM</header>
         <ul>
             <li><a href="#">……</a></li>
-            <li><a href="gardening.html" id="gardening">GARDENING❀</a></li>
+            <li><a href="#gardening" id="gardening">GARDENING❀</a></li>
             <li><a href="#italic" id="italic">ITALIC✎</a></li>
         </ul>
         <div class="clear"> </div>
     </nav>
-    <article class="italic">
-
+    <article>
+        <div><!--设置position:relative-->
+            <figure>
+                <img src="picture/gardening4(little).jpg" original="picture/original/gardening4.jpg"/>
+            </figure>
+            <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
+                <div><!--设置width:100%，text-align:center; -->
+                    <p class="title">gardening</p><!--设置margin:0 auto;-->
+                </div>
+            </div>
+            <div class="bottom"><div><p class="introduction">on the eighth day of planting sunflower</p></div></div>
+        </div>
         <div><!--设置position:relative-->
             <figure>
                 <img src="picture/italic3(little).jpg" original="picture/original/italic3.jpg" />
@@ -35,6 +44,17 @@
                 </div>
             </div>
             <div class="bottom"><div><p class="introduction">on the fifth day of practising italic</p></div></div>
+        </div>
+        <div><!--设置position:relative-->
+            <figure>
+                <img src="picture/gardening3(little).jpg" original="picture/original/gardening3.JPG"/>
+            </figure>
+            <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
+                <div><!--设置width:100%，text-align:center; -->
+                    <p class="title">gardening</p><!--设置margin:0 auto;-->
+                </div>
+            </div>
+            <div class="bottom"><div><p class="introduction">on the seventh day of planting sunflower</p></div></div>
         </div>
         <div><!--设置position:relative-->
             <figure>
@@ -49,6 +69,17 @@
         </div>
         <div><!--设置position:relative-->
             <figure>
+                <img src="picture/gardening2(little).jpg" original="picture/original/gardening2.JPG"/>
+            </figure>
+            <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
+                <div><!--设置width:100%，text-align:center; -->
+                    <p class="title">gardening</p><!--设置margin:0 auto;-->
+                </div>
+            </div>
+            <div class="bottom"><div><p class="introduction">on the sixth day of planting sunflower</p></div></div>
+        </div>
+        <div><!--设置position:relative-->
+            <figure>
                 <img src="picture/italic(little).jpg" original="picture/original/italic.jpg" />
             </figure>
             <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
@@ -58,6 +89,19 @@
             </div>
             <div class="bottom"><div><p class="introduction">on the third day of practising italic</p></div></div>
         </div>
+        <div><!--设置position:relative-->
+            <figure>
+                <img src="picture/gardening1(little).jpg" original="picture/original/gardening1.JPG"/>
+            </figure>
+            <div class="top"> <!--根据父元素relative子元素absolute定位到距离图片顶端20%，注意设置width:100% -->
+                <div><!--设置width:100%，text-align:center; -->
+                    <p class="title">gardening</p><!--设置margin:0 auto;-->
+                </div>
+            </div>
+            <div class="bottom"><div><p class="introduction">on the fifth day of planting sunflower</p></div></div>
+        </div>
+
+
     </article>
     <footer>
     </footer>

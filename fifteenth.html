@@ -21,9 +21,9 @@
     <section>
         <content class="left">
             <header class="content">
-                <h1>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</h1>
+                <h1>在网页内点击链接不跳转切换图片集</h1>
                 <ul>
-                    <li class="date">发布时间：2017-7-27 </li>
+                    <li class="date">发布时间：2017-7-28 </li>
                     <li class="read">假装可以看阅读量:</li>
                 </ul>
             </header>
@@ -31,29 +31,33 @@
 
             </section>
             <article>
-                <h4>1.图片不拉伸</h4>
+                <h4>1.在网页内点击链接不跳转切换图片集</h4>
                 <p>
-                    要想让，width和height只能定一个（不包括min,max）
-                </p>
-                <p>
-                    然后突然发现，其实定height和width都是max前缀的时候，系统就会自己判断不拉伸了，如果觉得周围留白一点好看，
-                    也可以设置90%，然后设置5%的margin
-                </p>
-                <h4>2.背景图片随滚轮移动</h4>
-                <p>背景图片随滚轮移动，平铺拉伸</p>
-                <p class="code">
-                    background: url("picture/1.jpg")  no-repeat fixed;<br/>
-                    background-size:100%;
+                    放一下部分代码
                 </p>
                 <p>
-                    效果就是现在客官们看到的啦~
+                    html:
+                </p>
+                <img src="picture/fifteenthHtml1.jpg"/>
+                <img src="picture/fifteenthHtml2.jpg"/>
+                <p>
+                    jQuery:
+                </p>
+                <p class="strong">
+                    错误方法:
+                </p>
+                <img src="picture/fifteenthjs1.jpg"/>
+                <p>
+                    这种方法会延迟，比如说，我第一次点击了italic，它会没有反应，等我第二次点击italic,
+                    他才会显示italic的界面，等我第三次点击garden,他还会显示上一次的链接，也就是italic.
+                </p>
+                <p class="strong">
+                    原因不明.
                 </p>
                 <p>
-                    首行缩进2个中文字
+                    后来使用了这种方法，没有延迟，猜想是hash导致的，仔细研究一下再来补原因
                 </p>
-                <p class="code">
-                    text-indent:2em;
-                </p>
+                <img src="picture/fifteenthjs2.jpg"/>
             </article>
         </content>
     </section>

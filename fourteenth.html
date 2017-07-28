@@ -21,9 +21,9 @@
     <section>
         <content class="left">
             <header class="content">
-                <h1>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</h1>
+                <h1>文章批量推荐功能（不包括当前页）;上一篇、下一篇切换功能</h1>
                 <ul>
-                    <li class="date">发布时间：2017-7-27 </li>
+                    <li class="date">发布时间：2017-7-28 </li>
                     <li class="read">假装可以看阅读量:</li>
                 </ul>
             </header>
@@ -31,29 +31,43 @@
 
             </section>
             <article>
-                <h4>1.图片不拉伸</h4>
+                <h4>1.文章批量推荐功能（不包括当前页）</h4>
                 <p>
-                    要想让，width和height只能定一个（不包括min,max）
-                </p>
-                <p>
-                    然后突然发现，其实定height和width都是max前缀的时候，系统就会自己判断不拉伸了，如果觉得周围留白一点好看，
-                    也可以设置90%，然后设置5%的margin
-                </p>
-                <h4>2.背景图片随滚轮移动</h4>
-                <p>背景图片随滚轮移动，平铺拉伸</p>
-                <p class="code">
-                    background: url("picture/1.jpg")  no-repeat fixed;<br/>
-                    background-size:100%;
+                    放一下部分代码
                 </p>
                 <p>
-                    效果就是现在客官们看到的啦~
+                    html:
+                </p>
+                <img src="picture/fourteenthHtml1.jpg"/>
+                <p>
+                    jQuery:
+                </p>
+                <img src="picture/fourteenthjs1.jpg"/>
+                <img src="picture/fourteenthjs2.jpg"/>
+                <p>
+                    detach,remove都是清除当前元素，所以它们之前的括号里应该写当前元素，在这里都可以使用.
                 </p>
                 <p>
-                    首行缩进2个中文字
+                    detach与remove不同的是，所有绑定的时间、附加的数据等都会保留下来
                 </p>
-                <p class="code">
-                    text-indent:2em;
+                <p>
+                    而empty是清除后代元素，而且貌似括号里填什么都没意义，这里不能用
                 </p>
+                <h4>上一篇、下一篇切换功能</h4>
+                <p>
+                    放一下部分代码
+                </p>
+                <p>
+                    html:
+                </p>
+                <img src="picture/fourteenthHtml2.jpg"/>
+                <img src="picture/fourteenthHtml3.jpg"/>
+                <p>
+                    jQuery:
+                </p>
+                <img src="picture/fourteenthjs3.jpg"/>
+                <img src="picture/fourteenthjs4.jpg"/>
+                <p>
             </article>
         </content>
     </section>

@@ -63,9 +63,10 @@ body{
     margin: 0 auto;
     line-height: 2em;
     animation: leftAndRight 1s;
+    z-index: 100;
 }
 #album>div>a{
-    color: rgb(56,182,230);
+    color: rgb(56,152,300);
     text-decoration: none;
 }
 #home:hover{
@@ -104,12 +105,6 @@ body{
     color: black;
     font-weight: 700;
     width: 100%;
-}
-.ita #italic{
-    background-color: rgb(56,182,230);
-}
-.gar #gardening{
-    background-color:rgb(229,116,55) ;
 }
 .clear{
     clear: both;
@@ -168,4 +163,9 @@ img{
     max-width: 100%;
     vertical-align:top
 }
-
+.gardening{
+    background: rgb(229,116,55);
+}
+.italic{
+    background: rgb(56,182,230);
+}
