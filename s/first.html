@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>轮播图小心得</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-21 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+
+            </section>
+            <article>
+            <p>
+                今天看了网易云课堂中“HTML5前端开发实战”，特别有收获的一点就是
+                <img src="picture/first.jpg"/>
+            </p>
+            <p>
+                这种写法特别简单！
+                以前我写这种轮播图，每次都会把发生鼠标事件的数字记录好，在下次触摸时再还原该次的样式。
+                这种写法只需要在鼠标事件发生时修改所有数字的样式，然后再单独标出发生事件的数字就好啦！
+            </p>
+            <p>顺便说一句，看到小驼峰命名法好亲切~
+            </p>
+            <p>
+                另外，今天因为float的浮动排版排不好懵逼了好多次，明天把精通CSS再看一遍吧。
+            </p>
+            </article>
+        </content>
+    </section>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+
+</section>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>保存信息</legend>
+        <div>
+            <label for="rememberYes">是</label>
+            <input name="remember" id="rememberYes" type="radio">
+            <label for="rememberNo">否</label>
+            <input name="remember" id="rememberNo" type="radio">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="content.js"></script>
+</body>

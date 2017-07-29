@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: '微软雅黑', Arial, Verdana;
+    height: 100%;
+    padding: 3% 10%;
+    font-size: 1em;
+    background: url("picture/1.jpg")  no-repeat fixed;
+    background-size:100%;
+}
+h2{
+    line-height: 2em;
+    font-weight: 100;
+    color: #935347;
+    padding-bottom: 8%;
+}
+h3{
+    font-weight: 300;
+    font-size: 1.3em;
+    margin: 4% 0 2% 0;
+    border-top: solid #bcd5d1 1px;
+    padding-top: 1%;
+    width: 100vh;
+}
+h4{
+    font-weight: 300;
+    font-size: 1.3em;
+    margin: 4% 0 2% 0;
+}
+p{
+    line-height: 2.5em;
+    color: #935347;
+    text-indent:2em;
+    margin-bottom:3% ;
+}
+a{
+    color: #935347;
+    text-decoration: none;
+}
+img{
+    max-width: 90%;
+}
+.first{
+    margin-bottom:1%;
+    float: left;
+}
+.headerNav a{
+    display: inline-block;
+    padding-right: 5%;
+}
+.contentHeader h1{
+    margin: 5% 0;
+    border-bottom: solid 1px #bcd5d1;
+}
+.content{
+    text-align: center;
+}
+.content h1{
+    margin: 0 auto;
+    font-size: 1.5em;
+}
+.content ul{
+    text-align: center;
+    margin: 4%;
+    border: dashed 1px #64706c;
+}
+.content ul li{
+    display: inline-block;
+    color:#64706c;
+    font-size:0.8em;
+}
+.date{
+    float: center;
+}
+.read{
+    float: right;
+}
+.left{
+    width: 75%;
+    float: left;
+    border-right: 1px #64706c dashed;
+}
+.right{
+    float: right;
+    width: 20%;
+    margin: 2%;
+}
+.right a{
+    display: inline-block;
+    margin: 4% 0;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+}
+.CONTENT div{
+    clear: both;
+    margin-bottom: 7%;
+}
+.cut{
+    margin-bottom:4%;
+}
+.cut a{
+    line-height: 2em;
+    display: inline-block;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    width: 50%;
+}
+.cut a:visited{
+    color: #64706c;
+}
+.cut a:hover{
+    color: slategray;
+    border-bottom: dotted 1px slategray;
+}
+.cut a:active{
+    color: #c7ad88;
+    border-bottom: solid 1px #c7ad88;
+}
+.comment{
+    border-top: solid #bcd5d1 1px;
+    width: 55%;
+}
+.left article{
+    padding-right: 8%;
+}
+fieldset{
+    width: 40%;
+    line-height: 2em;
+    padding: 2%;
+    background-color: #e5c79c;
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    color: #423b3b;
+}
+fieldset input[type="text"],textarea{
+    display: block;
+    width: 80%;
+}
+form input[type="button"]{
+    background: transparent;
+    border: 1px solid #ba9077;
+    font-size: 1.2em;
+    padding: 1% 2%;
+    margin-top:2% ;
+    border-radius:15%;
+}
+.strong{
+    font-weight: 600;
+    font-size:1.05em;
+}
+.ps{
+    color: black;
+}
+.code{
+    background-color: rgba(100,112,108,0.2);
+    color: rgb(100,112,108);
+    display: inline-block;
+}
+.comment div{
+    line-height: 2em;
+    margin: 5%;
+}
+.comment img{
+    width: 5%;
+    height: 5%;
+}
+label{
+    cursor: pointer;  /*光标样式 手掌样子 这样可以让游客发现这可以交互*/
+}
