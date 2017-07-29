@@ -71,7 +71,7 @@ $(function () {
                 $("#address").val("你是哪里人呀");
             }
         }
-    })
+    });
                 //其他文章推荐功能
     $("aside.right nav").append(
         "<a href='first.html'>轮播图小心得</a>"+
@@ -88,7 +88,8 @@ $(function () {
         "<a href='twelfth.html'>css3媒体查询；A元素hover时改变B元素背景色</a>" +
         "<a href='thirteenth.html'>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</a>"+
         "<a href='fourteenth.html'>文章批量推荐功能（不包括当前页）;上一篇、下一篇切换功能</a>"+
-        "<a href='fifteenth.html'>在网页内点击链接不跳转切换图片集</a>"
+        "<a href='fifteenth.html'>在网页内点击链接不跳转切换图片集</a>"+
+        "<a href='sixteenth.html'>css3实现瀑布流多栏布局</a>"
     );
 
                     //上一篇、下一篇切换功能

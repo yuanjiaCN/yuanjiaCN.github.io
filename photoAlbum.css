@@ -90,6 +90,9 @@ body{
     line-height: 2.333em;
     animation: come 1s;
 }
+#album>nav header:hover{
+    cursor: pointer;
+}
 #album>nav li{
     display: inline-block;
     float: right;
@@ -110,12 +113,13 @@ body{
     clear: both;
     height: 0;
 }
+#album>article{
+    column-count: 4;
+    column-gap:0 ;
+}
 #album>article>div{
-    display: inline-block;
-    width: 24.7%;
     position: relative;
     background :linear-gradient(to top, black 0%,transparent 70%);
-    float: left;
 }
 #album>article>div:hover img{
     opacity: 0.5;
@@ -161,11 +165,4 @@ body{
 }
 img{
     max-width: 100%;
-    vertical-align:top
-}
-.gardening{
-    background: rgb(229,116,55);
-}
-.italic{
-    background: rgb(56,182,230);
 }

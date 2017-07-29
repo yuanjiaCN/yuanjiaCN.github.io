@@ -273,17 +273,14 @@ article header{
 #index>footer p{
     padding: 2%;
     margin: 0 auto;
-    font-size: 2em;
+    font-size: 1em;
     color:rgb(241,0,97);
     font-weight: 900;
 }
 #index>footer a{
-    font-size: 2em;
+    font-size: 2.333em;
     text-decoration: none;
 }
-
-
-
 /*媒体查询*/
 @media screen and (max-width: 1170px) {
     #index {

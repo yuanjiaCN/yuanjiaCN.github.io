@@ -75,4 +75,13 @@ $(function () {
             }
         }
     })
+    var $album = $("#album>nav>header");
+    $album.click(function () {
+        $("#album>article>div").css({
+            display: "block"
+        })
+        $LI.children("a").css({
+            color:"black"
+        })
+    })
 })
