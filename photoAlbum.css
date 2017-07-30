@@ -120,6 +120,7 @@ body{
 #album>article>div{
     position: relative;
     background :linear-gradient(to top, black 0%,transparent 70%);
+
 }
 #album>article>div:hover img{
     opacity: 0.5;
@@ -165,4 +166,54 @@ body{
 }
 img{
     max-width: 100%;
+}
+/*媒体查询*/
+@media screen and (max-width: 1170px) {
+    #album {
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 970px){
+    #album {
+        font-size: 0.85em;
+    }
+}
+@media screen and (max-width: 770px) {    /*ipad竖屏*/
+    #album {
+        font-size: 0.6em;
+    }
+    #album>article{
+        column-count: 3;
+    }
+}
+@media screen and (max-width: 740px) {    /*手机横屏*/
+    #album {
+        font-size: 0.5em;
+    }
+    #album>article{
+        column-count: 3;
+    }
+}
+@media screen and (max-width: 450px) {    /*手机竖屏*/
+    #album {
+        font-size: 0.45em;
+    }
+    #album>article{
+        column-count: 2;
+    }
+    #album>nav header{
+        font-size: 2.5em;
+        float: left;
+        line-height: 2em;
+        animation: come 1s;
+    }
+    #album>nav a{
+        display: inline-block;
+        font-size: 1.334em;
+        line-height: 3em;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+        width: 100%;
+    }
 }

@@ -98,10 +98,13 @@ body{
 #navigation>nav header:hover{
     cursor: pointer;
 }
+#navigation>nav ul{
+    width: 100%;
+}
 #navigation>nav li{
     display: inline-block;
     float: right;
-    width: 18%;
+    width: 20%;
     text-align: center;
     animation: upAndDown 1s;
 }
@@ -163,4 +166,59 @@ h1 a:hover{
 .clear{
     clear: both;
     height: 0;
+}
+/*媒体查询*/
+@media screen and (max-width: 1170px) {
+    #navigation {
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 970px){
+    #navigation {
+        font-size: 0.85em;
+    }
+}
+@media screen and (max-width: 770px) {    /*ipad竖屏*/
+    #navigation {
+        font-size: 0.6em;
+    }
+    section.right>div{
+        height: 10%;
+    }
+}
+@media screen and (max-width: 740px) {    /*手机横屏*/
+    #navigation{
+        font-size: 0.5em;
+    }
+}
+@media screen and (max-width: 450px) {    /*手机竖屏*/
+    #navigation {
+        font-size: 0.3em;
+    }
+    #navigation>nav header{
+        font-size: 3em;
+        float: left;
+        line-height: 3.5em;
+        animation: come 1s;
+    }
+    #navigation>nav header:hover{
+        cursor: pointer;
+    }
+    #navigation>nav ul{
+        width: 100%;
+    }
+    #navigation>nav li{
+        width: 23%;
+    }
+    #navigation>nav a{
+        font-size: 2em;
+        line-height: 3.5em;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    section.right>div{
+        height: 15%;
+    }
+
 }

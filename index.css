@@ -243,24 +243,38 @@ article header{
     float: left;
     margin: 1%;
     animation: color 3s infinite ease-in-out;
+    text-align: center;
+    display: block;
 }
 .works div:hover{
     transform: scale(1.2);
     animation:paused;
 }
+.works section div{
+    text-align: center;
+}
 .works a{
     color: rgb(193,203,232);
     font-size: 1.4em;
-
-    display: inline-block;
     width: 90%;
     text-decoration: none;
+    margin: 0 auto;
+    line-height: 6.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 .works a:visited{
    color:rgb(350,193,233);
 }
 .works a:hover{
     color:rgb(193,232,197);
+    white-space: normal;
+    overflow: auto;
+    display: block;
+    height: 100%;   /*设置好了以后，鼠标放在没有文字处，hover和正常状态就不会急速切换了*/
+    line-height: normal;
 }
 .works footer{
     color:rgb(241,0,97);
