@@ -37,6 +37,7 @@ $(function () {
     })
 
     $("#album>article").append(
+        "<img date='ninth' value='italic' src='picture/italic7(little).jpg' original='picture/original/italic7.jpg' />"+
         "<img date='eleventh' value='gardening' src='picture/gardening7(little).jpg' original='picture/original/gardening7.jpg'/>"+
         "<img date='eighth' value='italic' src='picture/italic6(little).jpg' original='picture/original/italic6.jpg' />"+
         "<img date='tenth' value='gardening' src='picture/gardening6(little).jpg' original='picture/original/gardening6.jpg'/>"+
