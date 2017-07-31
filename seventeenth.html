@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <section class="headerNav">
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#">我</a>
+            <a href="#" id="guide">博文导航</a>
+            <a href="#">技术</a>
+            <a href="#">随笔</a>
+        </nav>
+    </section>
+    <section class="contentHeader">
+        <h1>Create Awesome Things For Better Life</h1>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="left">
+            <header class="content">
+                <h1>prop()方法代替attr()</h1>
+                <ul>
+                    <li class="date">发布时间：2017-7-31 </li>
+                    <li class="read">假装可以看阅读量:</li>
+                </ul>
+            </header>
+            <section class="cut">
+            </section>
+            <article>
+                <h4>1.prop()方法代替attr()</h4>
+                <p>
+                    prop()方法，只返回true/false,
+                    设置disabled或者checked这种属性的时候，应该使用prop()方法，因为只想得到true或者false的判断.
+                </p>
+                <p>
+                    在chrome中，
+                </p>
+                <p class="code">
+                alert($（this）.attr("checked"))
+                </p>
+                <p>
+                不论有没有选中，都会返回undefined,非常影响判断,而用prop方法，就能成功返回true/false
+                </p>
+                <p>
+                    放一下对比:复选框的反选功能
+                </p>
+                <p>
+                    1.jQuery:
+                </p>
+                <p class="code">
+                    $("#CheckedRev").click(function () {<br/>
+                    $("[name=items]:checkbox").each(function () {<br/>
+                    $(this).prop("checked",!$(this).prop('checked'));<br/>
+                    alert($(this).attr("checked"))<br/>
+                    }）
+                </p>
+                <p>
+                    这样不论选中了几个，所有的都会显示undefined,但是反选功能正常
+                </p>
+                <p>
+                    2.jQuery:
+                </p>
+                <p class="code">
+                    $("#CheckedRev").click(function () {<br/>
+                    $("[name=items]:checkbox").each(function () {<br/>
+                    $(this).attr("checked",!$(this).attr('checked'));<br/>
+                    alert($(this).attr("checked"))<br/>
+                    })<br/>
+                    })
+                </p>
+                <p>
+                    这样的话，已经选中的部分它不会让它成为非选中模式，如果我选中了其中两个，再点反选，会选中4个
+                    并且返回4个undefined
+                </p>
+                <p>
+                    3.jQuery:
+                </p>
+                <p class="code">
+                    $("#CheckedRev").click(function () {<br/>
+                    $("[name=items]:checkbox").each(function () {<br/>
+                    $(this).attr("checked",!$(this).attr('checked'));<br/>
+                    alert($(this).prop("checked"))<br/>
+                    })<br/>
+                    })
+                </p>
+                <p>
+                    这样的话，已经选中的部分它不会让它成为非选中模式，如果我选中了其中两个，再点反选，会选中4个
+                    但是返回的是true/false
+
+                </p>
+                <p>
+                    4.jQuery:
+                </p>
+                <p class="code">
+                    $("#CheckedRev").click(function () {<br/>
+                    $("[name=items]:checkbox").each(function () {<br/>
+                    $(this).prop("checked",!$(this).prop('checked'));<br/>
+                    alert($(this).prop("checked"))<br/>
+                    })<br/>
+                    })
+                </p>
+                <p>
+                    这样一切正常
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="right">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+
+</section>
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>保存信息</legend>
+        <div>
+            <label for="rememberYes">是</label>
+            <input name="remember" id="rememberYes" type="radio">
+            <label for="rememberNo">否</label>
+            <input name="remember" id="rememberNo" type="radio">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="content.js"></script>
+</body>

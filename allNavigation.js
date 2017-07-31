@@ -36,6 +36,7 @@ $(function () {
         })
     })
     $("#navigation>article>section.right").append(
+        "<a href='seventeenth.html' class='book' value='2017.7.31'>prop()方法代替attr()</a>"+
         "<a href='sixteenth.html' class='blog' value='2017.7.29'>css3实现瀑布流多栏布局</a>"+
         "<a href='fifteenth.html' class='blog' value='2017.7.28'>在网页内点击链接不跳转切换图片集</a>"+
         "<a href='fourteenth.html' class='blog' value='2017.7.28'>文章批量推荐功能（不包括当前页）;上一篇、下一篇切换功能</a>"+

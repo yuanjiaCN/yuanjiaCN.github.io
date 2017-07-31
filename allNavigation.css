@@ -198,7 +198,7 @@ h1 a:hover{
     #navigation>nav header{
         font-size: 3em;
         float: left;
-        line-height: 3.5em;
+        line-height: 3em;
         animation: come 1s;
     }
     #navigation>nav header:hover{
