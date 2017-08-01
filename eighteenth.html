@@ -19,36 +19,38 @@
 <section class="CONTENT">
     <section>
         <content class="right">
-            <h1>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</h1>
+            <h1>评论区实现（评论内容不可保存）</h1>
             <header class="content">
                 <ul>
-                    <li class="date">发布时间：2017-7-27 </li>
+                    <li class="date">发布时间：2017-8-1 </li>
                 </ul>
             </header>
             <article>
-                <h4>1.图片不拉伸</h4>
+                <h4>1.评论区实现（评论内容不可保存）</h4>
                 <p>
-                    要想让，width和height只能定一个（不包括min,max）
-                </p>
+                    由于要换排版了，现在把目前评论区的实现记录一下</p>
                 <p>
-                    然后突然发现，其实定height和width都是max前缀的时候，系统就会自己判断不拉伸了，如果觉得周围留白一点好看，
-                    也可以设置90%，然后设置5%的margin
+                    1.html:
                 </p>
-                <h4>2.背景图片随滚轮移动</h4>
-                <p>背景图片随滚轮移动，平铺拉伸</p>
-                <p class="code">
-                    background: url("picture/1.jpg")  no-repeat fixed;<br/>
-                    background-size:100%;
-                </p>
+                <img src="picture/eighteenthHtml1.jpg"/><br/>
+                <img src="picture/eighteenthHtml2.jpg"/>
                 <p>
-                    效果就是现在客官们看到的啦~
+                    2.CSS:
                 </p>
+                <img src="picture/eighteenthCss1.jpg"/>
                 <p>
-                    首行缩进2个中文字
+                    3.jQuery:
                 </p>
-                <p class="code">
-                    text-indent:2em;
+                <img src="picture/eighteenthJs1.jpg"/>
+                <img src="picture/eighteenthJs2.jpg"/>
+                <img src="picture/eighteenthJs3.jpg"/>
+                <p>
+                    4.效果
                 </p>
+                <img src="picture/eighteenth1.jpg"/>
+                <img src="picture/eighteenth2.jpg"/>
+                <img src="picture/eighteenth3.jpg"/>
+                <img src="picture/eighteenth4.jpg"/>
             </article>
         </content>
     </section>

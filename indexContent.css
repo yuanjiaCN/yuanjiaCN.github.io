@@ -1,19 +1,59 @@
+@keyframes come {
+    from{
+        color: transparent;
+        transform: translate(-3%,0);
+    }
+}
+@keyframes leftAndRight {
+    from{
+    }
+    33%{
+        transform: rotate(-5deg);
+    }
+    66%{
+        transform: rotate(5deg);
+    }
+}
+@keyframes upAndDown{
+    from{
+        transform: translate(0,10%);
+    }
+    33%{
+        transform: translate(0,-10%);
+    }
+    66%{
+        transform: translate(0,10%);
+    }
+}
+@keyframes color{
+    from{
+        color:rgb(95,95,95)
+    }
+    33%{
+        color:palevioletred;
+    }
+    66%{
+        color:darkred;
+    }
+    to{
+        color: rgb(95,95,95);
+    }
+}
 *{
     margin: 0;
     padding: 0;
 }
 body {
-    font-family: '微软雅黑', Arial, Verdana;
+    font-family: Andalus;
     height: 100%;
-    padding: 3% 10%;
     font-size: 1em;
-    background: url("picture/1.jpg")  no-repeat fixed;
     background-size:100%;
+    width: 100%;
 }
 h2{
     line-height: 2em;
     font-weight: 100;
-    color: #935347;
+    color:  rgb(131,131,131);
     padding-bottom: 8%;
 }
 h3{
@@ -31,28 +71,83 @@ h4{
 }
 p{
     line-height: 2.5em;
-    color: #935347;
+    color:  black;
     text-indent:2em;
     margin-bottom:3% ;
 }
 a{
-    color: #935347;
+    color:  slategrey;
     text-decoration: none;
 }
 img{
     max-width: 90%;
 }
+#home{
+    text-align: center;
+}
 .first{
-    margin-bottom:1%;
+    height: 100%;
+    width: 100%;
+}
+.first>div{
+    font-size: 3em;
+    margin: 0 auto;
+    line-height: 2em;
+    animation: leftAndRight 1s;
+    z-index: 100;
+}
+.first>div>a{
+    color:  rgb(131,131,131);
+    text-decoration: none;
+}
+#home:hover{
+    transform: scale(1.2);
+}
+.first #back{
+    position: fixed;
+    bottom: 0;
+    right: 5%;
+}
+.first #back:hover{
+    transform:rotate(360deg);
+}
+.first>section{
+    background-color: rgb(221,221,221);;
+    padding: 0 5%;
+    height: 100%;
+    width: 90%;
+}
+.first>section header{
+    font-size: 3em;
+    width:20%;
+    line-height: 2.333em;
+    animation: come 1s;
     float: left;
+    color: black;
 }
-.headerNav a{
+.first ul{
+    width: 100%;
+}
+.first li{
     display: inline-block;
-    padding-right: 5%;
+    float: right;
+    width: 20%;
+    text-align: center;
+    animation: upAndDown 1s;
+
 }
-.contentHeader h1{
-    margin: 5% 0;
-    border-bottom: solid 1px #bcd5d1;
+.first li a{
+    display: inline-block;
+    font-size: 2em;
+    line-height: 3.5em;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    width: 100%;
+    cursor: default;
+}
+.first>section header:hover{
+    cursor: pointer;
 }
 .content{
     text-align: center;
@@ -63,31 +158,30 @@ img{
 }
 .content ul{
     text-align: center;
-    margin: 4%;
-    border: dashed 1px #64706c;
+    margin: 2% 0 3% 70%;
+    right: 0;
 }
 .content ul li{
     display: inline-block;
     color:#64706c;
-    font-size:0.8em;
-}
-.date{
-    float: center;
-}
-.read{
-    float: right;
-}
-.left{
-    width: 75%;
-    float: left;
-    border-right: 1px #64706c dashed;
+    font-size:1em;
 }
 .right{
+    width: 68%;
     float: right;
-    width: 20%;
-    margin: 2%;
+    border-right: 1px #64706c dashed;
 }
-.right a{
+.right h1{
+    font-size:2em;
+    margin:7% 6% 0 0;
+    font-weight: 700;
+}
+.left{
+    float: left;
+    width: 15%;
+    margin: 5%;
+}
+.left a{
     display: inline-block;
     margin: 4% 0;
     white-space:nowrap;
@@ -95,12 +189,17 @@ img{
     overflow: hidden;
     width: 100%;
 }
+.left a:hover{
+    overflow: visible;
+    border-bottom: dotted 1px slategray;
+}
 .CONTENT div{
     clear: both;
     margin-bottom: 7%;
 }
 .cut{
-    margin-bottom:4%;
+    float:left;
+    margin-left: 32%;
 }
 .cut a{
     line-height: 2em;
@@ -109,7 +208,7 @@ img{
     text-overflow: ellipsis;
     display: inline-block;
     overflow: hidden;
-    width: 50%;
+    width: 1000%;
 }
 .cut a:visited{
     color: #64706c;
@@ -126,30 +225,8 @@ img{
     border-top: solid #bcd5d1 1px;
     width: 55%;
 }
-.left article{
+.right article{
     padding-right: 8%;
-}
-fieldset{
-    width: 40%;
-    line-height: 2em;
-    padding: 2%;
-    background-color: #e5c79c;
-    border: none;
-    border-radius: 10px;
-    height: 100%;
-    color: #423b3b;
-}
-fieldset input[type="text"],textarea{
-    display: block;
-    width: 80%;
-}
-form input[type="button"]{
-    background: transparent;
-    border: 1px solid #ba9077;
-    font-size: 1.2em;
-    padding: 1% 2%;
-    margin-top:2% ;
-    border-radius:15%;
 }
 .strong{
     font-weight: 600;
@@ -173,4 +250,7 @@ form input[type="button"]{
 }
 label{
     cursor: pointer;  /*光标样式 手掌样子 这样可以让游客发现这可以交互*/
+}
+.clear{
+    clear: both;
 }

@@ -4,32 +4,27 @@
 </head>
 <body>
 <header class="first">
-    <section class="headerNav">
-        <nav>
-            <a href="index.html">主页</a>
-            <a href="#">我</a>
-            <a href="#" id="guide">博文导航</a>
-            <a href="#">技术</a>
-            <a href="#">随笔</a>
-        </nav>
-    </section>
-    <section class="contentHeader">
-        <h1>Create Awesome Things For Better Life</h1>
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
     </section>
 </header>
 <section class="CONTENT">
     <section>
-        <content class="left">
+        <content class="right">
+            <h1>让背景图片浮在图片上方</h1>
             <header class="content">
-                <h1>让背景图片浮在图片上方</h1>
                 <ul>
                     <li class="date">发布时间：2017-7-26 </li>
-                    <li class="read">假装可以看阅读量:</li>
                 </ul>
             </header>
-            <section class="cut">
-
-            </section>
             <article>
                 <p>
                     其实我想做的是，在发生鼠标事件的时候，让背景图片隐约出现在图片上，由于图片是一直在变的，但是背景图片只需要一个，
@@ -45,8 +40,8 @@
                 <p>
                     贴一下CSS代码和效果图
                 </p>
-                <img src="picture/ninthcss.jpg"/></br>
-                <img src="picture/ninth1.jpg"/></br>
+                <img src="picture/ninthcss.jpg"/><br/>
+                <img src="picture/ninth1.jpg"/><br/>
                 <img src="picture/ninth2.jpg"/>
                 <p>
                     设置父元素background-color（亲测img本身的background无效）,
@@ -57,7 +52,7 @@
             </article>
         </content>
     </section>
-    <aside class="right">
+    <aside class="left">
         <h2>其他文章推荐</h2>
         <nav>
         </nav>
@@ -68,41 +63,6 @@
 <section class="cut">
 
 </section>
-<section class="comment">
-    <h4>最新评论</h4>
-    <p>目前还没有评论</p>
-</section>
-<form>
-    <h3>评论区(随便玩，反正刷新下就没了)</h3>
-    <fieldset>
-        <legend>信息</legend>
-        <div>
-            <label for="author">昵称*:</label>
-            <input name="author" id="author" type="text" value="你叫啥呀"/>
-        </div>
-        <div>
-            <label for="address">哪里人呀:</label>
-            <input name="address" id="address" type="text" value="你是哪里人呀"/>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>评论</legend>
-        <div>
-            <label for="comment">说点什么吧*:</label>
-            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>保存信息</legend>
-        <div>
-            <label for="rememberYes">是</label>
-            <input name="remember" id="rememberYes" type="radio">
-            <label for="rememberNo">否</label>
-            <input name="remember" id="rememberNo" type="radio">
-        </div>
-    </fieldset>
-    <input type="button" value="提交" id="button">
-</form>
 <link rel="stylesheet" href="indexContent.css">
 <script src="jquery-3.2product.js"></script>
 <script src="content.js"></script>
