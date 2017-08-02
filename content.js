@@ -1,34 +1,18 @@
 $(function () {
                 //其他文章推荐功能
     $("aside.left nav").append(
-        "<a href='first.html'>轮播图小心得</a>"+
-        "<a href='second.html'>外边距叠加、行框、行内框、outline属性</a>" +
-        "<a href='third.html'>做博客遇到小问题【1】主页</a>" +
-        "<a href='forth.html'>做博客遇到小问题【2】评论区</a>" +
-        "<a href='fifth.html'>CSS创建等高文本列，条件注释,不透明度,神器属性text-overflow,强迫症福利：标点符号悬挂hanging-punctuation</a>"+
-        "<a href='sixth.html'>做博客遇到的小问题【3】溢出、伪选择器</a>" +
-        "<a href='seventh.html'>博客用到的文字换行、首行渲染、CSS3动画属性</a>" +
-        "<a href='eighth.html'>实现不定长度的标题和段落在不同尺寸的图片上在同一个位置水平居中（垂直可调）</a>" +
-        "<a href='ninth.html'>让背景图片浮在图片上方</a>" +
-        "<a href='tenth.html'>transition不支持display;图片下方有一小条背景溢出的处理方法</a>" +
-        "<a href='eleventh.html'>html5、css3表单相关</a>" +
-        "<a href='twelfth.html'>css3媒体查询；A元素hover时改变B元素背景色</a>" +
-        "<a href='thirteenth.html'>图片不拉伸；背景图片随滚轮移动；首行缩进2个中文字</a>"+
-        "<a href='fourteenth.html'>文章批量推荐功能（不包括当前页）;上一篇、下一篇切换功能</a>"+
-        "<a href='fifteenth.html'>在网页内点击链接不跳转切换图片集</a>"+
-        "<a href='sixteenth.html'>css3实现瀑布流多栏布局</a>"+
-        "<a href='seventeenth.html'>prop()方法代替attr()</a>"+
-        "<a href='eighteenth.html'>评论区实现（评论内容不可保存）</a> "
+        $all //另一个JS页面中所有的链接
     );
+
 
                     //上一篇、下一篇切换功能
         var $thisParaName =$(".right h1").text();
         var $a = $("aside.left nav").children();
         for(var i = 0;i<$a.length;i++){
-           if($a[i].innerHTML == $thisParaName) {
+           if($a[i].innerText == $thisParaName) {
               var $thisParaA = $($a[i]);                     //DOM对象转换为jQuery对象
-              var $nextParaA = $thisParaA.next();
-              var $prevParaA = $thisParaA.prev();
+              var $nextParaA = $thisParaA.prev();
+              var $prevParaA = $thisParaA.next();
               var $thisParaHref= $thisParaA.attr("href");    //当前页面的href
               var $nextParaHref= $nextParaA.attr("href");
               var $prevParaHref= $prevParaA.attr("href");
@@ -68,6 +52,23 @@ $(function () {
                //    })
                //}
 
+
+               //相关导航项变色
+               var $aClassValue = $a[i].className;
+               if($(".right>h1").text()==$thisParaAName) {
+                   var $idValue = "#" + $aClassValue;
+                   if ($idValue == "#blog") {
+                       $($idValue).css({
+                           color: "rgb(56,182,230)"
+                       })
+                   } else if ($idValue == "#book") {
+                       $($idValue).css({
+                           color: "rgb(229,116,55)"
+                       })
+                   }
+               }
+                //每篇博客的title为其标题
+               $("head").append("<title>"+$('.right>h1').text()+"</title>")
                }
            }
         })
