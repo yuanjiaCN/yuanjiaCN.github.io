@@ -234,11 +234,13 @@ img{
 }
 .ps{
     color: black;
+    font-style: italic;
 }
 .code{
     background-color: rgba(100,112,108,0.2);
     color: rgb(100,112,108);
     display: inline-block;
+    text-indent:0;
 }
 .comment div{
     line-height: 2em;

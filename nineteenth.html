@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>this的指向</h1>
+            <header class="content">
+                <ul>
+                    <li class="date">发布时间：2017-8-6 </li>
+                </ul>
+            </header>
+            <article>
+                <p class="ps strong">——this指向直接调用它的对象</p>
+                <h4>1.如果函数作为对象的一个属性时，并且作为对象的一个属性被调用时，函数中的this指向该对象。</h4>
+                <img src="picture/nineteenth1.jpg"/>
+                <p>
+                    这种情况下,如果obj.fn()，那么fn这个函数就是直接被obj调用的，它是obj的一个属性（方法），
+                    它的this就指向obj。
+                </p>
+                <p>
+                    但是，
+                </p>
+                <p class="code">
+                    obj.fn()()
+                </p>
+                <p>
+                    也就是
+                </p>
+                <p class="code">
+                    var f1 =obj.fn();<br>
+                    f1();
+                </p>
+                <p>
+                    是通过调用obj的方法fn的匿名函数。这中间多了一层，就不是直接调用了，这时候this就指向window
+                </p>
+                <p class="ps">
+                    注意：找变量的时候是一层一层作用域往上找的，和this不同
+                </p>
+                <p class="strong">
+                    个人理解：<br/>
+                    由于函数作为对象的一个属性被调用时，函数中的this才指向该对象。
+                </p>
+                <p class="code">
+                    obj.fn()()
+                </p>
+                <p>
+                    本身fn的匿名函数就不是obj的属性，它是obj的属性（方法）fn的匿名函数。
+                    而且如果分开看，obj.fn()赋值给f1，f1在全局中，通过f1调用，也就是f1()，
+                    f1是个全局变量，那可以理解为window.f1
+                    既然在全局中调用，那么，this当然指向window
+                </p>
+                <h4>2.如果函数作为构造函数用，那么其中的this就代表它即将new出来的对象。</h4>
+                <p class="code">
+                    function A() {<br/>
+                    this.name = '袁佳';<br/>
+                    this.age = '1996';<br/>
+                    }<br/>
+                    var person = new A();<br/>
+                    alert(person.name); //袁佳
+                </p>
+                    <h4>3.普通函数在调用时，其中的this也都是window。</h4>
+                <p>
+                    比如构造函数直接被调用，它的this就指向window
+                </p>
+                <p class="code">
+                function A() {<br/>
+                this.name = '袁佳';<br/>
+                this.age = '1996';<br/>
+                alert(this);<br/>
+                }<br/>
+                A();//object window
+                </p>
+                <h4>4.apply和call情况</h4>
+                <p>
+                当一个函数被call和apply调用时，this的值就取传入的对象的值。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

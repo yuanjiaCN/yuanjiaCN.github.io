@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+        "<a href='nineteenth.html' class='book' value='2017.8.6'>this的指向</a> "+
         "<a href='eighteenth.html' class='blog' value='2017.8.1'>评论区实现（评论内容不可保存）</a> "+
         "<a href='seventeenth.html' class='book' value='2017.7.31'>prop()方法代替attr()</a>"+
         "<a href='sixteenth.html' class='blog' value='2017.7.29'>css3实现瀑布流多栏布局</a>"+
