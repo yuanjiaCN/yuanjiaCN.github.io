@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>对象中的方法是否形成闭包、拥有闭包性质</h1>
+            <header class="content">
+                <ul>
+                    <li class="date">发布时间：2017-8-6 </li>
+                </ul>
+            </header>
+            <article>
+                <p>
+                    首先，看了个概念,在《JavaScript高级程序设计》中，闭包指的是：
+                </p>
+                <p class="strong">
+                    有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式，就是在一个函数内部创建另一个函数
+                </p>
+                <p>
+                    然后呢，我就要自问自答两个问题
+                </p>
+                <p style="color:dimgrey">
+                    1.在对象中定义的方法，能够访问到对象中的变量吗？对象中的变量是私有的吗？</p>
+                <p style="color:dimgrey">
+                    2.对象是否是函数呢？
+                </p>
+                <p>
+                    首先，在对象中定义的方法，能够访问到对象中的变量吗？对象中的变量是私有的吗？
+                </p>
+                <p>
+                    答案是可以！是私有的！
+                </p>
+                <img src="picture/twentieth1.jpg"/>
+                <p>
+                    其次，对象是否是函数呢？
+                </p>
+                <p>
+                    函数是一种对象，而对象是通过函数创建的，这个观点来自</p>
+                <p>
+                    <a href="http://www.cnblogs.com/wangfupeng1988/p/3978035.html">深入理解javascript原型和闭包（2）——函数和对象的关系</a>
+                </p>
+
+                <p>比如说（对象字面量）</p>
+                 <p class="code">
+                    var obj = {<br/>
+                    name:'袁佳',<br/>
+                    age:'1996',<br/>
+                    getNameFunc:function () {<br/>
+                    return this.name  ;<br/>
+                    }<br/>
+                    }
+                </p>
+                <p class="strong">多说一句，我个人认为更准确的说法是所有对象的创建都需要通过一个构造函数，虽然通过一个语法糖（即上方我写的代码）可以省略掉构造函数，但构造函数是确实存在的。
+                构造函数本身也是一个对象，我们可以称之为函数对象，函数对象也可以通过它的构造函数Function()来创建。
+                JavaScript内置不少函数对象，如Object()、String()、Array()、Function()等，它们既是对象，也可以作为构造函数用来构造其它的对象。
+                除此之外，我们也可以定义自己的构造函数。</p>
+                <p>
+                    也可以这么写（Object构造函数）
+                </p>
+                <p class="code">
+                    var obj = new Object();<br/>
+                    obj.name = '袁佳';<br/>
+                    obj.age='1996';<br/>
+                    obj.getNameFunc =function () {<br/>
+                    return this.name  ;<br/>
+                    };
+                </p>
+               
+                <p>
+                    最后总结一下，个人认为，对象内的方法形成的闭包，起码是拥有闭包的性质的，而且也具备闭包的优点——
+                    从外部可以通过这个对象内的方法，得到这个对象中的私有变量。
+                </p>
+                <p class="ps">
+                    PS:感觉上应该就是可以形成闭包的吧。。。
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<link rel="stylesheet" href="indexContent.css">
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
