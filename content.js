@@ -18,6 +18,8 @@ $(function () {
               var $thisParaAName= $thisParaA.text();         //当前页面超链接名
               var $nextParaAName= $nextParaA.text();         //最后一篇博客的后一篇链接名为""
               var $prevParaAName= $prevParaA.text();
+
+
               var cut = $(".cut");
               if($nextParaAName==""){
                   $(".cut").append(
@@ -39,7 +41,9 @@ $(function () {
                   );
               }
                //其它文章推荐隐藏当前的文章
+
                if($thisParaName==$thisParaAName){    //这里detach和remove都可以用，但是empty不可以
+                   alert($thisParaName);
                   $("aside.left nav a").detach("a[href='" + $thisParaHref+ "']");
                }
                //if($thisParaName==$thisParaAName){

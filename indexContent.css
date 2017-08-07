@@ -208,7 +208,7 @@ img{
     text-overflow: ellipsis;
     display: inline-block;
     overflow: hidden;
-    width: 1000%;
+    width: 100%;
 }
 .cut a:visited{
     color: #64706c;
