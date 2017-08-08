@@ -134,7 +134,6 @@ img{
     width: 20%;
     text-align: center;
     animation: upAndDown 1s;
-
 }
 .first li a{
     display: inline-block;
@@ -206,7 +205,6 @@ img{
     display: inline-block;
     white-space:nowrap;
     text-overflow: ellipsis;
-    display: inline-block;
     overflow: hidden;
     width: 100%;
 }
@@ -255,4 +253,59 @@ label{
 }
 .clear{
     clear: both;
+}
+/*媒体查询*/
+@media screen and (max-width: 1170px) {
+    body {
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 970px){
+    body {
+        font-size: 0.85em;
+    }
+}
+@media screen and (max-width: 770px) {    /*ipad竖屏*/
+    body {
+        font-size: 0.7em;
+    }
+}
+@media screen and (max-width: 740px) {    /*手机横屏*/
+    body{
+        font-size: 0.5em;
+    }
+}
+@media screen and (max-width: 450px) {    /*手机竖屏*/
+    body{
+        font-size: 0.4em;
+    }
+    .first li{
+        width: 20%;
+    }
+    .first li a{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .left{
+        display: none;
+    }
+    .right{
+        width: 90%;
+    }
+    .cut{
+        margin: 10%;
+        width: 90%;
+    }
+    .content ul{
+        text-align: center;
+        margin: 3% 0 3% 50%;
+
+    }
+    .content ul li{
+        display: inline-block;
+        color:#64706c;
+        font-size:1em;
+    }
+
 }

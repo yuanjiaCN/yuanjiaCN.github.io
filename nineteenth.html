@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 </head>
 <body>
 <header class="first">
@@ -62,7 +63,8 @@
                 <p>
                     本身fn的匿名函数就不是obj的属性，它是obj的属性（方法）fn的匿名函数。
                     而且如果分开看，obj.fn()赋值给f1，f1在全局中，通过f1调用，也就是f1()，
-                    f1是个全局变量，那可以理解为window.f1
+                    f1是个全局变量，所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。
+                    那可以写为window.f1
                     既然在全局中调用，那么，this当然指向window
                 </p>
                 <h4>2.如果函数作为构造函数用，那么其中的this就代表它即将new出来的对象。</h4>
@@ -85,6 +87,9 @@
                 alert(this);<br/>
                 }<br/>
                 A();//object window
+                </p>
+                <p class="strong">
+                    这个构造函数实在全局作用域中声明的，是window对象的方法，相当于window.A()
                 </p>
                 <h4>4.apply和call情况</h4>
                 <p>

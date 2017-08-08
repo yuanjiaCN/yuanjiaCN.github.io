@@ -43,7 +43,6 @@ $(function () {
                //其它文章推荐隐藏当前的文章
 
                if($thisParaName==$thisParaAName){    //这里detach和remove都可以用，但是empty不可以
-                   alert($thisParaName);
                   $("aside.left nav a").detach("a[href='" + $thisParaHref+ "']");
                }
                //if($thisParaName==$thisParaAName){

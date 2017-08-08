@@ -20,4 +20,4 @@ $(function all () {
         "<a href='third.html' class='blog' value='2017.7.22'>做博客遇到小问题【1】主页</a>" +
         "<a href='second.html' class='book' value='2017.7.22'>外边距叠加、行框、行内框、outline属性</a>" +
         "<a href='first.html' class='book' value='2017.7.21'>轮播图小心得</a>"
-})
+});
