@@ -68,6 +68,10 @@ $(function () {
                }
                 //每篇博客的title为其标题
                $("head").append("<title>"+$('.right>h1').text()+"</title>")
+               //每篇文章的事件取自链接value
+                   $(".content").append('<ul> <li class="date">发布时间：'+$a[i].getAttribute("value")+'</li></ul>')
+
+
                }
            }
         })
