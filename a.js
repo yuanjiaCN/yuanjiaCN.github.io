@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+        "<a href='twentyFirst.html' class='book' value='2017.8.10'>事件处理程序、事件对象</a> "+
         "<a href='twentieth.html' class='book' value='2017.8.6'>对象中的方法是否形成闭包、拥有闭包性质</a> "+
         "<a href='nineteenth.html' class='book' value='2017.8.6'>this的指向</a> "+
         "<a href='eighteenth.html' class='blog' value='2017.8.1'>评论区实现（评论内容不可保存）</a> "+
