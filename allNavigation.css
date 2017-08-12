@@ -47,6 +47,7 @@
 }
 html{
     height: 100%;
+    width: 100%;
 }
 body{
     width: 100%;
@@ -58,10 +59,27 @@ body{
     height: 100%;
     width: 100%;
     font-size: 1em;
-
 }
 #home{
     text-align: center;
+    width: 100%;
+}
+#search{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+#search>input{
+    display: inline-block;
+    right:2%;
+    top:1%;
+}
+#search>p{
+    color: red;
+    position: absolute;
+    font-size: 0.3em;
+    display: none;
+    line-height: 2em;
 }
 #navigation>div{
     font-size: 3em;
@@ -178,6 +196,7 @@ h1 a:hover{
     #navigation {
         font-size: 0.85em;
     }
+
 }
 @media screen and (max-width: 770px) {    /*ipad竖屏*/
     #navigation {
@@ -195,6 +214,33 @@ h1 a:hover{
 @media screen and (max-width: 450px) {    /*手机竖屏*/
     #navigation {
         font-size: 0.3em;
+    }
+    #home a{
+        font-size: 2em;
+        line-height: 2em;
+    }
+    #search{
+        position: absolute;
+        top:0;
+        right:0;
+    }
+    #search input[type=search]{
+        float: right;
+        width: 55%;
+        font-size: 0.7em;
+        border: 1px solid grey;
+    }
+    #search input[type=button]{
+        font-size: 0.7em;
+        float: right;
+    }
+    #search>p{
+        color: red;
+        position: absolute;
+        font-size: 0.3em;
+        display: none;
+        line-height: 5em;
+        right: 0;
     }
     #navigation>nav header{
         font-size: 3em;
@@ -221,5 +267,4 @@ h1 a:hover{
     section.right>div{
         height: 15%;
     }
-
 }
