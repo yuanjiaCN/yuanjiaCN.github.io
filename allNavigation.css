@@ -210,10 +210,16 @@ h1 a:hover{
     #navigation{
         font-size: 0.5em;
     }
+    article a{
+        font-size: 1.5em;
+    }
 }
 @media screen and (max-width: 450px) {    /*手机竖屏*/
     #navigation {
         font-size: 0.3em;
+    }
+    article a{
+        font-size: 3em;
     }
     #home a{
         font-size: 2em;
