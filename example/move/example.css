@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+section{
+    width: 80%;
+    height: 20%;
+    margin: 10%;
+    position: relative;
+    overflow: hidden; /*加这句，js中加的一组li*/
+}
+ul{
+    position: absolute;/*只有加了absolute才可以动起来*/
+    width: 100%;
+    height: 100%;
+}
+li{
+    background: aqua;
+    width: 20%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    list-style-type: none;
+}
+a{
+ margin: 0 auto;
+}
