@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>无缝运动应用到这个博客（1）</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>1.无缝运动应用</h4>
+                <p>就现在首页最下方这个the latest work的滚动效果啦</p>
+                <p>先写个最普通的效果，之后应该还会写几篇加点更方便的小功能的博客，像是左移、右移加速，移入暂停之类。
+                    另外，这么写好像还导致了一点兼容问题，在移动端上DIV块有点丑，之后也会改进</p>
+                <p class="strong">这里有一个大写加粗的注意点！不过是基础不牢固导致的。。。</p>
+                <p class="strong ps">使用jQuery添加到html中的元素，无法在另一个js文档中获取到，但是如果用同样使用jQuery写的js文档可以获取到</p>
+                <p>
+                   直接贴代码吧，其他遇到的问题都写在注释里啦
+                </p>
+                <p>HTML</p>
+                <p>由于这部分是引入了一个包含着我所有链接的js(jQuery写的)，所以就截个F12的图了，本身写的html文档里没东西</p>
+                <img src="picture/twentyFifthHtml.jpg">
+                <p>CSS</p>
+                <img src="picture/twentyFifthCss1.jpg">
+                <img src="picture/twentyFifthCss2.jpg">
+                <p>JS</p>
+                <p>多说一句，用setTimeout是因为红宝书P205页写，使用超时调用来模拟间歇调用是一种最佳模式，
+                    在开发环境下，很少使用真正的间歇调用，原因是后一个间歇调用可能会在前一个间歇调用结束之前启动</p>
+                <img src="picture/twentyFifthJs1.jpg">
+                <img src="picture/twentyFifthJs2.jpg">
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
