@@ -1,7 +1,7 @@
 $(function all () {
  $all =
-
-        "<a href='twentyFifth.html' class='book' value='2017.8.19'>一个小时钟demo以及遇到的setTimeout相关问题</a>"+
+        "<a href='twentyseventh.html' class='book' value='2017.8.19'>一个简易的别踩白块demo</a>"+
+        "<a href='twentysixth.html' class='book' value='2017.8.19'>一个小时钟demo以及遇到的setTimeout相关问题</a>"+
         "<a href='twentyFifth.html' class='blog' value='2017.8.16'>无缝运动应用到这个博客（1）</a>"+
         "<a href='twentyFourth.html' class='book' value='2017.8.15'>定时器、无缝运动</a>"+
         "<a href='twentyThird.html' class='book' value='2017.8.14'>定时器、运动</a> "+
