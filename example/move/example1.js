@@ -16,6 +16,7 @@ function odd() {
 }
 odd();
 function example() {
+    clearTimeout(timer);
     var timer = setTimeout(function () {
         if(ul[0].offsetLeft<-ul[0].offsetWidth/2){
             //当原本的一组li的最后一个也过去的时候，也就是ul的宽度的一半
@@ -23,8 +24,8 @@ function example() {
             //把这个ul拽回到一开始的状态
         }
         ul[0].style.left = ul[0].offsetLeft-2+"px";
-        setTimeout(example,10)
     },10)
+    setTimeout(example,10)
 }
 example();
 
