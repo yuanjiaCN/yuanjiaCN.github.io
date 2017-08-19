@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>一个小时钟demo以及遇到的setTimeout相关问题</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>1.一个小时钟demo</h4>
+                <a class="strong" href="example/clock/example.html">链接在此！应该没有比这个更加简陋的时钟了</a>
+                <p>惯例贴个代码</p>
+                <p>动态加载的页面，没有html，因为是最简陋的小时钟，所以也没有css只有js</p>
+                <img src="picture/twentySixthJs1.jpg"/>
+                <h4>2.遇到的setTimeout相关问题</h4>
+                <p>
+                    今天在做时钟的时候，意识到了一个问题，即：
+                </p>
+                <img src="picture/twentySixthJs2.jpg"/>
+                <p>
+                    问题：这种情况下，在位置1，位置2，位置3调用，结果会不同吗？
+                </p>
+                <p>
+                    首先，通过实验得出，如果在位置1，那么，这个时钟刷新的频率是1000+1000，即2秒刷新一次;而位置2和位置3，都是1秒刷新一次。当然位置3就刷新2次就定格时间了。
+                </p>
+                <p>
+                    然后我在这两个地方放了两个alert帮助我判断setTimeout到底是怎么运行的
+                </p>
+                <img src="picture/twentySixthJs3.jpg"/>
+                <p>
+                    弹出框的情况是，首先弹出“位置2”，然后间隔一秒，弹出"timer内部"紧跟着弹出"位置2"，然后间隔一秒，再弹出"timer内部"紧跟着弹出"位置2"……
+                </p>
+                <p class="strong">所以，为什么位置2的setTimeout不需要等待一秒才执行呢？！</p>
+                <p>
+                    因为在等待超时调用的期间，代码会继续往下走，而不是停在那里.
+                </p>
+                <p>
+                    系统记录了这里有个timer的超时调用后，开始计时，并且代码往下走，结果马上遇到了另一个1000毫秒的超时调用，于是在这里停止（因为之后没有代码了）
+                    1000毫秒后，两个超时调用时间都到了，于是弹出"timer内部"紧跟着弹出"位置2"。
+                </p>
+                <p>
+                    然后我再写了一个例子证实了自己的猜想
+                </p>
+                <img src="picture/twentySixthJs4.jpg"/>
+                <p>
+                    这样！一切都明了啦！
+                </p>
+                <p>
+                    其实这个问题是当时想的时候思维被局限了，想想如果把clearTimeout直接放在超时调用以后，那么这个超时调用永远不会执行，为什么呢？因为等待执行期间，代码块往下走，直接被clear掉了
+                </p>
+                <p>
+                    啊！这个问题终于想明白了！神清气爽！
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
