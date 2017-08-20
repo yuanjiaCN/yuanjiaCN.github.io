@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>使用setTimeout模拟setInterval时，用clearTimeout遇到的坑们</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p>就是一个最简陋的小demo,一个按钮控制一个div每隔一段时间向右移动，由于红宝书的推荐，使用setTimeout代替setInterval。
+                    想使用clearTimeout清除多余的超时调用，以防止万一点击多次时，速度越来越快，于是碰到了一系列的大坑。</p>
+                <p class="strong ps"><a href="https://github.com/yuanjiaCN/yuanjiaCN.github.io/tree/master/example/question">可以去我的gitHub上下载这个特别简易的代码和excel</a></p>
+                <p>先放代码</p>
+                <p>html</p>
+                <img src="picture/twentyEighthHtml.jpg"/>
+                <p>css</p>
+                <img src="picture/twentyEighthCss.jpg"/>
+                <p>js</p>
+                <img src="picture/twentyEighthJs.jpg"/>
+                <h4>1.setTimeout在位置2时，clearTimeout在timer内部的情况 </h4>
+                    <p>点击按钮一次以上以后并不规律的运动</p>
+                <img src="picture/twentyEighth1.jpg"/>
+                <h4>1.setTimeout在位置2时，clearTimeout在timer外部的情况 </h4>
+                <p>点击一次以上以后不动</p>
+                <img src="picture/twentyEighth2.jpg"/>
+                <h4>1.setTimeout在位置1时(毫秒数叠加)，clearTimeout在timer内部的情况 </h4>
+                <p>疯狂点击后隔一会时间会根据点击次数往后疯狂跑几次，但是之后就恢复正常</p>
+                <p class="strong">注意，这种情况下，setTimeout在timer内部，如果timer被清除，则setTimeout也不能幸免</p>
+                <img src="picture/twentyEighth3.jpg"/>
+                <h4>1.setTimeout在位置1时(毫秒数叠加)，clearTimeout在timer外部的情况 </h4>
+                <p>疯狂点击的时候，div块有停顿</p>
+                <img src="picture/twentyEighth4.jpg"/>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
