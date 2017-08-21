@@ -3,7 +3,6 @@ $(function () {
     $("aside.left nav").append(
         $all //另一个JS页面中所有的链接
     );
-
                     //上一篇、下一篇切换功能
         var $thisParaName =$(".right h1").text();
         var $a = $("aside.left nav").children();

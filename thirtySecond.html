@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索MVC(2)</h1>
+            <header class="content">
+            </header>
+            <article>
+               <h4>0.MVC是干嘛用的</h4>
+                <p>首先是一段MVC的百度百科</p>
+                <p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。</p>
+                <p>请容许我做一个一脸懵逼的表情，但是不怕！我还找了下面这一段具体介绍！</p>
+
+                <p class="strong">模型层</p>
+                <p>
+                    负责表达和访问商业数据，执行商业逻辑和操作。也就是说，这一层就是现实生活中功能的软件模拟；在模型层变化的时候，它将通知视图层并提供后者访问自身状态的能力，同时控制层也可以访问其功能函数以完成相关的任务。
+                </p>
+
+                <p class="strong">视图层</p>
+                <p>
+                    负责显示模型层的内容。它从模型层取得数据并指定这些数据如何被显示出来。在模型层变化的时候，它将自动更新。另外视图层也会将用户的输入传送给控制器。
+                </p>
+
+                <p class="strong">控制层</p>
+                <p>
+                    负责定义应用程序的行为。它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作；在一个图形界面中，常见的用户输入包括点击按钮和菜单选择。在Web应用中，它包括对Web层的HTTP GET和POST的请求；控制层可以基于用户的交互和模型层的操作结果来选择下一个可以显示的视图，一个应用程序通常会基于一组相关功能设定一个控制层的模块，甚至一些应用程序会根据不同的用户类型具有不同的控制层设定，这主要是由于不同用户的视图交互和选择也是不同的。
+                </p>
+
+                <p>
+                    在模型层、视图层和控制层之间划分责任可以减少代码的重复度，并使应用程序维护起来更简单。同时由于数据和商务逻辑的分开，在新的数据源加入和数据显示变化的时候，数据处理也会变得更简单。
+                </p>
+                <p>然后还有一张非常直观的图！终于让我理解这一大段晦涩的语言了！</p>
+                <img src="picture/thirtySecond1.jpg"/>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
