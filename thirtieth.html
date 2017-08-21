@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>弱类型、强类型、动态类型、静态类型语言的排列组合以及自己的理解</h1>
+            <header class="content">
+            </header>
+            <article>
+                <br>
+                <p>因为本人学的是JavaScript嘛，所以除了初中学了点VB，大学学了点C，对其他语言都一窍不通，决定把自己现在对于强弱动静语言的想象情况写一下,<span class="strong">语法都是瞎编的</span>……</p>
+                <h4>0.动态类型语言+弱类型语言</h4>
+                <p>先从我最熟悉的JavaScript说起壮壮胆吧，可以不用在定义变量时规定其变量类型（因为动态类型在程序运行时才检查其数据类型），也可以隐式转换其数据类型，如：。</p>
+                <p class="code">
+                    var a = 3;<br>
+                    var b = "1";<br>
+                    alert(a+b); //31 a被转换为字符串<br>
+                </p>
+                <h4>1.动态类型语言+强类型语言</h4>
+                <p>可以在定义变量时不规定它的数据类型，但是如果在使用时隐式改变其数据类型在运行时会报错，必须显示改变。如：(假装有一门动态强类型语言有这种写法)</p>
+                <p class="code">
+                    var a = 3;<br>
+                    var b = "1";<br>
+                    alert(a+b); //error 不同类型的变量不可以操作 报的是运行错误<br>
+                </p>
+                <h4>2.静态类型语言+弱类型语言</h4>
+                <p>必须在定义变量时规定其数据类型（静态类型在编译时检查数据类型），可以让变量隐式转换其数据类型</p>
+                <p class="code">
+                    Number a = 3;<br>
+                    String b = "1";<br>
+                    alert(a+b); //31 就算规定了类型还是可以隐式转换<br>
+                </p>
+                <h4>3.静态类型语言+强类型语言</h4>
+                <p>必须在定义变量时规定其数据类型,不可以隐式转换其数据类型</p>
+                <p class="code">
+                    Number a = 3;<br>
+                    String b = "1";<br>
+                    alert(a+b); //error 不支持隐式转换 报的是语法错误<br>
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>弱类型、强类型、动态类型、静态类型语言的区别及其优劣</h1>
+            <header class="content">
+            </header>
+            <article>
+                <br>
+                <p>本来是想简单的查一下弱类型语言的缺点和效率问题的，之后发现了语言不但分强弱还分动静。。接下来就是今天找到的资料以及一些自己的理解</p>
+                <p>先放一张找到的简单明了的图(由于这些语言大部分都没学过，如果分错了我也实在是没法纠错。。。)</p>
+                <img src="picture/twentyNinth.jpg"/>
+                <h4>0.动态类型语言（Dynamically Typed Language）：</h4>
+                <p><span class="strong">运行期间</span>才做<span class="strong">数据类型</span>检查的语言，即动态类型语言<span class="strong">编程时，永远不用给任何变量指定数据类型。</span>该语言会在第一次赋值给变量时，在内部将数据类型记录下来。</p>
+                <ul>
+                    <li>优点：方便阅读，不需要写非常多的类型相关的代码；</li>
+                    <li>缺点：不方便调试，命名不规范时会造成读不懂，不利于理解等</li>
+                </ul>
+                <br>
+                <h4>1.静态类型语言（Statically Typed Language）：</h4>
+                <p><span class="strong">编译期间</span>做检查数据类型的语言，即<span class="strong">写程序时要声明所有变量的数据类型</span>，是固定的。使用数据之前，必须先声明数据类型（int ,float,double等）。相当于<span class="strong">使用之前，首先要为它们分配好内存空间</span>。</p>
+                <ul>
+                    <li>优点：结构非常规范，便于调试，方便类型安全</li>
+                    <li>缺点：为此需要写更多类型相关代码，不便于阅读、不清晰明了</li>
+                </ul>
+                <br>
+
+                <h4 class="strong">说强弱类型语言之前，先说一下编译型和解释型的区别</h4>
+                <p>从字面上看，“编译”和“解释”的确都有“翻译”的意思，它们的区别则在于翻译的时机安排不大一样。</p>
+                <p>打个比方：假如你打算阅读一本外文书，而你不知道这门外语，那么你可以找一名翻译，给他足够的时间让他从头到尾把整本书翻译好，然后把书的母语版交给你阅读；
+                        或者，你也立刻让这名翻译辅助你阅读，让他一句一句给你翻译，如果你想往回看某个章节，他也得重新给你翻译。</p>
+                <p>两种方式，前者就相当于我们刚才所说的编译型：一次把所有的代码转换成机器语言，然后写成可执行文件.而后者就相当于我们要说的解释型：在程序运行的前一刻，还只有源程序而没有可执行程序；而程序每执行到源程序的某一条指令，则会有一个称之为解释程序的外壳程序将源代码转换成二进制代码以供执行，总言之，就是不断地解释、执行、解释、执行……所以，解释型程序是离不开解释程序的。<br></p>
+                <p>解释型程序中，由于程序总是以源代码的形式出现，因此只要有相应的解释器，移植几乎不成问题。编译型程序虽然源代码也可以移植，但前提是必须针对不同的系统分别进行编译，对于复杂的工程来说，的确是一件不小的时间消耗，况且很可能一些细节的地方还是要修改源代码。<br></p>
+                <p>解释型程序省却了编译的步骤，修改调试也非常方便，编辑完毕之后即可立即运行，不必像编译型程序一样每次进行小小改动都要耐心等待漫长的Compiling…Linking…这样的编译链接过程。</p>
+                <p>不过凡事有利有弊，由于解释型程序是将编译的过程放到执行过程中，这就决定了解释型程序注定要比编译型慢上一大截，像几百倍的速度差距也是不足为奇的。 </p>
+                <h4>2.强类型定义语言（Explicit type conversion，强制数据类型定义语言，类型安全的语言）：</h4>
+                <p>一旦变量被指定某个数据类型，如果不经<span class="strong">强制转换，即永远是此数据类型。</span></p>
+                <p>举例：若定义了一个整型变量a，若不进行<span class="strong">显示</span>转换，不能将a当作字符串类型处理</p>
+                <p>强类型语言是指需要进行变量/对象类型声明的语言，一般情况下需要编译执行。</p>
+                <p>由于是编译执行，程序执行速度更快，同等条件下对系统要求较低，因此像开发操作系统、大型应用程序、数据库系统等时都采用它
+                    ，像C/C++、Pascal/Object   Pascal（Delphi）、VB等基本都可视为编译语言</p>
+                <br>
+                <h4>3.弱类型定义语言（Implicit type conversion，类型不安全的语言）：</h4>
+                <p>数据类型可以被忽略的语言。它与强类型定义语言相反, 一个变量可以赋<span class="strong">不同数据类型</span>的值。<br>
+                    举例：在JavaScript中，var a = 1;之后也可再给a赋除了数字以外的值，a = "hello world!"完全不会报错!
+                <p>在底层上，它属于解释执行</p>
+                <p>解释执行速度较慢，一些网页脚本、服务器脚本及辅助开发接口这样的对速度要求不高、对不同系统平台间的兼容性有一定要求的程序则通常使用解释性语言。
+                </p>
+                <p class="strong">劣势：</p>
+                <ul>
+                    <li>弱类型不符合“所见即所得”，定义的变量类型是不可预见并且可以改变的。</li>
+                    <li>为了兼容弱类型，语言执行引擎要做了大量的兼容工作，包括类型识别，内存管理，类型转换等，增加了语言内部处理的复杂度，会导致执行效率的降低。</li>
+                    <li>变量的类型是不可控的，因此执行过程中拥有大量的变量类型“隐形转换”，在开发同学不清楚隐性转换规则的情况下，容易产生不可预知的结果。这个特性也完全不符合所见即所得的简单性。</li>
+                    <li>速度慢</li>
+                </ul>
+                <p class="strong">优势：</p>
+                <ul>
+                    <li>屏蔽了语言的复杂性和容易导致错误的地方，例如：内存管理、指针、变量的类型等。虽然，它屏蔽了比较复杂的特性，但是，并不代表它们不存在，这样的做法是对人友好（编程更简单，考虑的东西更少），但是对机器不友好。</li>
+                    <li>项目开发效率高。</li>
+                    <li>学习门槛低。</li>
+                    <li>调试方便，移植方便</li>
+                </ul>
+                <p class="strong ps">注意：强类型<span class="strong">定义语言</span>在速度上可能略逊色于弱类型定义语言，但是强类型定义语言带来的严谨性能够有效的避免许多错误。</p>
+                <p class="strong ps">还有一句很重要的！a = 1;a = "hello world",这样的叫显式转换！！！</>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

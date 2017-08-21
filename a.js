@@ -1,5 +1,7 @@
 $(function all () {
  $all =
+        "<a href='thirtieth.html' class='book' value='2017.8.21'>弱类型、强类型、动态类型、静态类型语言的排列组合以及自己的理解</a>"+
+        "<a href='twentyNinth.html' class='book' value='2017.8.21'>弱类型、强类型、动态类型、静态类型语言的区别及其优劣</a>"+
         "<a href='twentyEighth.html' class='book' value='2017.8.20'>使用setTimeout模拟setInterval时，用clearTimeout遇到的坑们</a>"+
         "<a href='twentyseventh.html' class='book' value='2017.8.19'>一个简易的别踩白块demo</a>"+
         "<a href='twentysixth.html' class='book' value='2017.8.19'>一个小时钟demo以及遇到的setTimeout相关问题</a>"+
