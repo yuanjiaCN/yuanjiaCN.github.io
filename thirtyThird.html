@@ -38,7 +38,7 @@
                     分布式版本控制系统虽然也有中央服务器，但是这个中央服务器只是方便大家修改和交换，
                     每个人的个人服务器中，都有一个完整的代码，如果中央服务器坏了，
                     只需要从任何一个人的本地clone一份就好了，断网的时候支持commit，每个修改都可以看到。
-                    不支持push、pull。
+                    断网时不支持push、pull。
                 </p>
                 <p class="strong">再强调一次：git的“中央仓库”跟每个人的仓库是一模一样的，仅仅用于方便交换修改</p>
                 <h4>1.一些git命令的使用</h4>
@@ -47,7 +47,7 @@
                     $mkdir yourRepositoryName <br>
                     $cd yourRepositoryName<br>
                     $pwd                          //显示当前目录<br>
-                    /g/17 vacation/testGit/yourRepositoryName
+                    /g/17 vacation/yourRepositoryName/yourRepositoryName
                 </p><br>
                 <p class="code">
                     $git init    //把这个目录变成Git可以管理的仓库

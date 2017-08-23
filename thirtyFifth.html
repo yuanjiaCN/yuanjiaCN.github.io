@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(3)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.git diff、git diff --cached和git diff HEAD的区别</h4>
+                <p>
+                    然后突然对git diff 、git diff HEAD的区别有些疑惑，我就找到了这三行字（顺便搜到了git diff --cached）
+                </p>
+                <ul>
+                    <li>git diff    #是工作区(work dict)和暂存区(stage)的比较</li>
+                    <li>git diff --cached    #是暂存区(stage)和分支(master)的比较</li>
+                    <li>git diff HEAD  #查看工作区和版本库里面最新版本的区别</li>
+                </ul>
+                <br>
+                <p>为了更加理解这三个命令，我现在新增一个inStage.docx</p>
+                <p>
+                    目前工作区有一个有三行代码最后一行是do，并且do还没有提交到暂存区的test.docx，
+                    一个在最新版本库中的example.docx和一个我现在把他提交到暂存区的inStage.docx
+                    然后我尝试一下git diff //是工作区(work dict)和暂存区(stage)的比较
+                </p>
+                <p>
+                    我认为的目前情况（所以说这一定是个flag）：
+                </p>
+                <ul>
+                    <li>工作区：最新版本的test,example和inStage</li>
+                    <li>暂存区：inStage</li>
+                    <li>版本库：只有两行文字（并非最新版本）的test,最新版本的example</li>
+                </ul>
+                <br>
+                <h5>git diff</h5>
+                <p class="code">
+                    $ git diff<br>
+                    diff --git a/test.docx b/test.docx<br>
+                    index 52c8306..f7134b2 100644<br>
+                    --- a/test.docx<br>
+                    +++ b/test.docx<br>
+                    @@ -1,2 +1,3 @@<br>
+                    new<br>
+                    add<br>
+                    +do<br>
+                </p>
+                <br>
+                <span class="strong">
+                    因为工作区现在有三个文件，注意！！！<br>
+                    把工作区的文件提交到暂存区，是不会让工作区的文件不见的！他们还在！<br>
+                    <br>
+                </span>
+                <p>
+                    但是情况还是有点不对啊，工作区和暂存区应该还有个example.docx的差别,因为example.docx已经被提交到版本库了，stage中没有这个文档，而工作区有。
+                    然后我突然察觉到可能是我对暂存区提交文件到版本库的过程有些误解，但是顾虑到这个测试的完整性，我决定先继续看下一个命令行
+                </p>
+                <h5>git diff HEAD</h5>
+                <p class="code">
+                    $ git diff HEAD//查看工作区和版本库里面最新版本的区别<br>
+                    diff --git a/inStage.docx b/inStage.docx<br>
+                    new file mode 100644<br>
+                    index 0000000..1e9ef0c<br>
+                    --- /dev/null<br>
+                    +++ b/inStage.docx<br>
+                    @@ -0,0 +1 @@<br>
+                    +in stage<br>
+                    diff --git a/test.docx b/test.docx<br>
+                    index 52c8306..f7134b2 100644<br>
+                    --- a/test.docx<br>
+                    +++ b/test.docx<br>
+                    @@ -1,2 +1,3 @@<br>
+                    new<br>
+                    add<br>
+                    +do<br>
+                </p>
+                <p>
+                    这个就非常合理！
+                </p>
+                <p>
+                    然后我仔细思考了一下之前的残留问题，个人认为可能暂存区的内容commit提交到版本库，只是多了一个指针，
+                    而并没有确实删除暂存区的内容，所以比较工作区和暂存区时，才没有已经提交掉的example.docx的区别。
+                    所以之前那篇文章中的第三张图，在commit把暂存区的文档提交到版本库时，stage区，不应该是空白的，
+                    而应该是多了一个版本库指向相应文档的指针。
+                </p>
+
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

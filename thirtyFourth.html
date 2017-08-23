@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(2)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p>这篇是跟着廖雪峰老师的博客走了一下，顺便加上一些自己的理解和测试</p>
+                <h4>0.工作区、暂存区和版本库</h4>
+                <h5>工作区（Working Directory）</h5>
+                <p>
+                    就是你在电脑里能看到的目录，比如我的testGit文件夹就是一个工作区
+                </p>
+                <h5>版本库（Repository）</h5>
+                <p>
+                    工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+                </p>
+                <h5>暂存区</h5>
+                <p>
+                    Git的版本库里存了很多东西，其中最重要的就是称为stage（我用的windows，是index）的暂存区，
+                    还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
+                </p>
+                <p>
+                    在提交文件到版本库的时候，第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+                    第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+                </p>
+                <img src="picture/thirtyFourth1.jpg"/>
+                <p>
+                    因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+                    你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+                </p>
+                <p>
+                    现在我给test.docx加一行add,再新建一个文件example.docx
+                </p>
+                <p>
+                    使用git status命令，看看现在的状况如何
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes not staged for commit:<br>
+                    (use "git add ..." to update what will be committed)<br>
+                    (use "git checkout -- ..." to discard changes in working directory)<br>
+                    modified:   test.docx<br>
+                    Untracked files:<br>
+                    (use "git add ..." to include in what will be committed)<br>
+                    example.docx<br>
+                    no changes added to commit (use "git add" and/or "git commit -a")<br>
+                </p>
+                <p>
+                    Git非常清楚地告诉我们，test.docx被修改了，而example.docx还从来没有被添加过，所以它的状态是Untracked。
+                    现在，使用两次命令git add，把test.docx和example.docx都添加后，用git status再查看一下：
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    new file:   example.docx<br>
+                    modified:   test.docx<br>
+                </p>
+                <p>现在，暂存区的状态就变成这样了：</p>
+                <img src="picture/thirtyFourth2.jpg"/>
+                <p>
+                    所以，git add命令实际上就是把要提交的所有修改放到暂存区（Stage），
+                    然后，执行git commit就可以一次性把暂存区（git commit不会管工作区的文件）的所有修改提交到分支。
+                </p>
+                <p class="code">
+                    $ git commit -m"add new file and change the test.docx"<br>
+                    [master f70c6a2] add new file and change the test.docx<br>
+                    2 files changed, 0 insertions(+), 0 deletions(-)<br>
+                    create mode 100644 example.docx<br>
+                </p>
+                <p>
+                    提交后再查看状态
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    nothing to commit, working tree clean<br>
+                </p>
+                <p>
+                    可以说是很干净了
+                </p>
+                <img src="picture/thirtyFourth3.jpg"/>
+                <p class="ps"><a href="thirtyFifth.html">PS:我觉得这张图的stage稍微有点问题，后一篇有讲我自己的理解</a></p>
+
+                <h5>git diff HEAD</h5>
+                <p>
+                    git diff HEAD -- readme.txt命令可以查看工作区和版本库里面最新版本的区别：
+                    我给我的test.docx又加一行do，然后我使用一下这个命令
+                </p>
+                <p class="code">
+                    $ git diff HEAD -- test.docx<br>
+                    diff --git a/test.docx b/test.docx<br>
+                    index 52c8306..f7134b2 100644<br>
+                    --- a/test.docx<br>
+                    +++ b/test.docx<br>
+                    @@ -1,2 +1,3 @@<br>
+                    new<br>
+                    add<br>
+                    +do<br>
+                </p>
+                <p>然后我试一下，如果我这时候直接commit而不先add会怎么样</p>
+                <p class="code">
+                    $ git commit -m"a"<br>
+                    On branch master<br>
+                    Changes not staged for commit:<br>
+                    modified:   test.docx<br>
+                    no changes added to commit<br>
+                </p>
+                <p>
+                    然后我不信邪的再次使用git diff HEAD
+                </p>
+                <p class="code">
+                    $ git diff HEAD -- test.docx<br>
+                    diff --git a/test.docx b/test.docx<br>
+                    index 52c8306..f7134b2 100644<br>
+                    --- a/test.docx<br>
+                    +++ b/test.docx<br>
+                    @@ -1,2 +1,3 @@<br>
+                    new<br>
+                    add<br>
+                    +do<br>
+                </p>
+                <p>
+                    好的，果然没有提交到仓库，因为：
+                </p>
+                <p class="strong">
+                    commit只管把暂存区的文档提交到仓库，而不会管工作区的事.
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
