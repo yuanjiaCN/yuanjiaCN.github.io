@@ -26,10 +26,10 @@
             </header>
             <article>
             <p>
-                <h2>1.事件处理程序</h2>
-                <h4>
+                <h4>1.事件处理程序</h4>
+                <h5>
                     ·DOM0
-                </h4>
+                </h5>
                 <p class="code">
                     function example() { <br/>
                     var DIV = document.getElementById("example");<br/>
@@ -75,9 +75,9 @@
                     只有这个函数被加载（执行），才会执行内部的自动执行函数，当然如果没有外面那层function example()，则点击和刷新不需
                     window.onload = example也有反映。
                 </p>
-                <h4>
+                <h5>
                     ·DOM2级事件处理程序（IE9，Firefox,Safari,Chrome和Opera支持）
-                </h4>
+                </h5>
                 <p>
                     addEventListener(),removeEventListener()用于处理指定和删除时间处理程序的操作,
                     接受三个参数。
@@ -111,9 +111,9 @@
                 <p class="strong">
                     **不建议在事件捕获截断注册事件处理程序，兼容性不好。
                 </p>
-                <h4>
+                <h5>
                     ·IE事件处理程序（IE和Opera）
-                </h4>
+                </h5>
                 <p>
                     attachEvent()和detachEvent()，这两个方法接受相同的两个参数：
                 </p>
@@ -141,7 +141,7 @@
                 <p>
                     先弹出clicked2再弹出clicked1，this指向window，也不能移除添加的匿名函数
                 </p>
-                <h2>2.event对象的属性和方法</h2>
+                <h4>2.event对象的属性和方法</h4>
                 <p>
                     currentTarget:其事件处理程序当前正在处理事件的那个元素
                 </p>

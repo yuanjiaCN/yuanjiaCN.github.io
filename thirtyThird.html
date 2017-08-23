@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(1)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.集中式和分布式版本控制系统差异</h4>
+                <p> CVS及SVN都是集中式的版本控制系统，而Git是分布式版本控制系统，集中式和分布式版本控制系统有什么区别呢？
+                </p>
+                <p class="strong">个人理解：</p>
+                <p>
+                    集中式版本控制系统有一个中央服务器，而完整代码只存在于这个中央服务器中，如果中央服务器坏了，
+                    那大家一起GG，而且断网的时候不支持commit、push、pull，比如说没有联网的时候你commit了10次，
+                    是找不到中间的修改的。
+                </p>
+                <p>
+                    分布式版本控制系统虽然也有中央服务器，但是这个中央服务器只是方便大家修改和交换，
+                    每个人的个人服务器中，都有一个完整的代码，如果中央服务器坏了，
+                    只需要从任何一个人的本地clone一份就好了，断网的时候支持commit，每个修改都可以看到。
+                    不支持push、pull。
+                </p>
+                <p class="strong">再强调一次：git的“中央仓库”跟每个人的仓库是一模一样的，仅仅用于方便交换修改</p>
+                <h4>1.一些git命令的使用</h4>
+                <h5>创建一个空仓库（版本库）repository：</h5>
+                <p class="code">
+                    $mkdir yourRepositoryName <br>
+                    $cd yourRepositoryName<br>
+                    $pwd                          //显示当前目录<br>
+                    /g/17 vacation/testGit/yourRepositoryName
+                </p><br>
+                <p class="code">
+                    $git init    //把这个目录变成Git可以管理的仓库
+                </p>
+                <h5>
+                    把要添加到仓库的文件放在目录下（或子目录下），在这里就是yourRepositoryName
+                </h5>
+                <p class="code">
+                    $git add test.docx     //告诉git把文件添加到仓库,现在test.docx是个空文件  <br>
+                    $git commit -m "wrote a test file"      //告诉git，把文件提交到仓库<br>
+                </p>
+                <p>
+                    -m后面输入的是本次提交的说明，最好是有意义的
+                </p>
+                <p>现在打开test.docx，给他加上一个new</p>
+                <h5>如何时刻掌握仓库当前的状态？git status</h5>
+                <p class="code">
+                    $git status //可以让我们时刻掌握仓库当前的状态
+                    On branch master <br>
+                    Changes not staged for commit:<br>
+                    (use "git add ..." to update what will be committed)<br>
+                    (use "git checkout -- ..." to discard changes in working directory)<br>
+                        modified:   test.docx<br>
+                        no changes added to commit (use "git add" and/or "git commit -a")<br>
+                        //上面的命令告诉我们，test.docx被修改过了，但还没有准备提交的修改。
+                </p>
+                <h5>git diff 了解一下具体改了些什么</h5>
+                <p class="code">
+                    $ git diff   //查看difference,了解一下具体改了些什么<br>
+                    <C:/Users/ADMINI~1/AppData/Local/Temp/M0rAka_test.docx> does not seem to be a docx file!<br>
+                    diff --git a/test.docx b/test.docx<br>
+                    index e69de29..f82bfac 100644<br>
+                    --- a/test.docx<br>
+                    +++ b/test.docx<br>
+                    @@ -0,0 +1 @@<br>
+                    +new<br>
+                </p>
+                <h5>如何把修改后文件提交仓库</h5>
+                <p class="code">
+                    $ git add test.docx //修改后重新添加test文件到仓库<br>
+                    $ git commit -m"add new"//提交test文件<br>
+                    [master cde3ee1] add new<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                    $ git status   //再看看仓库目前状态<br>
+                    On branch master<br>
+                    nothing to commit, working tree clean  //非常好！Git告诉我们当前没有需要提交的修改，而且，工作目录是干净（working directory clean）的。
+                </p>
+                <h5>$git log查看历史记录</h5>
+                <p class="code">
+                    $git log  //查看历史记录
+                    commit cde3ee106dfab759ad9d553b10b7d136b616d593 (HEAD -> master)<br>
+                    Author: YuanJia <cnyuanjia@gmail.com><br>
+                    Date:   Wed Aug 23 13:35:48 2017 +0800<br>
+                    <br>
+                    add new<br>
+                    <br>
+                    commit 619da818856beeb7937334efa3e9f68c65e12e9c<br>
+                    Author: YuanJia <cnyuanjia@gmail.com><br>
+                    Date:   Wed Aug 23 12:57:37 2017 +0800<br>
+                    <br>
+                    wrote a test file<br>
+                </p>
+                <p>
+                    git log命令显示从最近到最远的提交日志,最近一共是提交了两次，一次是创建了一个空文本，
+                    之后给文本加了一行字new.
+                </p>
+                <h5>--pretty=oneline参数</h5>
+                <p>
+                    如果嫌输出信息太多，看得眼花缭乱的，可以试试加上--pretty=oneline参数
+                </p>
+                <p class="code">
+                    $ git log --pretty=oneline<br>
+                    cde3ee106dfab759ad9d553b10b7d136b616d593 (HEAD -> master) add new<br>
+                    619da818856beeb7937334efa3e9f68c65e12e9c wrote a test file<br>
+                </p>
+                <p class="strong">
+                    啊，这堆乱七八糟的是啥！廖雪峰老师在他的博客上说：
+                </p>
+                <p>
+                    为什么commit id需要用这么一大串数字表示呢？
+                    因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，
+                    如果大家都用1，2，3……作为版本号，那肯定就冲突了。
+                </p>
+                <h5>git reset</h5>
+                <p>
+                    现在想要把版本回退到一开始的 wrote a test file怎么做呢！<br>
+                    首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，
+                    也就是最新的提交的add new版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，
+                    当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+                </p>
+                <p class="code">
+                    $ git reset --hard Head~1   //这里写$git reset --hard Head^也行<br>
+                    HEAD is now at 619da81 wrote a test file<br>
+                </p>
+                <h5>git reflog</h5>
+                <p>
+                    然后如果我后悔了，不想看到这个啥都没写的文本，还想回到别的版本，但是这时候，git log里已经没有之前那个版本了
+                </p>
+                <p class="code">
+                    $ git reflog//用来记录你的每一次命令<br>
+                    619da81 HEAD@{1}: reset: moving to Head~1<br>
+                    cde3ee1 (HEAD -> master) HEAD@{2}: commit: add new<br>
+                    619da81 HEAD@{3}: commit (initial): wrote a test file<br>
+                </p>
+                <p>
+                    就找到最新版本的ID啦
+                </p>
+                <p class="code">
+                    $ git reset --hard cde3
+                </p>
+                <p>
+                    打开文件，我的new又回来了！ //Linux中有cat 命令显示文件内容，windows中没有（emmmmmmm..）
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
