@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+        "<a href='thirtySixth.html' class='book' value='2017.8.24'>探索Git(4)</a>"+
         "<a href='thirtyFifth.html' class='book' value='2017.8.23'>探索Git(3)</a>"+
         "<a href='thirtyFourth.html' class='book' value='2017.8.23'>探索Git(2)</a>"+
         "<a href='thirtyThird.html' class='book' value='2017.8.23'>探索Git(1)</a>"+

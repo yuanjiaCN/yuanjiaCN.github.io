@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(4)</h1>
+            <header class="content">
+            </header>
+            <article>
+            <h4>0.撤回工作区的修改</h4>
+                <h5>git checkout -- file</h5>
+                <p>
+                    我先再添加一个checkoutTest.docx文件，并给他写上一行：git checkout，
+                    然后使用git add、git commit指令把它添加到版本库。
+                    我再给这个文件添加一行:delete it，
+                    使用git checkout -- checkoutTest.docx，
+                    再打开这个文件，又只剩下一行git checkout了。
+                </p>
+                <p>
+                    之后我再给这个文件添加一行 in stage,并使用git add把它提交到暂存区。
+                    现在我再给它添加一行：just in the work并使用git checkout,
+                    点开文件，只剩下git checkout 和in stage
+                </p>
+                <h5>总结</h5>
+                <p>
+                    命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+                </p>
+                <ul>
+                    <li>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</li>
+                    <li> 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</li>
+                </ul>
+                <p>
+                    总之，就是让这个文件回到最近一次git commit或git add时的状态。
+                </p>
+                <p class="strong"> git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令.
+                </p>
+                <p>
+                    现在继续使用git status查看情况
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    modified:   checkoutTest.docx<br>
+                </p>
+                <p>
+                    checkoutTest.docx还在暂存区，并提示可以用git reset HEAD file命令撤销暂存区的文件
+                </p>
+                <h4>1.撤回暂存区的修改</h4>
+                <h5>git reset HEAD file</h5>
+                <p>
+                    用命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区
+                </p>
+                <p>
+                    打开文件，两行文字还在，使用git status
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes not staged for commit:<br>
+                    (use "git add ..." to update what will be committed)<br>
+                    (use "git checkout -- ..." to discard changes in working directory)<br>
+                    modified:   checkoutTest.docx<br>
+                </p>
+                <p>
+                    已经不在暂存区啦
+                </p>
+                <h4>2.撤回版本库的修改、回到之前的任意版本</h4>
+                <a href="thirtyThird.html">两种都可以，具体测试可以点这里</a>
+                <ul>
+                    <li>git reset -- hard HEAD^</li>
+                    <li>git reset -- hard commit_id</li>
+                </ul>
+                <h4>3.删除在版本库中的文件</h4>
+                <h5>git rm</h5>
+                <p>
+                    git rm后，文档使用git commit提交到版本库
+                </p>
+                <p>首先，我把checkTest.docx使用add提交到stage,使用git status查看情况</p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    modified:   checkoutTest.docx<br>
+                </p>
+                <p>
+                    然后我用commit把它提交到版本库
+                </p>
+                <p class="code">
+                    $ git commit -m"just a test"<br>
+                    [master 3bc53a0] just a test<br>
+                    1 files changed, 0 insertions(+), 0 deletions(-)<br>
+                </p>
+                <p>
+                    使用git rm
+                </p>
+                <p class="code">
+                    $ git rm checkoutTest.docx<br>
+                    rm 'checkoutTest.docx'<br>
+                </p>
+                <p>现在工作区已经没有checkoutTest.docx了</p>
+                <p>再次使用git status</p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    deleted:    checkoutTest.docx<br>
+                </p>
+                <p>提示已经可以直接commit了，倒是省去了git add</p>
+                <p class="code">
+                    $ git commit -m"delete"<br>
+                    [master c7b842e] delete<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                    delete mode 100644 checkoutTest.docx<br>
+                </p>
+                <p>搞定!</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
