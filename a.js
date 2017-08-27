@@ -1,9 +1,10 @@
 $(function all () {
  $all =
-        "<a href='thirtySixth.html' class='book' value='2017.8.24'>探索Git(4)</a>"+
-        "<a href='thirtyFifth.html' class='book' value='2017.8.23'>探索Git(3)</a>"+
-        "<a href='thirtyFourth.html' class='book' value='2017.8.23'>探索Git(2)</a>"+
-        "<a href='thirtyThird.html' class='book' value='2017.8.23'>探索Git(1)</a>"+
+        "<a href='thirtySeventh.html' class='book' value='2017.8.27'>探索Git(5)——创建合并删除分支</a>"+
+        "<a href='thirtySixth.html' class='book' value='2017.8.24'>探索Git(4)——管理、撤销修改、删除文件</a>"+
+        "<a href='thirtyFifth.html' class='book' value='2017.8.23'>探索Git(3)——git diff、git diff --cached和git diff HEAD的区别</a>"+
+        "<a href='thirtyFourth.html' class='book' value='2017.8.23'>探索Git(2)——工作区、暂存区和版本库</a>"+
+        "<a href='thirtyThird.html' class='book' value='2017.8.23'>探索Git(1)——集中式分布式、创建版本库、版本回退</a>"+
         "<a href='thirtySecond.html' class='book' value='2017.8.21'>探索MVC(2)</a>"+
         "<a href='thirtyFirst.html' class='book' value='2017.8.21'>探索MVC(1)</a>"+
         "<a href='thirtieth.html' class='book' value='2017.8.21'>弱类型、强类型、动态类型、静态类型语言的排列组合以及自己的理解</a>"+

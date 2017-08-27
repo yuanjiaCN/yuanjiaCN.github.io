@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(5)——创建合并删除分支</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.创建新分支</h4>
+                <h5>git checkout -b "name"</h5>
+                <p>创建一个名叫dev的新分支</p>
+                <p class="code">
+                    $ git checkout -b dev<br>
+                    Switched to a new branch 'dev'<br>
+                </p>
+                <p>
+                    git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+                </p>
+                <h5>git branch "name"创建新分支</h5>
+                <h5>git checkout "name"切换到这个分支</h5>
+                <p class="code">
+                    $ git branch dev<br>
+                    $ git checkout dev<br>
+                    Switched to branch 'dev'<br>
+                </p>
+                <h5>查看当前分支git branch</h5>
+                <p class="code">
+                    $ git branch<br>
+                    * dev<br>
+                    master<br>
+                </p>
+                <p>
+                    git branch命令会列出所有分支，当前分支前面会标一个*号。
+                </p>
+                <p>
+                    然后给我的test.docx文件加上一行Creating a new branch is quick并提交到版本库
+                </p>
+                <p class="code">
+                    $ git add test.docx<br>
+                    $ git commit -m"branch test"<br>
+                    [dev 3bc93e3] branch test<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                </p>
+                <p>切换回master分支：git checkout "name"</p>
+                <p class="code">
+                    $ git checkout master<br>
+                    Switched to branch 'master'<br>
+                </p>
+                <p>
+                    再次点开test.docx文件，没有Creating a new branch is quick这一行
+                </p>
+                <p class="strong">
+                    因为这是添加在dev分支中的，和master分支没有关系
+                </p>
+                <h4>1.合并分支</h4>
+                <h5>把dev分支的合并到master分支上 git merge</h5>
+                <p class="code">
+                    $ git merge dev<br>
+                    Updating c7b842e..3bc93e3<br>
+                    Fast-forward<br>
+                    test.docx | Bin 11701 -> 11787 bytes<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                </p>
+                <p>
+                    git merge命令用于合并指定分支到当前分支。合并后，再查看test.docx的内容，就可以看到，
+                    和dev分支的最新提交是完全一样的。
+                </p>
+                <p>
+                    注意到上面的Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。
+                </p>
+                <p class="strong">
+                    当然，也不是每次合并都能Fast-forward(之后博客会写到).
+                </p>
+                <p>
+                    合并完成后，就可以放心地删除dev分支了：
+                </p>
+                <h4>2.删除分支</h4>
+                <h5>$ git branch -d dev</h5>
+                <p class="code">
+                    Deleted branch dev (was 3bc93e3).
+                </p>
+                <p>
+                    再次查看分支情况
+                </p>
+                <p class="code">
+                    $ git branch<br>
+                    * master<br>
+                </p>
+                <p>
+                    只剩下master啦
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
