@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(6)——解决分支冲突</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p>
+                    添加一个新的分支feature1
+                </p>
+                <p class="code">
+                    $ git checkout -b feature1<br>
+                    Switched to a new branch 'feature1'<br>
+                </p>
+                <p>把test.docx的最后一句修改为Creating a new branch is quick AND simple.</p>
+                <p>
+                    然后使用git add 和git commit -m"AND simple"提交到版本库
+                </p>
+                <p>切换到master git checkout master,并把test.docx最后一句修改为Creating a new branch is quick & simple.并提交到版本库</p>
+                <p>现在，master分支和feature1分支各自都分别有新的提交，变成了这样：</p>
+                <img src="picture/thirtyEighth1.jpg"/>
+                <p class="strong">
+                    这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突
+                </p>
+                <p class="code">
+                    $ git merge feature1<br>
+                    warning: Cannot merge binary files: test.docx (HEAD vs. feature1)<br>
+                    Auto-merging test.docx<br>
+                    CONFLICT (content): Merge conflict in test.docx<br>
+                    Automatic merge failed; fix conflicts and then commit the result.<br>
+                </p>
+                <p>
+                    果然出现了冲突！
+                </p>
+                <p>
+                    Git告诉我们，test.docx文件存在冲突，必须手动解决冲突后再提交。git status也可以告诉我们冲突的文件：
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    You have unmerged paths.<br>
+                    (fix conflicts and run "git commit")<br>
+                    (use "git merge --abort" to abort the merge)<br>
+                    Unmerged paths:<br>
+                    (use "git add ..." to mark resolution)<br>
+                    both modified:   test.docx<br>
+                    no changes added to commit (use "git add" and/or "git commit -a")<br>
+                </p>
+                <p>然后就乖乖的把master的改过来吧，然后提交</p>
+                <p class="code">
+                    $ git add test.docx<br>
+                    $ git commit -m"conflict fixed"<br>
+                    [master 88adefa] conflict fixed<br>
+                </p>
+                <p>
+                    现在，master分支和feature1分支变成了下图所示：
+                </p>
+                <img src="picture/thirtyEighth2.jpg"/>
+                <p>
+                    然后惯例删除分支feature1
+                </p>
+                <p class="code">
+                    $ git branch -d feature1<br>
+                    Deleted branch feature1 (was b7d4aea).<br>
+                </p>
+                <p>
+                    大功告成！
+                </p>
+
+
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
