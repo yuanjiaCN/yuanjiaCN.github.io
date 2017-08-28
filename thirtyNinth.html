@@ -157,6 +157,20 @@
                 <p>
                     把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！
                 </p>
+                <p>之后提交又出现了一个问题！</p>
+                <p class="code">
+                    error setting certificate verify locations:
+                </p>
+                <p>
+                    最终找到解决方法，发现这个错误是系统证书的问题，
+                    系统判断到这个行为会造成不良影响，所以进行了阻止，只要设置跳过SSL证书验证就可以了，用命令 ：
+                </p>
+                <p class="code">
+                    git config --global http.sslVerify false
+                </p>
+                <p>
+                    设置完成后继续clone，就可以了。
+                </p>
                 <h4>2.SSH警告</h4>
                 <p>
                     当你第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：
