@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(12)——使用SSH协议</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.使用SSH协议代替HTTPS协议</h4>
+                <p>
+                    最常使用的连接GitHub的最常用方式无非是https和SSH协议，如果不想配置相关的SSH，
+                    那么使用https无非是最方便的，凡涉及到远程库的操作都找到相关的库然后使用地址栏内容代替，如clone操作：
+                </p>
+                <p class="code">
+                    git clone https://github.com/younghz/Markdown
+                </p>
+                <p>但是问题有2：</p>
+                <ul>
+                    <li>与SSH相比不够安全。</li>
+                    <li>在push 操作时每次都要输入用户email和密码。</li>
+                </ul><br>
+                <p>
+                    SSH的使用可以解决上述不足。
+                </p>
+                <p>
+                    对于某一版本库，最初使用的是https协议clone到本地的，那么他默认的就会是https。可通过下面语句查看。
+                </p>
+                <p class="code">
+                    git remote -v
+                </p>
+                <p>
+                    那么在push时也会默认使用https。此时怎么转换到使用SSH呢？
+                </p>
+                <p>
+                    只要改变远程库的url即可：过程如下：
+                </p>
+                <h5>
+                    git remote set-url origin SSHkey
+                </h5>
+                <p>再查看一下</p>
+                <p class="code">
+                    $ git remote -v<br>
+                    origin  git@github.com:yuanjiaCN/yuanjiaCN.github.io.git (fetch)<br>
+                    origin  git@github.com:yuanjiaCN/yuanjiaCN.github.io.git (push)<br>
+                </p>
+                <p>搞定！</p>
+                然后就可以使用SSH协议推送。
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
