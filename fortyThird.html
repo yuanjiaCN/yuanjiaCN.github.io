@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(11)——标签</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.标签管理</h4>
+                <p>
+                    发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。
+                    将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。
+                </p>
+                <p>
+                    Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），
+                    所以，创建和删除标签都是瞬间完成的。
+                </p>
+                <p class="strong">
+                    Git有commit，为什么还要引入tag？
+                </p>
+                <span class="ps">
+                    “请把上周一的那个版本打包发布，commit号是6a5819e...”<br>
+                    “一串乱七八糟的数字不好找！”<br>
+                </span>
+                    <h5>
+                        如果换一个办法：
+                    </h5>
+                <span>
+                    “请把上周一的那个版本打包发布，版本号是v1.2”<br>
+
+                    “好的，按照tag v1.2查找commit就行！”<br>
+                </span>
+                <p class="strong">
+                    所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。
+                </p>
+                <h4>1.创建标签</h4>
+                <p>
+                    在Git中打标签非常简单，首先，切换到需要打标签的分支上：
+                </p>
+                <p class="code">
+                    $ git branch<br>
+                    * dev<br>
+                    master<br>
+                    $ git checkout master<br>
+                    Switched to branch 'master'<br>
+                    Your branch is up-to-date with 'origin/master'.<br>
+                </p>
+                <h5>git tag "name"打一个标签</h5>
+                <p class="code">
+                    $ git tag v1.0
+                </p>
+                <h5>git tag查看所有标签</h5>
+                <p class="code">
+                    $ git tag<br>
+                    v1.0<br>
+                </p>
+                <p>
+                默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
+                </p>
+                <p>
+                方法是找到历史提交的commit id，然后打上就可以了：
+                </p>
+                <h5>git log --pretty=oneline --abbrev-commit查看历史commit</h5>
+                <p class="code">
+                $ git log --pretty=oneline --abbrev-commit<br>
+                5d97177 (HEAD -> master, tag: v1.0, origin/master, origin/HEAD) a dev file<br>
+                40af847 just an example<br>
+                </p>
+                <p>
+                    这个版本库一共就2个commit,那就给第二个打个v0.5标签吧
+                </p>
+                <h5>git tag "name" "commit id"</h5>
+                <p class="code">
+                    $ git tag v0.5 40af847
+                </p>
+                <p>看一眼tag情况</p>
+                <p class="code">
+                    $ git tag<br>
+                    v0.5<br>
+                    v1.0<br>
+                </p>
+                <p>
+                    注意，标签不是按时间顺序列出，而是按字母排序的。
+                </p>
+                <h5>
+                    用git show "tagname"查看标签信息：
+                </h5>
+                <p class="code">
+                    $ git show v0.5<br>
+                    commit 40af84783e8f06c9feadc9778e963a5be55fe242 (tag: v0.5)<br>
+                    Author: YuanJia <cnyuanjia@gmail.com><br>
+                    Date:   Mon Aug 28 13:49:01 2017 +0800<br>
+                    just an example<br>
+                    diff --git a/example.docx b/example.docx<br>
+                    new file mode 100644<br>
+                    index 0000000..e69de29<br>
+                </p>
+
+                <p>然后我先给这个版本库加上2个新的commit</p>
+                <p class="code">
+                    $  git log --pretty=oneline --abbrev-commit<br>
+                    e7815b9 (HEAD -> master) version4<br>
+                    b45f2b7 version<br>
+                    5d97177 (tag: v1.0, origin/master, origin/HEAD) a dev file<br>
+                    40af847 (tag: v0.5) just an example<br>
+                </p>
+                <h5>还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：</h5>
+                <p class="code">
+                    $ git tag -a v0.3 -m "version three" b45f2b7<br>
+                </p>
+                <p>查看一下这个tag的情况</p>
+                <p class="code">
+                    $ git show v0.3<br>
+                    tag v0.3<br>
+                    Tagger: YuanJia <cnyuanjia@gmail.com><br>
+                    Date:   Tue Aug 29 21:15:12 2017 +0800<br><br>
+                    version three<br><br>
+                    commit b45f2b7e4e4046bdd97614e6324eb495ad5ee5c4 (tag: v0.3)<br>
+                    Author: YuanJia <cnyuanjia@gmail.com><br>
+                    Date:   Tue Aug 29 21:10:29 2017 +0800<br>
+                    version<br>
+                    diff --git a/version3.docx b/version3.docx<br>
+                    new file mode 100644<br>
+                    index 0000000..e69de29<br>
+                </p>
+                <h4>2.操作标签</h4>
+                <p>如果标签打错了，也可以删除：</p>
+                <p class="code">
+                    $ git tag -d v0.3<br>
+                    Deleted tag 'v0.3' (was d36b104)<br>
+                </p>
+                <p>再查看一下tag</p>
+                <p class="code">
+                    $ git tag<br>
+                    v0.5<br>
+                    v1.0<br>
+                </p>
+                <h5>
+                    如果要推送某个标签到远程，使用命令git push origin "tagname"：
+                </h5>
+                <p class="code">
+                    $ git push origin v0.5<br>
+                    Total 0 (delta 0), reused 0 (delta 0)<br>
+                    To github.com:yuanjiaCN/example.git<br>
+                    * [new tag]         v0.5 -> v0.5<br>
+                </p>
+                <h5>或者，一次性推送全部尚未推送到远程的本地标签：$ git push origin --tags</h5>
+                <p class="code">
+                    $ git push origin --tags
+                    Total 0 (delta 0), reused 0 (delta 0)
+                    To github.com:yuanjiaCN/example.git
+                    * [new tag]         v1.0 -> v1.0
+                </p>
+                <h5>
+                    如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：$ git tag -d "tagName"
+                </h5>
+                <p class="code">
+                    $ git tag -d v1.0<br>
+                    Deleted tag 'v1.0' (was 5d97177)<br>
+                </p>
+                <h5>然后，从远程删除。删除命令也是push，但是格式如下：$ git push origin :refs/tags/"tagName"</h5>
+                <p class="code">
+                    $ git push origin :refs/tags/v1.0<br>
+                    To github.com:yuanjiaCN/example.git<br>
+                    - [deleted]         v1.0<br>
+                </p>
+                <p>
+                    要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
+                </p>
+
+
+
+
+
+
+
+
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
