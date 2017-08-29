@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(9)——Bug分支、Feature分支</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.BUG分支</h4>
+                <p>
+                    软件开发中，bug就像家常便饭一样。有了bug就需要修复，在Git中，
+                    由于分支是如此的强大，所以，每个bug都可以通过一个新的临时分支来修复，
+                    修复后，合并分支，然后将临时分支删除。
+                    当你接到一个修复一个代号101的bug的任务时，
+                    很自然地，你想创建一个分支issue-101来修复它，但是，等等，当前正在dev上进行的工作还没有提交：
+                </p>
+                <p>
+                    因为工作区和暂存区只有一个，如果dev分支中还有a.txt到z.txt没有提交，并且他们还处于测试中，
+                    不是完全形态，不能提交（如果提交了被别的队员下载了，就会出现隐患）。
+                    那么这些文件就在暂存区（在工作区的话，输入git stash会报错No local changes to save），
+                    所有分支都可以看到它们，如果我修复完bug以后又新添了A.txt到Z.txt文档，我想要提交的时候，
+                    就不能直接提交了，因为暂存区中还存在很多的a.txt到z.txt不是这次bug修复所需要的文件，
+                    而且如果我直接提交到bug分支，在dev分支中就不存在这些文件了（亲测）。
+                </p>
+                <p>
+                    幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作。
+                </p>
+                <p>
+                    我先给master分支上的masterfile.docx加上一句 git is fre并commit,然后新建一个dev分支，
+                    新建一个devStage!!!.docx,然后add到暂存区（只有在暂存区中才可以stash,不然会报错）.
+                </p>
+                <h5>
+                    使用git stash把内容存储起来
+                </h5>
+                <p class="code">
+                    $ git stash<br>
+                    Saved working directory and index state WIP on dev: 66eef56 devStage<br>
+                </p>
+                <p>
+                    现在切换到master分支，因为是master分支需要debug
+                </p>
+                <p class="code">
+                    $ git checkout master<br>
+                    Switched to branch 'master'<br>
+                </p>
+                <p>
+                    然后新建并切换到issue-101分支
+                </p>
+                <p class="code">
+                    $ git checkout -b issue-101<br>
+                    Switched to a new branch 'issue-101'<br>
+                </p>
+                <p>
+                    把masterfile.docx中的内容改为git is free然后add并commit
+                </p>
+                <p class="code">
+                    $ git add masterfile.docx<br>
+                    $ git commit -m"fix bug 101"<br>
+                    [issue-101 d16d7ad] fix bug 101<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                </p>
+                <p>
+                    现在切换回master,准备合并分支
+                </p>
+                <p class="code">
+                    $ git checkout master<br>
+                    Switched to branch 'master'<br>
+                </p>
+                <br>
+                <p class="code">
+                    $ git merge --no-ff -m "merged bug fix 101" issue-101<br>
+                    Merge made by the 'recursive' strategy.<br>
+                    masterfile.docx | Bin 11597 -> 11648 bytes<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-)<br>
+                </p>
+                <p>
+                    好了，可以删除issue-101分支了
+                </p>
+                <p class="code">
+                    $ git branch -d issue-101<br>
+                    Deleted branch issue-101 (was d16d7ad).<br>
+                </p>
+                <p>
+                    现在切换回dev 分支
+                </p>
+                <p class="code">
+                    $ git checkout dev<br>
+                    Switched to branch 'dev'<br>
+                </p>
+                <p>
+                    工作区是干净的,看不到这个文档了。
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch dev<br>
+                    nothing to commit, working tree clean<br>
+                </p>
+                <h5>
+                    使用git stash list命令查看，它被存储起来了，需要恢复一下
+                </h5>
+                <p class="code">
+                    $ git stash list<br>
+                    stash@{0}: WIP on dev: 66eef56 devStage<br>
+                </p>
+                <h5>
+                    有两个办法
+                </h5>
+                <ul>
+                    <li>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除</li>
+                    <li>另一种方式是用git stash pop，恢复的同时把stash内容也删了</li>
+                </ul>
+                <p class="code">
+                    $ git stash pop<br>
+                    On branch dev<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    new file:   devStage!!!.docx<br>
+                </p>
+                <p>
+                    再查看一下情况
+                </p>
+                <p class="code">
+                    $ git status<br>
+                    On branch dev<br>
+                    Changes to be committed:<br>
+                    (use "git reset HEAD ..." to unstage)<br>
+                    new file:   devStage!!!.docx<br>
+                </p>
+                <p>
+                    文件又出现了！
+                </p>
+                <p>
+                    再用git stash list查看，就看不到任何stash内容了：
+                </p>
+                <p class="code">
+                    $ git stash list
+                </p>
+                <p>
+                    可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令
+                </p>
+                <h5>
+                    $ git stash apply stash@{0}
+                </h5>
+                <h4>1.Feature分支</h4>
+                <p>
+                    因为不想让实验性质的新功能破坏主分支的结构，所以新增一个feature分支，
+                    在开发完毕以后，万一上级通知，这个功能又不需要了，我们惊讶的发现
+                </p>
+                <h5>$ git branch -d feature销毁失败</h5>
+                <p class="code">
+                    $ git branch -d feature
+                    error: The branch 'feature' is not fully merged.
+                    If you are sure you want to delete it, run 'git branch -D feature'.
+                </p>
+                <p>Git告诉我们，feature分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令git branch -D feature-vulcan。</p>
+                <h5>现在我们强行删除git branch -D</h5>
+                <p class="code">
+                    $ git branch -D feature-vulcan<br>
+                    Deleted branch feature-vulcan (was 756d4af).<br>
+                </p>
+                <p>删除成功！</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
