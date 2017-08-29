@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+        "<a href='fortyFifth.html' class='book' value='2017.8.29'>探索Git(13)——本地库同步到多个远程库</a>"+
         "<a href='fortyForth.html' class='book' value='2017.8.29'>探索Git(12)——使用SSH协议</a>"+
         "<a href='fortyThird.html' class='book' value='2017.8.29'>探索Git(11)——标签</a>"+
         "<a href='fortySecond.html' class='book' value='2017.8.29'>探索Git(10)——多人协作</a>"+

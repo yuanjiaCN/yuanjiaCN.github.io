@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(13)——本地库同步到多个远程库</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.本地库同步到多个远程库</h4>
+                <p>比如我现在想要把我的代码再push一份到码云该怎么做呢？</p>
+                <h5>
+                    首先想到最简单的git remote add origin SSHkey
+                </h5>
+                <p class="strong">但是事实上会报错！</p>
+                <p class="code">
+                    fatal: remote origin already exists.
+                </p>
+                <p>
+                    上次我已经遇到过这个错误了，这说明本地库已经关联了一个名叫origin的远程库，
+                    此时
+                </p>
+                <h5>用git remote -v查看远程库信息：</h5>
+                <p class="code">
+                    $ git remote -v<br>
+                    origin  git@github.com:yuanjiaCN/yuanjiaCN.github.io.git (fetch)<br>
+                    origin  git@github.com:yuanjiaCN/yuanjiaCN.github.io.git (push)<br>
+                </p>
+                <p>果然本地库已经关联了名字叫origin的远程库，并且该远程库指向GitHub</p>
+                <p>于是我决定删除已有的GitHub远程库</p>
+                <h5>
+                    git remote rm origin
+                </h5>
+                <p>
+                    然后我给GitHub的远程库起名字叫github,给码云的远程库起名字叫gitee不就好了嘛！说做就做！
+                </p>
+                <p class="code">
+                    git remote add github “GitHub的SSHkey”
+                    git remote add gitee “码云的SSHkey”
+                </p>
+                <p>
+                    现在再使用git remote -v就可以看到4条信息啦（两条github，两条码云）
+                </p>
+                <p>
+                    如果要推送到GitHub，使用命令：
+                </p>
+                <p class="code">
+                    git push github master
+                </p>
+                <p>
+                    如果要推送到码云，使用命令：
+                </p>
+                <p class="code">
+                    git push gitee master
+                </p>
+                <p>
+                    这样一来，我们的本地库就可以同时与多个远程库互相同步：
+                </p>
+                <img src="picture/fortyFifth1.jpg"/>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
