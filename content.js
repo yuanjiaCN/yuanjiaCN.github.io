@@ -3,6 +3,10 @@ $(function () {
     $("aside.left nav").append(
         $all //另一个JS页面中所有的链接
     );
+    var $a = $("aside.left nav").children();
+    for(var i = 20;i<$a.length;i++){
+        $a[i].style.display = "none";  //列表太长会让短博客下面有一大段空白，然后才看到下一篇的链接
+    }
                     //上一篇、下一篇切换功能
         var $thisParaName =$(".right h1").text();
         var $a = $("aside.left nav").children();
@@ -69,8 +73,6 @@ $(function () {
                $("head").append("<title>"+$('.right>h1').text()+"</title>")
                //每篇文章的事件取自链接value
                    $(".content").append('<ul> <li class="date">发布时间：'+$a[i].getAttribute("value")+'</li></ul>')
-
-
                }
            }
         })
