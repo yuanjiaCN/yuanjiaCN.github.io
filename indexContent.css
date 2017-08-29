@@ -247,10 +247,13 @@ img{
     font-style: italic;
 }
 .code{
-    background-color: rgba(100,112,108,0.2);
-    color: rgb(100,112,108);
+    background-color: rgba(100,112,108,0.05);
+    border:1px solid rgba(100,112,108,0.2);
+    color: black;
     display: inline-block;
     text-indent:0;
+    font-size: 0.8em;
+    padding:1%;
 }
 .comment div{
     line-height: 2em;
