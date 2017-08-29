@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(14)——自定义Git、忽略特殊文件、配置别名</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.自定义Git</h4>
+                <p>
+                    Git有很多可配置项.比如，让Git显示颜色，会让命令输出看起来更醒目：
+                </p>
+                <h5>
+                    $ git config --global color.ui true
+                </h5>
+                <p>虽然设置完了发现好像我默认设置了这条。。。</p>
+                <h4>1.忽略特殊文件</h4>
+                <p>有些时候，你必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件啦，等等，
+                    每次git status都会显示Untracked files ...，有强迫症的童鞋心里肯定不爽。
+                </p>
+                <p>
+                    好在Git考虑到了大家的感受，这个问题解决起来也很简单，在Git工作区的根目录下创建一个特殊的.gitignore文件，
+                    然后把要忽略的文件名填进去，Git就会自动忽略这些文件。
+                </p>
+                <p>
+                    GitHub为我们准备了很多已经配置好的.gitigore文件，可以直接clone下来用，但是我发现我平时还没用到过需要忽略的文件，所以我就自己写个例子好了
+                </p>
+                <p>
+                    因为在windows下，所以如果我在资源管理器里新建一个.gitignore文件，
+                    它会非常弱智地提示你必须输入文件名，但是在文本编辑器里“保存”或者“另存为”就可以把文件保存为.gitignore了。
+                </p>
+                <p class="strong">更好用的方法！直接在.gitignore文件后加一个.,像是这样.gitignore.它会自动忽略最后一个点，而且也不会报错了。</p>
+                <p>
+                    打开.gitignore文件我就写上这几行（没有任何意义，反正就是一个测试）
+                </p>
+                <p class="code">
+                    # test<br>
+                    new.lalala<br>
+                    *.lalalala<br>
+                </p>
+                <p>意思就是说，我这是用在test下的，（#里的东西不作数），全名叫new.lalala的文件可以忽略，后缀是lalalala的文件全部都忽略</p>
+                <p>然后我就把.gitignore文件先add、commit，然后在文件夹中加上new.lalala文件和notNew.lalala文件</p>
+                <p class="code">
+                    $ git status<br>
+                    On branch master<br>
+                    Your branch is ahead of 'origin/master' by 2 commits.<br>
+                    (use "git push" to publish your local commits)<br>
+                    Untracked files:<br>
+                    (use "git add "file"..." to include in what will be committed)<br>
+                    notNew.lalala<br>
+                    nothing added to commit but untracked files present (use "git add" to track)<br>
+                </p>
+                <p>new.lalala直接被忽视了，只看得到notNew.lalala</p>
+                <p class="strong">但是！我觉得非常好用啊！因为添加了忽视文件以后，使用git add *虽然会跳出一句告诉我硬是要添加这个被忽视的文件也可以的方法</p>
+                <p class="code">
+                    $ git add *<br>
+                    The following paths are ignored by one of your .gitignore files:<br>
+                    new.lalala<br>
+                    Use -f if you really want to add them.<br>
+                </p>
+                <p>但是这并不影响我提交，无视这句话就好了</p>
+                <p>试想我真的有一个要忽视的文件放在工作区中，我平时肯定没法用git add *啊，但是这样一来，多方便！！！</p>
+                <h4>2.配置别名</h4>
+                <p>有些命令行真的很长！很难记！我每次都是ctrl+c复制好，然后再ctrl+Insert复制到git里，超级麻烦有没有！但是我们可以敲个命令给git,以后就可以偷懒啦</p>
+                <p>比如说，告诉Git，以后st就表示status：</p>
+                <p class="code">
+                    $ git config --global alias.st status
+                </p>
+                <p>--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。</p>
+                <p>最爱的还是这个简写！</p>
+                <p class="code">
+                    git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+                </p>
+                <p>从此打git lg就会显示这么长一条！</p>
+                <p class="code">
+                    s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit<br>
+                    * cd2d64d - (HEAD -> master) just notNew (7 minutes ago) <YuanJia><br>
+                    * 9ff1a60 - delete (16 minutes ago) <YuanJia><br>
+                    * 566d570 - gitignore (20 minutes ago) <YuanJia><br>
+                    * 8a1a01d - (origin/master, origin/HEAD) gitignore (23 minutes ago) <YuanJia><br>
+                    * e7815b9 - version4 (3 hours ago) <YuanJia><br>
+                    * b45f2b7 - version (3 hours ago) <YuanJia><br>
+                    * 5d97177 - a dev file (8 hours ago) <YuanJia><br>
+                    * 40af847 - (tag: v0.5) just an example (34 hours ago) <YuanJia><br>
+                </p>
+                <h4>3.配置文件</h4>
+                <p>
+                    配置Git的时候，加上--global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。
+                    配置文件放哪了？每个仓库的Git配置文件都放在.git/config文件中：
+                </p>
+                <p>
+                    打开这个文件，
+                    别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。
+                    而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：
+                </p>
+                <p>
+                    配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
