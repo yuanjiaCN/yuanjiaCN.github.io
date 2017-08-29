@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(10)——多人协作</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.多人协作</h4>
+                <p>
+                    当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
+                    要查看远程库的信息，用
+                </p>
+                <h5>git remote</h5>
+                <p class="code">
+                    $ git remote<br>
+                    origin<br>
+                </p>
+                <p>
+                    或者，用git remote -v显示更详细的信息：
+                </p>
+                <h5>
+                    $ git remote -v
+                </h5>
+                <p class="code">
+                    $ git remote -v<br>
+                    origin  https://github.com/yuanjiaCN/yuanjiaCN.github.io.git (fetch)<br>
+                    origin  https://github.com/yuanjiaCN/yuanjiaCN.github.io.git (push)<br>
+                </p>
+                <p>
+                    上面显示了可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址。
+                </p>
+                <h4>1.推送分支</h4>
+                <p>
+                    推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
+                </p>
+                <h5>
+                    格式：git push origin branch-name
+                </h5>
+                <p class="code">
+                    $ git push origin master
+                </p>
+                <p>
+                    如果要推送其他分支，比如dev，就改成：
+                </p>
+                <p class="code">
+                    $ git push origin dev
+                </p>
+                <p>
+                    但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
+                </p>
+                <ul>
+                    <li>master分支是主分支，因此要时刻与远程同步；</li>
+                    <li>dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；</li>
+                    <li>bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；</li>
+                    <li>feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</li>
+                </ul>
+                <p>
+                    总之，就是在Git中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！
+                </p>
+                <h4>2.抓取分支</h4>
+                <p>
+                    多人协作时，大家都会往master和dev分支上推送各自的修改。
+                </p>
+                <p>
+
+                </p>
+                现在，模拟一个我的小伙伴，可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆(我选择在另一个目录下克隆orz)：
+                <h5>
+                    $ git clone SSH
+                </h5>
+                <p class="code">
+                    $ git clone git@github.com:yuanjiaCN/example.git
+                </p>
+                <p>
+                    当小伙伴从远程库clone时，默认情况下，小伙伴只能看到本地的master分支。不信可以用git branch命令看看：
+                </p>
+                  <p class="code">
+                    $ git branch
+                    * master
+                </p>
+                <p>
+                    现在，小伙伴要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是他用这个命令创建本地dev分支：（首先要确认，你的确把dev 分支推送到远程仓库了！不然写什么命令行都是没用的！！）
+                </p>
+                <h5>
+                    格式：git checkout -b branch-name origin/branch-name
+                </h5>
+                <p class="code">
+                    $ git checkout -b dev origin/dev<br>
+                    Switched to a new branch 'dev'<br>
+                    Branch dev set up to track remote branch dev from origin.<br>
+                </p>
+                <p>
+                    现在，他就可以在dev上继续修改，然后，时不时地把dev分支push到远程：
+                </p>
+                <p>
+                    我给devOnly添加了一句父文件的名字：vacation
+                </p>
+                <p class="code">
+                    $ git add *<br>
+                    $ git commit -m"vacation"<br>
+                    [dev d9220da] vacation<br>
+                    1 file changed, 0 insertions(+), 0 deletions(-) <br>
+                </p>
+                <p class="strong">
+                    记得这次push的是dev不是master
+                </p>
+                <p class="code">
+                    $ git push origin dev <br>
+                    Counting objects: 3, done. <br>
+                    Delta compression using up to 4 threads. <br>
+                    Compressing objects: 100% (3/3), done. <br>
+                    Writing objects: 100% (3/3), 8.86 KiB | 2.22 MiB/s, done. <br>
+                    Total 3 (delta 0), reused 0 (delta 0) <br>
+                    To github.com:yuanjiaCN/example.git <br>
+                    7929be5..d9220da  dev -> dev <br>
+                </p>
+                <p>
+                    小伙伴已经向origin/dev分支推送了他的提交，而碰巧我也对同样的文件作了修改，并试图推送：
+                </p>
+                <p>
+                    我给这个devOnly文件写了一行document，然后提交
+                </p>
+                <p class="code">
+                    $ git add *
+                    $ git commit -m"document devOnly"
+                    [dev 518a012] document devOnly
+                    1 file changed, 0 insertions(+), 0 deletions(-)
+                </p>
+                <p>
+                    远程提交:
+                </p>
+                <p class="code">
+                    $ git push origin dev<br>
+                    To github.com:yuanjiaCN/example.git <br>
+                    ! [rejected]        dev -> dev (fetch first) <br>
+                    error: failed to push some refs to 'git@github.com:yuanjiaCN/example.git' <br>
+                    hint: Updates were rejected because the remote contains work that you do <br>
+                    hint: not have locally. This is usually caused by another repository pushing <br>
+                    hint: to the same ref. You may want to first integrate the remote changes <br>
+                    hint: (e.g., 'git pull ...') before pushing again. <br>
+                    hint: See the 'Note about fast-forwards' in 'git push --help' for details. <br>
+                </p>
+                <p>
+                    推送失败，因为小伙伴的最新提交和我试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，
+                    先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
+                </p>
+                <h5>
+                    git pull
+                </h5>
+                <p class="code">
+                    $ git pull <br>
+                    remote: Counting objects: 3, done. <br>
+                    remote: Compressing objects: 100% (3/3), done. <br>
+                    remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 <br>
+                    Unpacking objects: 100% (3/3), done. <br>
+                    From github.com:yuanjiaCN/example <br>
+                    7929be5..d9220da  dev        -> origin/dev <br>
+                    There is no tracking information for the current branch. <br>
+                    Please specify which branch you want to merge with. <br>
+                    See git-pull(1) for details. <br>
+                    git pull <remote> <branch>
+                    If you wish to set tracking information for this branch you can do so with:
+                    git branch --set-upstream-to=origin/<branch> dev
+                </p>
+                <p>
+                    git pull也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接，根据提示，设置dev和origin/dev的链接：
+                </p>
+                <h5>格式：git branch --set-upstream branch-name origin/branch-name</h5>
+                <p class="code">
+                    $ git branch --set-upstream dev origin/dev <br>
+                    The --set-upstream flag is deprecated and will be removed. Consider using --track or --set-upstream-to <br>
+                    Branch dev set up to track remote branch dev from origin. <br>
+                </p>
+                <p>
+                    再pull
+                </p>
+                <p class="code">
+                    $ git pull <br>
+                    warning: Cannot merge binary files: devOnly.docx (HEAD vs. d9220da218a7026bd4048493428060fa2f277568) <br>
+                    Auto-merging devOnly.docx <br>
+                    CONFLICT (content): Merge conflict in devOnly.docx <br>
+                    Automatic merge failed; fix conflicts and then commit the result. <br>
+                </p>
+                <p>
+                    这回git pull成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。我把devOnly.docx中的document改成vacation
+                </p>
+                <p class="code">
+                    记得一定要add!不然会报错！
+                </p>
+                <p>
+                    解决后，提交，再push：
+                </p>
+                <p class="code">
+                    $ git add *<br>
+                    $ git commit -m"merge & fixed"<br>
+                    [dev 6aa36cd] merge & fixed<br>
+                </p>
+                <h5>因此，多人协作的工作模式通常是这样：</h5>
+                <ol>
+                    <li>可以试图用git push origin branch-name推送自己的修改；</li>
+                    <li>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</li>
+                    <li>如果合并有冲突，则解决冲突，并在本地提交；</li>
+                    <li>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</li>
+                    <li>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。</li>
+                </ol>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
