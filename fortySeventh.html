@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#">杂七杂八随笔</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>canvas写的小时钟第一版(1)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p><a href="example/clock2/clock.html">放个链接，比以前那个丰富多彩多了！</a></p>
+                <p>今天从头开始学canvas亚历山大。。好在终于磨蹭出来了一个时钟demo...啊，也不知道这篇该写点什么，就交代一下今天用到的canvas中的方法吧</p>
+                <h5>getContext()方法</h5>
+                <p>
+                    要在canvas上绘图，需要取得绘图的上下文，也就是需要调用getContext()方法传入上下文的名字。例如：<br>
+                    传入“2D”，就可以取得2D上下文对象
+                </p>
+                <p class="strong">
+                    使用getContext之前，记得确定浏览器是否支持canvas元素
+                </p>
+                <p class="code">
+                    if(drawing.getContext){<br>
+                    drawing是某个canvas元素的变量名<br>
+                    }<br>
+                </p>
+                <h5>fillStyle、strokeStyle填充和描边</h5>
+                <p>
+                    这两个属性的值可以是字符串、渐变对象或模式对象，而且他们的默认值都是#000000。
+                </p>
+                <ul>
+                    <li>如果是绘制矩形，直接用在context.fillRect(x,x,x,x)之前就好了，这个绘图样式会持续到直到你写了下一个fillStyle或strokeStyle；</li>
+                    <li>如果是绘图路径，需要在创建路径后调用fill()或stroke()方法，才能看到前文写的fillStyle或strokeStyle</li>
+                </ul>
+                <h4>0.绘制矩形</h4>
+                <h5>fillRect()、strokeRect()和clearRect()</h5>
+                <p>
+                    矩形是唯一一种可以直接在2D上下文中绘制的形状。与矩形有关的方法包括fillRect()、strokeRect()和clearRect()。
+                    这三个方法都接受四个参数：
+                </p>
+                <ul>
+                    <li>矩形的x坐标</li>
+                    <li>矩形的y坐标</li>
+                    <li>矩形宽度</li>
+                    <li>矩形高度</li>
+                </ul>
+                <br>
+                <p>fillRect()方法在画布上绘制的矩形会填充指定的颜色，颜色通过fillStyle属性指定</p>
+                <p>strokeRect()方法在画布上绘制的矩形会描边指定的颜色，颜色通过strokeStyle属性指定</p>
+                <p>clearRect()方法用于清除画布上的矩形区域。（注意，是把这块画布上被框进去的矩形区域全部清除，不会只清理上层）</p>
+                <h4>1.绘制路径</h4>
+                <h5>arc</h5>
+                <p>
+                    arc(x,y,r,sAngle,eAngle,counterclockwise);圆心，半径，起始角度，结束角度（弧度，只能用π计算），最后一个参数写true则表示起始角度和结束角度按逆时针方向计算
+                </p>
+                <h5>lineTo(x,y)</h5>
+                <p>从上一点开始绘制一条直线，到(x,y)为止</p>
+                <h5>moveTo(x,y)</h5>
+                <p>将绘图游标移动到（x,y），不画线</p>
+                <p class="strong">亲测如果在画圆的时候，没有移动到画圆的起点（默认三点钟方向也就是0°时），
+                    在下一步画圆时会拖出一条到画圆起点的线（就算moveTo已经移动到了圆上的一个任意点，也还是会拖出一条线到起点）</p>
+                <h5>clip()</h5>
+                <p>
+                    在创建了路径后，可以使用这个方法在路径上创建一个剪切区域
+                </p>
+                <h4>2.绘制文本</h4>
+                <h5>fillText、strokeText()</h5>
+                <p>这两个方法都可以接受4个参数：</p>
+                <ul>
+                    <li>要绘制的文本字符串</li>
+                    <li>x坐标</li>
+                    <li>y坐标</li>
+                    <li>可选的最大像素宽度</li>
+                </ul>
+                <br>
+                <p>这两个方法都以下列3个属性为基础</p>
+                <ul>
+                    <li>font:表示文本样式、大小及字体，例如"10px bold Arial"</li>
+                    <li>textAlign:表示文本对齐方式，推荐start、end(这两个同时适合从左到右和从右到左显示（阅读）的语言)、center,此外还有：left,right</li>
+                    <li>textBaseline:表示文本的基线，例如top,hanging,middle,alphabetic,ideographic,bottom</li>
+                </ul>
+                <br>
+                <p>这几个属性都有默认值，因此没必要每次使用他们都重新设置一遍</p>
+                <p>fillText()方法使用fillStyle属性绘制文本，而strokeText()方法使用strokeStyle属性为文本描边，fillText用得更多，因为它模拟了网页中的正常显示文本</p>
+                <h4>3.变换</h4>
+                <p>今天只用到一个变换的方法...</p>
+                <h5>translate(x,y)</h5>
+                <p>将坐标原点移动到（x,y）。执行这个变换以后，坐标（0,0）会变成之前由(x,y)表示的点</p>
+                <p>非常好用！比如说在画圆的时候，默认原点是（0,0），我想画一个半径100的圆，圆心就得设置（100，100），更别说之后的操作了，但是有了这个属性，我可以先设置：</p>
+                <p class="code">
+                    translate(100,100) //原点现在在（100,100）处，圆心直接写（0,0）
+                </p>
+                <h4>4.乱七八糟想法</h4>
+                <p>其实今天看书时候还是看到了很多很多方法的，但是实际用的时候只用到了这一点。。明天给这个demo加功能的时候再尽量多用一点熟悉一下吧！</p>
+                <p>ps:canvas真的好强大！</p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
