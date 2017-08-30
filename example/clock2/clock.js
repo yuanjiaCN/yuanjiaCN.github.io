@@ -24,7 +24,7 @@ clock();
 var drawing = document.getElementById("drawing");
 var context = drawing.getContext("2d");
 var clockWidth = drawing.width;
-context.translate(clockWidth/2,clockWidth/2);//这句话一定要写在外面！不然每执行一次圆心就会移动（100,100）
+context.translate(clockWidth/2,clockWidth/2);//这句话一定要写在外面！不然每执行一次圆心就会移动这里标定的距离
 function circleClock() {
     context.strokeStyle ="rgba(220,150,150,1)";
     context.lineWidth = 2;
