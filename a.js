@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+     "<a href='fortyNinth.html' class='book' value='2017.8.31'>小时钟第二版(2)</a>"+
      "<a href='fortyEighth.html' class='book' value='2017.8.31'>canvas绘制图像、使用图像数据遇到的坑、一个简易灰阶过滤器</a>"+
      "<a href='fortySeventh.html' class='book' value='2017.8.30'>canvas写的小时钟第一版(1)</a>"+
      "<a href='fortySixth.html' class='book' value='2017.8.30'>探索Git(14)——自定义Git、忽略特殊文件、配置别名</a>"+
