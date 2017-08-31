@@ -5,8 +5,7 @@ function addZero(num) {
     }
     return num;
 }
-var DIV = document.createElement("div");
-document.body.prepend(DIV);  //在所选元素的开头插入元素
+var DIV = document.getElementById("numberClock");
 var currentTime = new Date();
 var currentTime = addZero(currentTime.getHours())+":"+addZero(currentTime.getMinutes())+":"+addZero(currentTime.getSeconds());
 DIV.innerText = currentTime;
@@ -108,6 +107,7 @@ function secondPin() {
         context.fill();
 }
 secondPin();
+
 //分针
 function minutePin() {
     var oDate = new Date();
@@ -121,6 +121,7 @@ function minutePin() {
     context.restore();
 }
 minutePin()
+
 //把24小时改成12小时
 function repairHour(oHour) {
     if(oHour>12){
@@ -128,6 +129,7 @@ function repairHour(oHour) {
     }
     return oHour
 }
+
 //时针
 function hourPin() {
     var oDate = new Date();
@@ -141,6 +143,8 @@ function hourPin() {
     context.restore();
 }
 hourPin()
+
+//运动
 function move() {
     var timer = setTimeout(function () {
         context.clearRect(-500,-500,1000,1000)//重画整个表
@@ -152,3 +156,84 @@ function move() {
     setTimeout(move,1000)
 }
 move()
+
+//开始、暂停计时
+timerButton = document.getElementById("startTheTimer");
+showTheTime = document.getElementById("showTheTime")
+function startOrPause() {
+    number = 0
+    timerButton.onclick = function () {
+        if(this.innerHTML == "计时开始"){
+            this.innerHTML = "暂停"
+            continueMove = true;
+            startNumnber()
+        }else{
+            this.innerHTML = "计时开始"
+            continueMove = false;
+            number++
+            numberOfTimes(number);
+        }
+    }
+}
+startOrPause()
+
+stopButton = document.getElementById("stopTheTimer")
+function stopTheTimer() {
+    stopButton.onclick = function () {
+        continueMove = false;
+        timerButton.innerHTML = "计时开始";
+        millisecondNumberContent = 0;
+        secondNumberContent = 0;
+        minuteNumberContent = 0;
+        millisecondNumber.innerHTML = addZero(0);
+        secondNumber.innerHTML = addZero(0);
+        minuteNumber.innerHTML = addZero(0);
+        numberOfTimesBox.innerHTML = "";
+        number = 0;
+    }
+}
+stopTheTimer()
+
+var millisecondNumber = document.getElementById("millisecond");
+var secondNumber = document.getElementById("second");
+var minuteNumber = document.getElementById("minute");
+
+var millisecondNumberContent = millisecondNumber.innerHTML;
+var secondNumberContent = secondNumber.innerHTML;
+var minuteNumberContent = minuteNumber.innerHTML;
+function startNumnber() {
+    if(continueMove){
+        timer = setTimeout(function () {
+            if(continueMove){ //这里要再清一次，不然清零的时候会变成00:00:01
+            //判断毫秒是否进位
+            if(millisecondNumberContent == 99){
+                millisecondNumberContent = 0;
+                millisecondNumber.innerHTML = addZero(millisecondNumberContent);
+                //判断秒针是否进位
+                if(secondNumberContent == 59){
+                    secondNumberContent = 0;
+                    secondNumber.innerHTML = addZero(secondNumberContent);
+                    minuteNumberContent++;
+                    minuteNumber.innerHTML = addZero(minuteNumberContent);
+                }else{
+                    secondNumberContent++;
+                    secondNumber.innerHTML = addZero(secondNumberContent);
+                }
+            }else{
+                millisecondNumberContent++;
+                millisecondNumber.innerHTML = addZero(millisecondNumberContent);
+            }
+            }
+        },10)
+            setTimeout(startNumnber,10)
+    }else{
+        clearTimeout(timer)
+    }
+}
+
+var numberOfTimesBox = document.getElementById("numberOfTimes")
+function numberOfTimes(number) {
+    var numberOfTimes = document.createElement("div");
+    numberOfTimes.innerHTML = "计次"+ number +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+minuteNumber.innerHTML+":"+secondNumber.innerHTML+":"+millisecondNumber.innerHTML
+    numberOfTimesBox.append(numberOfTimes);
+}
