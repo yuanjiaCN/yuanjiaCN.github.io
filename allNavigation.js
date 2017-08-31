@@ -16,6 +16,9 @@ $(function () {
         $("#blog").css({
             color: "black"
         })
+        $("#set").css({
+            color: "black"
+        })
     })
     $("#blog").mouseover(function () {
         $("#blog").css({
@@ -34,7 +37,35 @@ $(function () {
         $("#book").css({
             color: "black"
         })
+        $("#set").css({
+            color: "black"
+        })
     })
+    $("#set").mouseover(function () {
+        $("#set").css({
+            background: "rgb(116,129,55)"
+        })
+        $("#set").css({
+            color: "black"
+        })
+    })
+    $("#set").mouseout(function () {
+        $("#set").css({
+            background: "rgb(221,221,221)"
+        })
+    })
+    $("#set").click(function () {
+        $("#set").css({
+            color: "rgb(116,129,55)"
+        })
+        $("#book").css({
+            color: "black"
+        })
+        $("#blog").css({
+            color: "black"
+        })
+    })
+
     $("#navigation>article>section.right").append(
         $all    //在另一个JS文档中的所有的链接
     );

@@ -269,6 +269,14 @@ label{
 .clear{
     clear: both;
 }
+.contentLink{
+    color: darkslategrey;
+    font-size: 1.5em;
+}
+.contentLink:hover{
+    color: darkslategrey;
+    border-bottom: dotted 1px slategray;
+}
 /*媒体查询*/
 @media screen and (max-width: 1170px) {
     body {

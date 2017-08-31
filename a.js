@@ -1,5 +1,9 @@
 $(function all () {
  $all =
+     "<a href='setTimeoutSet.html' class='set' value='2017.8.31'>用到和被setTimeout坑到合集</a>"+
+     "<a href='photoAlbum.html' class='set' value='日常更新'>生活图集</a>"+
+     "<a href='MVCSet.html' class='set' value='2017.8.31'>探索MVC的合集</a>"+
+     "<a href='gitSet.html' class='set' value='2017.8.31'>探索git的合集</a>"+
      "<a href='fortyNinth.html' class='book' value='2017.8.31'>小时钟第二版(2)</a>"+
      "<a href='fortyEighth.html' class='book' value='2017.8.31'>canvas绘制图像、使用图像数据遇到的坑、一个简易灰阶过滤器</a>"+
      "<a href='fortySeventh.html' class='book' value='2017.8.30'>canvas写的小时钟第一版(1)</a>"+

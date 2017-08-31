@@ -67,6 +67,10 @@ $(function () {
                        $($idValue).css({
                            color: "rgb(229,116,55)"
                        })
+                   }else if($idValue == "#set"){
+                       $($idValue).css({
+                           color: "rgb(116,129,55)"
+                       })
                    }
                }
                 //每篇博客的title为其标题
