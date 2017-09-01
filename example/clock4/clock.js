@@ -252,7 +252,8 @@ function chaos() {
         chaosContext.beginPath();
         chaosContext.strokeStyle = "rgb(randomNumber(0,255),randomNumber(0,255),randomNumber(0,255))";
         chaosContext.lineWidth = 2;
-        chaosContext.arc(randomNumber(0,(chaosCanvasElement.width)), randomNumber(0,(chaosCanvasElement.height)), randomNumber(1,100), 0, randomNumber(0,2 * Math.PI), false);
+        chaosContext.arc(randomNumber(0,(chaosCanvasElement.width)), randomNumber(0,(chaosCanvasElement.height)),
+                         randomNumber(1,100), 0, randomNumber(0,2 * Math.PI), false);
         chaosContext.moveTo(randomNumber(0,(chaosCanvasElement.width)),randomNumber(0,(chaosCanvasElement.height)));
         chaosContext.lineTo(randomNumber(0,(chaosCanvasElement.width)),randomNumber(0,(chaosCanvasElement.height)));
         chaosContext.font = randomNumber(10,100)+"px Arial bold";

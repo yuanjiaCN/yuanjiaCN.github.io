@@ -76,7 +76,6 @@ body{
     position: absolute;
     left:0;
     top:0;
-    background: rgba(20,20,20,0.2);
     width: 100%;
     height: 100%;
     z-index: -1;/*不然所有的按钮都不能按了，都被这块画布覆盖了*/

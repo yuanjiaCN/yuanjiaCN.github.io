@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+     "<a href='fiftieth.html' class='book' value='2017.9.1'>小时钟第三版(3)</a>"+
      "<a href='setTimeoutSet.html' class='set' value='2017.8.31'>用到和被setTimeout坑到合集</a>"+
      "<a href='photoAlbum.html' class='set' value='日常更新'>生活图集</a>"+
      "<a href='MVCSet.html' class='set' value='2017.8.31'>探索MVC的合集</a>"+
