@@ -14,7 +14,7 @@ var cellSpeed;
 var speed = 4;
 var judgeIfReject = 1;
 
-oButton.onclick =function () {
+oButton.onclick = function () {
     speed = oSpeed.value; //speed设置为全局函数可以在别的函数内部取到
     return speed;
 }
@@ -27,7 +27,7 @@ function failure() {
         pScore.innerHTML = 0;
         score = 0;
         judgeIfReject = 1;
-        for (var i = 0; i < oContain[0].children.length; i++) {
+        for (i = 0; i < oContain[0].children.length; i++) {
             oContain[0].removeChild(oContain[0].children[i]);
         }
     } else {
@@ -36,7 +36,7 @@ function failure() {
 }
 
 //任意被点击，不过规定是目标物,而非其包裹元素
-Main.onclick = function(e){
+Main.onclick = function (e) {
     judge(e);
 }
 
@@ -72,24 +72,24 @@ function move() {
                 timer = setTimeout(function () {
                     oContain[0].style.top = oContain[0].offsetTop + 4 + "px";
                     //setTimeout(move,30); //!!!注意如果写在这里，毫秒数是叠加的
-                }, 150/parseInt(speed))
-                setTimeout(move,150/parseInt(speed));// 改变毫秒数动画比较流畅，如果改速度动画可能会卡
+                }, 150 / parseInt(speed))
+                setTimeout(move,150 / parseInt(speed));// 改变毫秒数动画比较流畅，如果改速度动画可能会卡
         }
     }
 
 function randomNumber(min,max) {
-    return Math.floor(Math.random()*(max-min+1)+min); //Math类型的随机数公式
+    return Math.floor(Math.random() * (max - min + 1) + min); //Math类型的随机数公式
 }
 
 function addNewRow() {
     var newRow = document.createElement("div");
     newRow.className = "row";
     oContain[0].prepend(newRow);
-    for(var i=0;i<4;i++){
+    for(i = 0; i < 4; i++){
         newRow.append(document.createElement("div"));
     }
     var randomBlackCell = row[0].getElementsByTagName("div");
-    randomBlackCell[randomNumber(0,3)].className = "black";
+    randomBlackCell[randomNumber(0, 3)].className = "black";
     removeRow();
 }
 addNewRow()
@@ -99,9 +99,9 @@ function removeRow() { //视野范围外的已经被点击的行可以移除了�
     if (oContain[0].children.length >= 6) { //其实是要让第二下方的触底，才算失败，并且移除最下方的那行，
                                             //这时候，已经创建出了新的一个row，加上最下方已经看不见的那行，一共是6个
             if(oContain[0].lastElementChild.className != "row click"){//没有被点击过的黑块所在行触底
-               alert("恭喜你获得了"+score+"分")
+               alert("恭喜你获得了" + score + "分")
                failure()
-        }else{
+        } else {
                 oContain[0].removeChild(oContain[0].lastElementChild);
             }
     }
@@ -109,16 +109,16 @@ function removeRow() { //视野范围外的已经被点击的行可以移除了�
 
 function startButton() {
         oStart.onclick = function () {
-            if(judgeIfReject != 0){ //如果玩家失败后不愿意重新开始，那么点这个按钮会让他再次确定是否要重新开始
-                if(this.value == "开始游戏"){
-                    this.value = "暂停"
+            if (judgeIfReject != 0) { //如果玩家失败后不愿意重新开始，那么点这个按钮会让他再次确定是否要重新开始
+                if (this.value == "开始游戏") {
+                    this.value = "暂停";
                     judgeIfEnd = 1;
                     move();
-                }else{
+                } else {
                     judgeIfEnd = 0;
                     this.value = "开始游戏";
                 }
-            }else{
+            } else {
                 failure();
             }
         }
