@@ -21,88 +21,93 @@
 <section class="CONTENT">
     <section>
         <content class="right">
-            <h1>前端代码规范(1)——代码检查、注释、命名</h1>
+            <h1>前端代码规范(4)——分号、空格</h1>
             <header class="content">
             </header>
             <article>
-                <h4>0.代码检查</h4>
+                <h4>0.分号</h4>
                 <p>
-                    对于比较宽松自由的编程语言来说，严格遵循编码规范和格式化风格指南就显得极为重要。遵循规范固然很好，但是有自动化流程来确保其执行情况，岂不更佳。<br>
+                    总是使用分号，因为隐式的代码嵌套会引发难以察觉的问题。当然我们更要从根本上来杜绝这些问题(指的是采用严格规范的语句写法，从根本上杜绝由分号缺失而引起的代码歧义。)。
                 </p>
                 <p>
-                    对于 JavaScript，建议使用<span class="strong">JSLint</span>或
-                    <span class="strong">JSHint</span>。
+                    JavaScript 中语句要以分号结束，否则它将会继续执行下去，要知道<span class="strong">闭合圆括号并不代表语句结束</span>，JavaScript 不会终结语句，除非它的下一个 token 是一个中缀符<span class="strong">(中缀符，指的是像 x + y 中的 +)</span> 或者是圆括号操作符。
                 </p>
-
-                <h4>1.文件/资源命名</h4>
+                <h5>分号与函数</h5>
                 <p>
-                    在 web 项目中，所有的文件名应该都遵循同一命名约定。以可读性而言，减号（-）是用来分隔文件名的不二之选。同时它也是常见的 URL 分隔符:
+                    分号需要用在表达式的结尾，而并非函数声明的结尾。区分它们最好的例子是：
                 </p>
                 <p class="code">
-                    example.com/blog/my-blog-entry or//s.example.com/images/big-black-background.jpg）
+                    //函数表达式
+                    var foo = function() {<br>
+                    return true;<br>
+                    };  // semicolon here.<br>
+                </p>
+                <br>
+                <p class="code">
+                    //函数声明<br>
+                    function foo() {<br>
+                    return true;<br>
+                    }  // no semicolon here.<br>
+                </p>
+                <br>
+
+                <h4>语句块内的函数声明</h4>
+                <p>
+                    切勿在语句块内声明函数，在 ECMAScript 5 的严格模式下，这是不合法的。函数声明应该在定义域的顶层。<span class="strong">但在语句块内可将函数申明转化为函数表达式赋值给变量。</span>
+                </p>
+                <p class="code">
+                    //不推荐<br>
+                    if (x) {<br>
+                    function foo() {}<br>
+                    }<br>
+                    //推荐<br>
+                    js 代码:<br>
+                    if (x) {<br>
+                    var foo = function() {};<br>
+                    }
+                </p>
+                <br>
+
+                <h4>1.空格的使用</h4>
+                <p>
+                    任何“;”后空一格、for循环中初始化“,”后空一格、数组中","后空一格、对象中“:”后空一格、如：
+                </p>
+                <p class="code">
+                       for (var i = 0, j = 1; i < 10; i += 1){<br>
+                       var some = [1, 2, 3];<br>
+                       var obj = {aa: 1, bb: 2}<br>
+                     }<br>
+                </p>
+                <br>
+                <p>
+                    函数参数里“,”后空一格、函数声明中花括号前空一格、函数表达式中括号前后各空一格，如：
+                </p>
+                <p class="code">
+                    1 func(a, b, c){};<br>
+                    2 function func() {};<br>
+                    3 var func = function () {};<br>
                 </p>
                 <p>
-                    所以理所当然的，减号应该也是用来分隔资源名称的好选择。
+                    所有的操作符前后都跟一个空格，如：
                 </p>
-                <ul>
-                    <li>确保文件命名总是以字母开头而不是数字。而以特殊字符开头命名的文件，一般都有特殊的含义与用处（比如 compass(Compass 是一个基于 Sass 开源的 CSS 框架，而 Sass 是一个非常流行的 CSS 预编译器。) 中的下划线就是用来标记跳过直接编译的文件用的）。</li>
-                    <li>资源的字母名称必须全为小写，这是因为在某些对大小写字母敏感的操作系统中，当文件通过工具压缩混淆后，或者人为修改过后，大小写不同而导致引用文件不同的错误，很难被发现。</li>
-                    <li>还有一些情况下，需要对文件增加前后缀或特定的扩展名（比如 .min.js, .min.css），抑或一串前缀（比如 3fa89b.main.min.css）。这种情况下，建议使用点分隔符来区分这些在文件名中带有清晰意义的元数据。</li>
-                </ul>
+                <p class="code">
+                    复制代码<br>
+                     var d = 0,<br>
+                         a = b + 1;<br>
+                     if (a && b && c) {<br>
+                         d = a % c;<br>
+                         a += d;<br>
+                     }<br>
+                </p>
+                <br>
 
-                <h4>2.协议</h4>
-                <h5>不要指定引入资源所带的具体协议。</h5>
-                <p>当引入图片或其他媒体文件，还有样式和脚本时，URLs 所指向的具体路径，不要指定协议部分（http:, https:），除非这两者协议都不可用。不指定协议使得 URL 从绝对的获取路径转变为相对的，在请求资源协议无法确定时非常好用，而且还能为文件大小节省几个字节。</p>
-                <p>不推荐：</p>
-                <p class="code">src="http://cdn.com/foundation.min.js"</p>
-                <p>推荐</p>
-                <p class="code">src="//cdn.com/foundation.min.js"</p>
-                <p class="ps strong">注：在html或css中都适用</p>
 
-                <h4>3.命名</h4>
-                <p>命名的方法通常有以下几类：</p>
-                <h5>命名法说明</h5>
-                <ol>
-                    <li>camel命名法，形如thisIsAnApple</li>
-                    <li>pascal命名法，形如ThisIsAnApple</li>
-                    <li>下划线命名法，形如this_is_an_apple</li>
-                    <li>中划线命名法，形如this-is-an-apple</li>
-                </ol>
-                <h5>根据不同类型的内容，必须严格采用如下的命名法： </h5>
-                <ul>
-                    <li>变量名：必须使用camel命名法</li>
-                    <li>参数名：必须使用camel命名法</li>
-                    <li>函数名：必须使用camel命名法</li>
-                    <li>方法/属性：必须使用camel命名法</li>
-                    <li>私有（保护）成员：必须以下划线_开头</li>
-                    <li>常量名：必须使用全部大写的下划线命名法，如IS_DEBUG_ENABLED</li>
-                    <li>类名：必须使用pascal命名法</li>
-                    <li>枚举名：必须使用pascal命名法</li>
-                    <li>枚举的属性：必须使用全部大写的下划线命名法</li>
-                    <li>命名空间：必须使用camel命名法</li>
-                </ul>
-                <h5>语义：命名同时还需要关注语义，如：</h5>
-                <ul>
-                    <li>变量名应当使用名词；</li>
-                    <li>boolean类型的应当使用is、has等起头，表示其类型；</li>
-                    <li>函数名应当用动宾短语；</li>
-                    <li>类名应当用名词。</li>
-                </ul>
 
-                <h4>4.注释</h4>
-                <h5>注释要尽量简单，清晰明了。着重注释的意思，对不太直观的部分进行注解：</h5>
-                <p>
-                    此外，JavaScript 的注释有两种"//" 和"/* .... */"，建议"//"用作代码行注释，"/* .... */"形式用作对整个代码段的注销，或较正式的声明中，如函数参数、功能、文件功能等的描述中：
-                </p>
-                <p class="strong">
-                    编写自解释代码只是一个传说，没有任何代码是可以完全自解释的。而代码注释，则是永远也不嫌多。
-                </p>
-                <h5>
-                    当你写注释时一定要注意：
-                </h5>
-                <p>
-                    不要写你的代码都干了些什么，而要写你的代码为什么要这么写，背后的考量是什么。当然也可以加入所思考问题或是解决方案的链接地址。
-                </p>
+
+
+
+
+
 
 
             </article>
