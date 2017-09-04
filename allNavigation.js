@@ -76,14 +76,14 @@ $(function () {
     $("#navigation>article h1").before("<p></p>");
     var $P = $("#navigation>article p");
     var $A = $("#navigation>article>section.right a");
-    for (var j = 0; j < $P.length; j++) {
+    for (j = 0; j < $P.length; j++) {
         $P[j].innerText = $A[j].getAttribute("value");
     }
     //分类导航
     var $LI = $("#navigation>nav li");
     $LI.click(function () {
         var $liId = $(this).children("a").attr("id");
-        for (var i = 0; i < $A.length; i++) {
+        for (i = 0; i < $A.length; i++) {
             var $Ai = $($A[i]);
             if ($Ai.attr("class") !== $liId) {
                 $Ai.parent().parent().parent().css({
@@ -112,13 +112,13 @@ $(function () {
      var $aHref = new Array();
      var $submit = $("#submit");
      var $input = $("#something")
-     for(k=0;k<$A.length;k++) {
+     for(k = 0; k < $A.length; k++) {
          $aHref.push($A[k]);
      }
 
      $submit.click(function () {
          var number = 0;
-         for (var l = 0; l < $aHref.length; l++) {
+         for (l = 0; l < $aHref.length; l++) {
              var aHref = $($aHref[l]);
              var $inputText = $input.val().toLowerCase();
              var $aHrefText = $aHref[l].innerHTML.toLowerCase();
@@ -141,14 +141,13 @@ $(function () {
     var $submit = $("#submit");
     var $input = $("#something");
     $input.focus(function () {
-        if($(this).val()==this.defaultValue){
+        if ($(this).val() == this.defaultValue) {
             $(this).val("");
         }
         $("#search>p").hide();
     })
     $input.blur(function () {
-
-        if($(this).val()==""){
+        if ($(this).val() == "") {
             $(this).val("请输入关键词");
             $("#search>p").hide();
         }
@@ -166,7 +165,7 @@ $(function () {
             //这个变量是包含了所有链接的text()的字符串，如果匹配成功，
             //再继续后方的循环和判断以确定与哪（几）篇文章匹配,否则不执行后方代码
             var number = 0;
-            for (var l = 0; l < $aHref.length; l++) {
+            for (l = 0; l < $aHref.length; l++) {
                 var aHref = $($aHref[l]);
                 var $aHrefText = $aHref[l].innerHTML.toLowerCase();
                 if ($aHrefText.search($inputText) != -1) {
