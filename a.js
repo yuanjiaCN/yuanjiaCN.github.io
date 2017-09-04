@@ -1,5 +1,6 @@
 $(function all () {
  $all =
+     "<a href='specification.html' class='set' value='2017.9.4'>前端代码规范合集</a>"+
      "<a href='fiftyFourth.html' class='book' value='2017.9.4'>前端代码规范(4)——分号、空格</a>"+
      "<a href='fiftyThird.html' class='book' value='2017.9.3'>前端代码规范(3)——严格模式、变量声明、定义域提升、比较判断、||、&&</a>"+
      "<a href='fiftySecond.html' class='book' value='2017.9.3'>前端代码规范(2)——IIFE</a>"+
