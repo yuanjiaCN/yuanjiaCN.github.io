@@ -19,6 +19,7 @@ var DIV = document.getElementById("numberClock"),
     countDownMillisecond = document.getElementById("countDownTimerMillisecond"),
     minuteContent,secondContent,millisecondContent,
     chaosCanvasElement = document.getElementById("chaosCanvas"),
+    number = 0; //这是个全局变量，控制清零后计次从1开始
     chaosContext = chaosCanvasElement.getContext("2d");
     //这两句不写的话，线条会虚化锯齿的特别的厉害，原因是canvas的宽度与高度必须作为属性明确指定（也不能通过CSS设置），
     // 并且只能是数字，不支持百分比。基于以上的规则，所以很容易找到症结，canvas绘制的图片本来较小，但经过CSS强行放大拉伸，所以就会出现模糊、锯齿严重的效果。
@@ -75,7 +76,7 @@ function circleClock() {
         }
         //小短线
         for (i = 0; i < 60; i++) {
-            if (i%5) {
+            if (i % 5) {
                 context.lineWidth = 3;
                 context.beginPath();
                 context.moveTo(Math.sin(Math.PI * i / 30) * clockWidth * 0.45, -Math.cos(Math.PI * i / 30) * clockWidth * 0.45);
@@ -99,7 +100,7 @@ function secondPin() {
         var oSecond = oDate.getSeconds();
         context.strokeStyle ="rgba(200,20,20,0.2)";
         //让圆圈中间没有线穿过的方法，就是分成两个线段。。。
-        if(oSecond%15){
+        if(oSecond % 15){
             context.beginPath();
             context.lineWidth = 2;
             context.moveTo(-Math.sin(Math.PI * oSecond / 30) * clockWidth * 0.05,Math.cos(Math.PI * oSecond / 30) * clockWidth * 0.05);
@@ -182,7 +183,6 @@ move()
 
 //开始、暂停计时
 function startOrPause() {
-    var number = 0
     timerButton.onclick = function () {
         if (this.innerHTML == "计时开始") {
             this.innerHTML = "暂停";
