@@ -1,5 +1,8 @@
 $(function all () {
  $all =
+     "<a href='fiftyThird.html' class='book' value='2017.9.3'>前端代码规范(3)——严格模式、变量声明、定义域提升、比较判断、||、&&</a>"+
+     "<a href='fiftySecond.html' class='book' value='2017.9.3'>前端代码规范(2)——IIFE</a>"+
+     "<a href='fiftyFirst.html' class='book' value='2017.9.3'>前端代码规范(1)——代码检查、注释、命名</a>"+
      "<a href='fiftieth.html' class='book' value='2017.9.1'>小时钟第三版(3)</a>"+
      "<a href='setTimeoutSet.html' class='set' value='2017.8.31'>用到和被setTimeout坑到合集</a>"+
      "<a href='photoAlbum.html' class='set' value='日常更新'>生活图集</a>"+

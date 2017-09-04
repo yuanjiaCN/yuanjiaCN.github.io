@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>前端代码规范(2)——IIFE</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.全局命名空间污染与IIFE</h4>
+                    <p>总是将代码包裹成一个 IIFE(Immediately-Invoked Function Expression)，用以创建独立隔绝的定义域。这一举措可防止全局命名空间被污染。
+                    </p>
+                    <p>
+                        IIFE 还可确保你的代码不会轻易被其它全局命名空间里的代码所修改（i.e. 第三方库，window 引用，被覆盖的未定义的关键字等等）。
+                    </p>
+                <h5>IIFE（立即执行的函数表达式）</h5>
+                    <p>
+                        无论何时，想要创建一个新的封闭的定义域，那就用 IIFE。它不仅避免了干扰，也使得内存在执行完后立即释放。
+                    </p>
+                    <p>
+                        所有脚本文件建议都从 IIFE 开始。
+                    </p>
+                    <p>
+                        立即执行的函数表达式的执行括号应该写在外包括号内。虽然写在内还是写在外都是有效的，但写在内使得整个表达式看起来更像一个整体，因此推荐这么做。
+                    </p>
+                <h5>不推荐</h5>
+                    <p class="code">
+                    (function(){})();
+                    </p>
+                <h5>推荐</h5>
+                    <p class="code">
+                    (function(){}());
+                    </p>
+
+                <h4>1.深入IIFE</h4>
+                <h5>函数跟随一对圆括号()表示函数调用</h5>
+                <p class="code">
+                    //函数声明语句写法
+                        function test(){};<br>
+                        test();<br>
+                    //函数表达式写法<br>
+                        var test = function(){};<br>
+                        test();<br>
+                </p>
+                <h5>但有时需要在定义函数之后，立即调用该函数。</h5>
+                <p>
+                    这种函数就叫做立即执行函数，全称为立即调用的函数表达式IIFE(Imdiately Invoked Function Expression)
+                </p>
+
+                <h5 class="strong">[注意]javascript引擎规定，如果function关键字出现在行首，一律解释成<span class="strong">函数声明</span>语句</h5>
+                <p>
+                    【1】函数声明语句需要一个函数名，由于没有函数名，所以报错
+                </p>
+                <p class="code">
+                    //SyntaxError: Unexpected token (<br>
+                    function(){}();<br>
+                </p>
+                <p>
+                    【2】函数声明语句后面加上一对圆括号，只是函数声明语句与分组操作符的组合而已。由于分组操作符不能为空，所以报错
+                </p>
+                <p class="code">
+                    //SyntaxError: Unexpected token )<br>
+                    function foo(){}();<br>
+                    //等价于<br>
+                    function foo(){};<br>
+                    ();//SyntaxError: Unexpected token )<br>
+                </p>
+                <p>
+                    【3】函数声明语句加上一对有值的圆括号，也仅仅是函数声明语句与不报错的分组操作符的组合而已
+                </p>
+                <p class="code">
+                        function foo(){}(1);<br>
+                    //等价于<br>
+                        function foo(){};<br>
+                </p>
+                <h5>所以，解决方法就是不要让function出现在行首，让引擎将其理解成一个表达式</h5>
+                <p>
+                    最常用的是前两种方法
+                </p>
+                <ul class="code">
+                    <li class="strong">(function(){ /* code */ }());//强烈推荐！</li>
+                    <li>(function(){ /* code */ })();</li>
+                    <li>var i = function(){ return 10; }();</li>
+                    <li>true && function(){ /* code */ }();</li>
+                    <li>0, function(){ /* code */ }();</li>
+                    <li>!function(){ /* code */ }();</li>
+                    <li>~function(){ /* code */ }();</li>
+                    <li>-function(){ /* code */ }();</li>
+                    <li>+function(){ /* code */ }();</li>
+                    <li>new function(){ /* code */ };</li>
+                    <li>new function(){ /* code */ }();</li>
+                </ul>
+
+                <h5>用途</h5>
+                <p>
+                    IIFE一般用于构造私有变量，避免全局空间污染
+                </p>
+                <p>
+                    接下来用一个需求实现来更直观地说明IIFE的用途。假设有一个需求，每次调用函数，都返回加1的一个数字(数字初始值为0)
+                </p>
+
+                <h5>【1】全局变量</h5>
+                <p>
+                    一般情况下，我们会使用全局变量来保存该数字状态
+                </p>
+                <p class="code">
+                    var a = 0;<br>
+                    function add(){<br>
+                    return ++a;<br>
+                    }<br>
+                    console.log(add());//1<br>
+                    console.log(add());//2<br>
+                </p>
+                <h5>【2】自定义属性</h5>
+                <p>
+                    但上面的方法中，变量a实际上只和add函数相关，却声明为全局变量，不太合适。
+                </p>
+                <p class="strong">
+                    将变量a更改为函数的自定义属性更为恰当
+                </p>
+                <p class="code">
+                    function add(){<br>
+                    return ++add.count;<br>
+                    }<br>
+                    add.count = 0;<br>
+                    console.log(add());//1<br>
+                    console.log(add());//2<br>
+                </p>
+                <h5>【3】IIFE</h5>
+                <p>
+                    其实这样做，还是有问题。有些代码可能会无意中将add.count重置
+                </p>
+                <p class="strong">
+                    使用IIFE把计数器变量保存为私有变量更安全，同时也可以减少对全局空间的污染
+                </p>
+                <p class="code">
+                    var add = (function(){<br>
+                    var counter = 0;<br>
+                    return function(){<br>
+                    return ++counter;<br>
+                    }<br>
+                    })();<br>
+                    console.log(add())//1<br>
+                    console.log(add())//2<br>
+                </p>
+
+                <h5>注意事项</h5>
+                <p class="strong">
+                    IIFE称为立即执行函数，这个立即执行函数有多立即呢？
+                </p>
+                <p>
+                    立即执行函数再快也得按照代码执行顺序，逐行执行，如下代码返回1
+                </p>
+                <p class="code">
+                    var a = 1;<br>
+                    (function(){<br>
+                    console.log(a);//1<br>
+                    })();<br>
+                </p>
+                <p class="strong">
+                    类似地，函数也是这种情况
+                </p>
+                <p class="code">
+                    function a(){<br>
+                    return 1;<br>
+                    }<br>
+                    (function(){<br>
+                    console.log(a());//1<br>
+                    })();<br>
+                </p>
+                <p>
+                    但，如果是<span class="strong">函数表达式</span>就不一样了。执行如下代码会报错，提示此时的a是undefined
+                </p>
+                <p class="code">
+                    var a = function(){<br>
+                    return 1;<br>
+                    }<br>
+                    (function(){<br>
+                    console.log(a());//报错<br>
+                    })();<br>
+                </p>
+                <p>
+                    函数有一个声明提升的过程，函数表达式其实分为先声明后赋值这两步。而，如果后面存在着立即执行函数IIFE，这个IIFE会快到<span class="strong">函数表达式a执行完第一步骤函数声明</span>之后IIFE就会立即执行，这此时a未被赋值，是undefined，所以执行a()时会报错
+                </p>
+                　　
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

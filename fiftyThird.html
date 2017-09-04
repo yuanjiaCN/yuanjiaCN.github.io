@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>前端代码规范(3)——严格模式、变量声明、定义域提升、比较判断、||、&&</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.严格模式</h4>
+                <p>
+                    ECMAScript 5 严格模式可在整个脚本或独个方法内被激活。它对应不同的 javascript 语境会做更加严格的错误检查。严格模式也确保了 javascript 代码更加的健壮，运行的也更加快速。
+                </p>
+                <p>
+                    严格模式会阻止使用在未来很可能被引入的预留关键字。
+                </p>
+                <p>
+                    你应该在你的脚本中启用严格模式，最好是在独立的 IIFE 中应用它。避免在你的脚本第一行使用它而导致你的所有脚本都启动了严格模式，这有可能会引发一些第三方类库的问题。
+                </p>
+                <h5>不推荐</h5>
+                <p class="code">
+                    'use strict';<br>
+                    (function(){<br>
+                    // Your code starts here<br>
+                    }());<br>
+                </p>
+                <h5>推荐</h5>
+                <p class="code">
+                    (function(){<br>
+                    'use strict';<br>
+                    // Your code starts here<br>
+                    }());<br>
+                </p>
+
+                <h4>1.变量声明</h4>
+                <h5>总是使用 var 来声明变量。</h5>
+                <p>
+                    如不指定var，变量将被隐式地声明为全局变量，这将对变量难以控制。
+                    如果没有声明，变量处于什么定义域就变得不清（可以是在 Document 或 Window                            中，也可以很容易地进入本地定义域）。所以，请总是使用 var 来声明变量。
+                </p>
+                <p>
+                    采用严格模式带来的好处是，当你手误输入错误的变量名时，它可以通过报错信息来帮助你定位错误出处。
+                </p>
+                <h5>不推荐</h5>
+                <p class="code">
+                    x = 100;<br>
+                    y = 10; <br>
+                </p>
+                <br>
+                <h5>推荐</h5>
+                <p class="code">
+                    var x = 100,<br>
+                    y = 10;<br>
+                </p>
+
+                <h4>2.理解 JavaScript 的定义域和定义域提升</h4>
+                <p>
+                    在 JavaScript 中变量和方法定义会自动提升到执行之前。JavaScript 只有 function 级的定义域，而无其他很多编程语言中的块定义域，所以使得你在某一 function 内的某语句和循环体中定义了一个变量，此变量可作用于整个 function 内，而不仅仅是在此语句或循环体中，因为它们的声明被 JavaScript 自动提升了。
+                </p>
+                <h5>提升声明</h5>
+                <p>
+                    为避免上一章节所述的变量和方法定义被自动提升造成误解，把风险降到最低，我们应该手动地显示地去声明变量与方法。也就是说，所有的变量以及方法，应当定义在 function 内的首行。
+                </p>
+                <p>
+                    只用一个 var 关键字声明，多个变量用逗号隔开。
+                </p>
+                <p class="code">
+                    (function(log){<br>
+                    'use strict';<br>
+                    var a = 10,<br>
+                    b = 10,<br>
+                    i,<br>
+                    c,<br>
+                    d,<br>
+                    x;<br>
+                    function f() {<br>
+                    }<br>
+                    for(i = 0; i < 10; i++) {<br>
+                    c = a * b * i;<br>
+                    }<br>
+                    d = 100;<br>
+                    x = function() {<br>
+                    return d * d;<br>
+                    };<br>
+                    log(x());<br>
+                    }(window.console.log));<br>
+                </p>
+                <h5>把赋值尽量写在变量申明中,例如</h5>
+                <p>
+                    var a = 10,<br>
+                    b = 10,<br>
+                    c = 100;<br>
+                </p>
+
+                <h4>3.总是使用带类型判断的比较判断</h4>
+                <p>
+                    总是使用 === 精确的比较操作符，避免在判断的过程中，由 JavaScript 的强制类型转换所造成的困扰。
+                </p>
+                <p>
+                    如果你使用 === 操作符，那比较的双方必须是同一类型为前提的条件下才会有效。
+                </p>
+                <p>
+                    在只使用 == 的情况下，JavaScript 所带来的强制类型转换使得判断结果跟踪变得复杂,比如说：
+                </p>
+                <p class="code">
+                    (function(log){<br>
+                    'use strict';<br>
+                    log('0' == 0); // true<br>
+                    log('' == false); // true<br>
+                    log('1' == true); // true<br>
+                    log(null == undefined); // true<br>
+                    var x = {<br>
+                    valueOf: function() {<br>
+                    return 'X';<br>
+                    }<br>
+                    };<br>
+                    log(x == 'X');<br>
+                    }(window.console.log));<br>
+                </p>
+                <h4>4.变量赋值时的逻辑操作</h4>
+                <p>
+                    逻辑操作符 || 和 && 也可被用来返回布尔值。如果操作对象为非布尔对象，那每个表达式将会被<span class="strong">自左向右</span>地做真假判断。基于此操作，最终总有一个表达式被返回回来。这在变量赋值时，是可以用来简化你的代码的。
+                </p>
+                <h5>不推荐</h5>
+                <p>
+                    if(!x) {<br>
+                    if(!y) {<br>
+                    x = 1;<br>
+                    } else {<br>
+                    x = y;<br>
+                    }<br>
+                    }<br>
+                </p>
+                <h5>推荐</h5>
+                <p class="code">
+                    x = x || y || 1;
+                </p>
+                <p class="code">这一小技巧经常用来给方法设定默认的参数。</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
