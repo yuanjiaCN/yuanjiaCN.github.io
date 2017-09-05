@@ -186,6 +186,19 @@ h1 a:hover{
     clear: both;
     height: 0;
 }
+#pageTurningSection li{
+    display: inline-block;
+    font-size: 2em;
+    cursor: pointer;
+    margin-right: 5%;
+}
+#pageTurningSection li:hover{
+    color: grey;
+}
+#pageTurningSection ul{
+    float: right;
+    width: 60%;
+}
 /*媒体查询*/
 @media screen and (max-width: 1170px) {
     #navigation {
