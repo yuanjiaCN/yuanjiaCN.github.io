@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>JSON学习(1)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.JSON简介</h4>
+                <p>
+                    JSON是一种数据格式，并不从属于JavaScript，很多编程语言都有针对JSON的解析器和序列化器。
+                </p>
+                <p>
+                    JSON是在JavaScirpt中读写结构化数据的更好的方式，因为可以把JSON直接传给eval(),而且不必创建DOM对象。
+                </p>
+                <h4>1.JSON可以表示的类型的值</h4>
+                <h5>JSON的语法可以表示以下三种类型的值：</h5>
+                <ul>
+                    <li>
+                        简单值：字符串（必须使用双引号，单引号会导致语法错误）、数值、布尔值和null，但是不支持undefined。
+                    </li>
+                    <li>
+                        对象：一种复杂数据类型。表示一组无序的键值对，而每个键值对中的值可以是简单值，也可以是复杂数据类型的值。
+                    </li>
+                    <li>
+                        数组：一种复杂数据类型。表示结构化数据的格式。
+                    </li>
+                </ul>
+                <p>JSON<span class="strong">不支持</span>变量、函数或对象实例，它就是一种表示结构化数据的格式。</p>
+
+                <h4>2.JSON的对象</h4>
+                <h5>JavaScirpt:</h5>
+                <p class="code">
+                    var persion = {<br>
+                    “name”:”Nicholas”,    //name和age外的引号可有可无<br>
+                    “age”:29<br>
+                    };
+                </p>
+                <h5>JSON表示上述对象的方式：</h5>
+                <p class="code">
+                    {<br>
+                    “name”:”Nicholas”,<br>
+                    “age”:29<br>
+                    }
+                </p>
+                <h5>区别：</h5>
+                <ul>
+                    <li>没有声明变量（JSON没有变量的概念）</li>
+                    <li>没有末尾的分号；</li>
+                    <li>对象的属性名必须加双引号</li>
+                </ul>
+                <h5>JSON中属性的值可以是简单值，也可以是复杂类型值。</h5>
+                <p class="code">
+                    {<br>
+                    “name”:”Nicholas”,<br>
+                    “age”:29<br>
+                    “school”:{<br>
+                    “name”:”XXcollege”,<br>
+                    “location”:”SH”<br>
+                    }<br>
+                    }
+                </p><br>
+                <p>
+                    这个例子中出现了两个”name”属性，但是因为他们分属于不同的对象，所以这样完全没问题。
+                </p>
+                <p class="strong">
+                    但是！同一个对象中绝对不允许出现两个同名属性！
+                </p>
+                <h4>3.JSON中的数组</h4>
+                <p>
+                    采用的是JavaScirpt中的数组字面量形式
+                </p>
+                <h5>JavaScirpt:</h5>
+                <p class="code">
+                    Var values = [25, “hi”, true]
+                </p>
+                <h5>JSON</h5>
+                <p class="code">
+                    [25, “hi”, true]
+                </p>
+                <p class="strong">
+                    注意：JSON数组也没有变量和分号，可以把数组和对象结合起来，构成更加复杂的数据集合：
+                </p>
+                <p class="code">
+                    [<br>
+                    {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    Edition: 3,    //这里为何Edition和Year不用加””百思不得其解。。。可能因为值是数字，所以不用?!<br>
+                    Year:2011<br>
+                    },<br>
+                    {<br>
+                    “title”:”professional Ajax”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”,<br>
+                    “Jeremy McPeak”,<br>
+                    “Joe Fawcett”<br>
+                    ],<br>
+                    Edition: 2,<br>
+                    Year:2008<br>
+                    }<br>
+                    ]
+                </p><br>
+                <p>
+                    如果我想取得第二本书的书名，只需输入：（默认已经把解析JSON数据结构后得到的对象保存到了变量books中）
+                </p>
+                <p class="code">
+                    Books[2].title
+                </p>
+                <p>
+                    如果用DOM操作会如何：
+                </p>
+                <p class="code">
+                    document.getElementsByTagName(“book”[2]).getAttribute(“title”)
+                </p>
+                <p>
+                    没有对比就没有伤害，DOM实在是太繁琐了。
+                    从此以后，JSON就成了Web服务开发中交换数据的事实标准。
+                </p>
+                <h4>4.ECMAJavaScript5规范中的JSON</h4>
+                <p>
+                    早期的JSON解析器基本上就是使用JavaScript的eval()函数，由于JSON是JavaScirpt语法的子集，因此eval()函数可以解析，解释并返回JavaScript对象和数组。
+                </p>
+                <p>
+                    ECMAScirpt5对解析JSON的行为进行规范，定义了全局对象JSON，支持者对象的浏览器有IE8+,Firefox3.5+,Safari4+,Chrome和Opera10.5+,对于较早版本的浏览器，可以用一个<a href="shim:http://github.com/douglascrockford/JSON-js">shim:http://github.com/douglascrockford/JSON-js</a>，在旧版本的浏览器中，使用eval()对JSON数据结构求值存在风险，因为可能会执行一些恶意代码，Shim是最佳选择。
+                </p>
+                <h4>5.JSON对象的方法</h4>
+                <p>
+                    JSON对象有两个方法：stringify()和parse()，分别用于吧JavaScirpt对象徐刘华为JSON字符串和把JSON字符串解析为原生JavaScript值.
+                </p>
+                <h5>例子：</h5>
+                <p>
+                    使用JSON.stringify()把一个JavaScirpt对象序列化为一个JSON字符串，然后存进jsonText
+                </p>
+                <p class="code">
+                    var book = {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    Edition: 3,<br>
+                    Year:2011<br>
+                    };<br>
+                    var jsonText = JSON.stringify(book);
+                </p><br>
+                <p>
+                    默认情况下，JSON.stringify()输出的JSON字符串不包括任何空格字符或者缩进，因此保存在jsonText中的字符串如下所示：
+                </p>
+                <p class="code">
+                    {“title”:”professional JavaScript”,“authors”:[“Nicholas C. Zakas”],Edition: 3,Year:2011;}
+                </p>
+                <p class="strong">
+                    在序列化JavaScript对象时，所有函数及原型成员都会被有意忽略，不体现在结果中。此外，值为undefined的任何属性也会被跳过，结果中最终都是值为有效JSON数据类型的实力属性。
+                </p>
+                <h5>例子：</h5>
+                <p>
+                    将JSON字符串直接传递给JSON.parse()就可以得到相应的JavaScript值。创建一个与book类似的对象。
+                </p>
+                <p class="code">
+                    var bookCopy = JSON.parse(jsonText);
+                </p>
+                <p class="strong">
+                    注意：虽然book与bookCopy具有相同的属性，但他们两个是独立的、没有任何关系的对象。
+                    如果传给JSON.parse()的字符串不是有效的JSON,该方法会抛出错误。
+                </p>
+                <h4>6.序列化选项</h4>
+                <p>
+                    JSON.stringify()除了要序列化的JavaScript对象外，还可以接收另外两个参数，这两个参数用于指定以不同的方式序列化JavaScript对象。第一个参数是一个过滤器，可以使一个数组，也可以是一个函数；第二个参数是一个选项，表示是否在JSON字符串中保留缩进。
+                </p>
+                <h5>过滤结果</h5>
+                <p>
+                    如果过滤器参数是数组，那么JSON.stringify()的结果中将只包含数组中列出的属性。
+                </p>
+                <h5>例子：</h5>
+                <p class="code">
+                    var book =  {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    Edition: 3,<br>
+                    Year:2011<br>
+                    };<br>
+                    var jsonText = JSON.stringify(book, [“title”,”edition”]);
+                </p><br>
+                <p>返回结果：</p>
+                <p class="code">
+                    {“title”:”professional JavaScript”,”Edition”: 3}
+                </p>
+                <p>
+                    如果第二个参数是函数，行为会稍有不同。传入的函数接受两个参数，属性（键）名和属性值。属性名只能是字符串，而在值并非键值对结构的值时，键名可以使空字符串：
+                </p>
+                <p class="strong">注意：如果函数返回了undefined，那么相应的属性会被忽略。</p>
+                <p class="code">
+                    var book =  {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    Edition: 3,<br>
+                    Year:2011<br>
+                    };<br>
+                    var jsonText = JSON.stringify(book, function(key, value){<br>
+                    Switch(key){<br>
+                    case “authors”:<br>
+                    return value,join(“,”);<br>
+                    case “year”:<br>
+                    return 5000;<br>
+                    case “edition”:<br>
+                    return undefined;<br>
+                    Default:<br>
+                    return value;<br>
+                    }<br>
+                    });
+                </p>
+                <p>
+                    这里，函数过滤器根据传入的键来决定结果。如果键为”authors”,就将数组连接为一个字符串;如果键为year,则将其值设置为5000；如果键为”edition”，通过返回undefined删除该属性。最后，一定要提供default项，此时返回传入的键，以便其他值都能正常的出现在结果中。
+                </p>
+                <p>
+                    实际上，第一次调用这个函数过滤器，传入的键是一个空字符串，而值就是book对象。序列化后的JSON字符串如下所示：
+                </p>
+                <p class="code">
+                    {"title":"professional JavaScript","author":"Nicholas C. Zakas","year":5000}
+                </p>
+                <h5>字符串缩进：</h5>
+                <p>
+                    第三个参数控制结果中的缩进和空白符，如果这个参数是一个数值，那它表示的是每个级别缩进的空格数。例如，要在每个级别缩进四个空格， 可以这样写代码：
+                </p>
+                <p class="code">
+                    var book =  {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    Edition: 3,<br>
+                    Year:2011<br>
+                    };<br>
+                    var jsonText = JSON.stringify(book, null, 4);
+                </p><br>
+                <p>保存在jsonText中的字符串如下所示：</p>
+                <p class="code">
+                    {<br>
+                    “title”:”professional JavaScript”,<br>
+                    “authors”:[<br>
+                    “Nicholas C. Zakas”<br>
+                    ],<br>
+                    “Edition”: 3,<br>
+                    “Year”:2011<br>
+                    }
+                </p><br>
+                <p>
+                    只要传入的是有效的空格缩进的参数值，结果字符串就会包含换行符，最大缩进格数为10，所有大于10的值都会自动转换为10.
+                </p>
+                <p>
+                    如果缩进参数是一个字符串而不是数值，则这个字符串将在JSON字符串中被用作缩进字符（不再使用空格）。
+                </p>
+                <h5>例子：</h5>
+                <p class="code">
+                    var jsonText = JSON.stringify(book,null,” - -”);<br>
+                    {<br>
+                    - -“title”:”professional JavaScript”,<br>
+                    - -“authors”:[<br>
+                    - -“Nicholas C. Zakas”<br>
+                    - -],<br>
+                    - -“Edition”: 3,<br>
+                    - -“Year”:2011<br>
+                    }
+                </p><br>
+                <p>
+                    缩进字符最长不能超过10个字符长，如果字符长度超过了10个，结果中将只出现前10个字符。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
