@@ -1,6 +1,8 @@
 $(function all () {
  $all =
-       "<a href='fiftyFifth.html' class='blog' value='2017.9.6'>JSON学习(1)</a>"
+       "<a href='fiftySeventh.html' class='book' value='2017.9.9'>探索Git(16)——rebase和merge区别</a>"
+     + "<a href='fiftySixth.html' class='book' value='2017.9.9'>探索Git(15)——远程仓库同步到本地仓库、pull和fetch区别</a>"
+     + "<a href='fiftyFifth.html' class='blog' value='2017.9.6'>JSON学习(1)</a>"
      + "<a href='specificationSet.html' class='set' value='2017.9.4'>前端代码规范合集</a>"
      + "<a href='fiftyFourth.html' class='book' value='2017.9.4'>前端代码规范(4)——分号、空格</a>"
      + "<a href='fiftyThird.html' class='book' value='2017.9.3'>前端代码规范(3)——严格模式、变量声明、定义域提升、比较判断、||、&&</a>"
