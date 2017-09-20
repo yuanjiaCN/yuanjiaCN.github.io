@@ -37,7 +37,8 @@ $(function () {
     })
 
     $("#album>article").append(
-        "<img date='twentySixth' value='italic' src='picture/italic25(little).jpg' original='picture/original/italic25.jpg' />"
+          "<img date='fortyNinth' value='gardening' src='picture/gardening27(little).jpg' original='picture/original/gardening27.jpg'/>"
+        + "<img date='twentySixth' value='italic' src='picture/italic25(little).jpg' original='picture/original/italic25.jpg' />"
         + "<img date='twentySixth' value='italic' src='picture/italic24(little).jpg' original='picture/original/italic24.jpg' />"
         + "<img date='thirtyNinth' value='gardening' src='picture/gardening26(little).jpg' original='picture/original/gardening26.jpg'/>"
         + "<img date='twentyFifth' value='italic' src='picture/italic23(little).jpg' original='picture/original/italic23.jpg' />"
