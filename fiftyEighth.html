@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>数据结构与算法（1）——一些基本概念</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p class="strong"><a href='dataStructureAndAlgorithmsSet.html' class='set  contentLink' value='2017.9.23'>☞数据结构与算法的合集</a></p>
+                <h4>0.逻辑结构和物理结构</h4>
+                <h5>数据结构分为：</h5>
+                <ul>
+                    <li>逻辑结构：数据对象中数据元素之间的相互关系</li>
+                    <li>物理结构：数据的逻辑结构在计算机中的存储形式</li>
+                </ul>
+                <h5>四大逻辑结构</h5>
+                <ul>
+                    <li>集合结构：集合结构中的数据元素除了同属于一个集合外，他们之前没有别的关系</li>
+                    <li>线性结构：线性结构中的数据元素之间是一对一的关系</li>
+                    <li>树形结构：树形结构中的数据元素之间存在一种一对多(也存在一对一的关系)的层次关系（金字塔关系）</li>
+                    <li>图形结构：图形结构的数据元素是多对多的关系</li>
+                </ul>
+                <h5>物理结构：</h5>
+                <p>
+                    研究如何把数据元素存储到计算机的存储器中。
+                </p>
+                <h5>存储器：</h5>
+                <p>
+                    针对内存而言的，像硬盘、软盘、光盘等外部存储器的数据组织通常用文件结构来描述。
+                </p>
+                <h5>数据元素的存储结构形式有两种：顺序存储和链式存储。</h5>
+                <ul>
+                    <li>顺序存储结构：把数据元素存放在地址连续的存储单元里，其数据间的逻辑关系和物理关系是一致的。
+                        （例如数组）</li>
+                    <li>链式存储结构：是把数据元素存放在任意的存储单元里，这组存储单元可以是连续的，
+                        也可以是不连续的。链式存储结构的数据元素存储关系不能反映其逻辑关系，因此需要用一个指针存放数据元素的地址，这样子通过地址就可以找到相关联数据元素的位置。（1号数据元素指针指向2号数据元素，但是他们在存储单元里的位置可能不是这样的。</li>
+                </ul>
+                <h4>1.算法：</h4>
+                <h5>事前分析测量方法：</h5>
+                <ul>
+                    <li>算法采用的策略、方案</li>
+                    <li>编译产生的代码质量：编译期的优劣、编译期所产生的代码的优劣</li>
+                    <li>问题的输入规模</li>
+                    <li>机器执行指令的速度</li>
+                </ul>
+                <p>
+                    由此可见，抛开计算机硬件、软件有关的因素，
+                    一个程序的运行时间依赖于<span class="strong">算法的好坏</span>和<span class="strong">问题的输入规模</span>（就是输入量的多少）
+                </p>
+                <p class="strong">
+                    研究算法的复杂度，侧重严重算法随着输入规模扩大增长量的一个抽象，而不是精确地定位需要执行多少次，因为如果这样的话，我们就得考虑回编译期优化等问题。
+                    我们在分析一个算法的运行时间时，重要的是把基本操作的数量和输入模式关联起来。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
