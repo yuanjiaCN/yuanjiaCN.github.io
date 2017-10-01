@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>DOM2元素大小</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>元素大小</h4>
+                <a href='twentyThird.html'  class='book contentLink' value='2017.8.14'>☞之前的博客有一些相关的</a>
+                <h5>偏移量</h5>
+                <p>元素的可见大小由其高度、宽度决定，包括所有内边距、滚动条和边框大小（注意，不包括外边距）</p>
+                <p class="strong">在做偏移量的测试时，别忘了这个！</p>
+                <p class="code">
+                    *{<br>
+                    padding: 0;<br>
+                    margin: 0;<br>
+                    }<br>
+                </p>
+                <h5>offsetHeight</h5>
+                <p>offsetHeight:元素在垂直方向上占用的空间大小，以像素计。包括元素的高度、（可见的）水平滚动条的高度、上边框高度和下边框高度</p>
+                <p><span class="strong">个人测试：</span>子元素（内容大小+padding*2+border*2+滚动条）</p>
+                <h5>offsetWidth</h5>
+                <p>offsetWidth:元素在水平方向上占用的空间大小，以像素计。包括元素的宽度、（可见的）垂直滚动条的宽度、左边框高度和右边框高度</p>
+                <p><span class="strong">个人测试：</span>子元素（内容大小+padding*2+border*2+滚动条）</p>
+                <h5>offsetLeft</h5>
+                <p>offsetLeft:元素的左外边框至包含元素的左内边距之间的像素距离。</p>
+                <p><span class="strong">个人测试：</span>父元素的padding-left+子元素的margin</p>
+                <h5>offsetTop</h5>
+                <p>offsetTop: 元素的上外边框至包含元素的左内边距之间的像素距离</p>
+                <p><span class="strong">个人测试：</span>父元素的padding-left+父元素内容高度+子元素的margin</p>
+                <p>//亲测貌似这两个属性和滚动条没什么关系</p>
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

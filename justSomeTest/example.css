@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#outer{
+    background: black;
+    color: white;
+    overflow: auto;
+    width: 20px;
+    height: 20px;
+}
+#inner{
+    color: blue;
+    margin: 1px;
+    padding: 20px;
+    border:20px solid black;
+    overflow: auto;
+    width: 20px;
+    height: 20px;
+}

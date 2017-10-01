@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-       "<a href='fiftyNinth.html' class='book' value='2017.10.1'>DOM2样式</a>"
+       "<a href='sixtieth.html' class='book' value='2017.10.2'>DOM2元素大小</a>"
+     + "<a href='fiftyNinth.html' class='book' value='2017.10.1'>DOM2样式</a>"
      + "<a href='dataStructureAndAlgorithmsSet.html' class='set' value='2017.9.23'>数据结构与算法的合集</a>"
      + "<a href='fiftyEighth.html' class='book' value='2017.9.23'>数据结构与算法（1）——一些基本概念</a>"
      + "<a href='gitSet.html' class='set' value='2017.9.9'>探索git的合集</a>"
