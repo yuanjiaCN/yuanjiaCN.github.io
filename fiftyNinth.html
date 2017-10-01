@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>DOM2样式</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.style对象的属性和方法</h4>
+                <p>
+                    任何支持style特性的HTML元素在JavaScript中都有一个对应的style属性。这个style对象是CSSStyleDeclaration
+                    的实例，包含着通过HTML的style特性指定的所有样式信息，但不包含与外部样式表或嵌入样式表经层叠而来的样式。
+                </p>
+                <p class="strong">注意使用驼峰大小写的形式。</p>
+                <h5>cssText</h5>
+                <p>
+                    通过这个style对象的属性能访问到style特性（写在外联表里的不算）中的CSS代码。
+                </p>
+                <p>
+                    在写入模式下，赋给cssText的值会重写整个style特性的值（写在外联表里的不算），
+                    也就是说，以前通过style特性指定的<span class="strong">样式信息都将丢失</span>。
+                </p>
+                <h5>格式：</h5>
+                <p class="code">myDiv.style.cssText = " color: red; background: black; border: 20px dashed blue";</p>
+                <p>HTML:</p>
+                <p class="code"><\p style="border: dashed blue 20px">an example<\/p></p>
+                <p>CSS:</p>
+                <p class="code">p{
+                    color: red;<br>
+                    background: black;<br>
+                    }<br>
+                </p>
+                <p>JS:</p>
+                <p class="code">
+                    var P = document.getElementsByTagName("p")[0];<br>
+                    alert(P.style.cssText);// border: 20px dashed blue;<br>
+                    //这时的全部样式为，{color: red; background: black; border: 20px dashed blue;}<br>
+                    P.style.cssText = "color:green";<br>
+                    alert(P.style.cssText);// color: green;<br>
+                    //这时的全部样式为，{color: green; background: black;}<br>
+                    }<br>
+                </p>
+                <h5>getPropertyValue()</h5>
+                <p>getPropertyValue()方法取得的始终是CSS属性值的字符串表示；依然是只能访问到style特性</p>
+                <p class="code">
+                    var value = P.style.getPropertyValue(P.style[0]);//P.style.item(0)也可以<br>
+                    alert(value);//green<br>
+                </p>
+                <h5> item（index）</h5>
+                <p>item（index）方法，返回给定位置的css属性的名称</p>
+                <h5>getPropertyCSSValue()</h5>
+                <p>
+                    不常用，在chrome中测试:<span class="strong">Uncaught TypeError: P.style.getPropertyCSSValue is not a function</span>
+                    据说要被w3c废弃，最新的草案里没有了。有些浏览器也不支持。
+                </p>
+                <h5>removeProperty(propertyName)</h5>
+                <p>
+                    从元素的样式中移除某个CSS属性，使用这个方法移除一个属性，意味着将会为该属性应用默认的样式（从其他的样式表经层叠而来）
+                </p>
+                <p class="code">
+                    var P = document.getElementsByTagName("p")[0];<br>
+                    P.style.cssText = "color:green;background-color : red";<br>
+                    var value = P.style.getPropertyValue(P.style[1]);<br>
+                    P.style.removeProperty("background");<br>
+                    alert(value);//red<br>
+                    alert(P.style.cssText);// color: green;<br>
+                </p>
+                <p>
+                    最终背景颜色为外联样式表里的black，但是alert(value)返回的还是red，
+                    而alert(P.style.cssText)还是正常的返回了移除样式以后的结果。
+                </p>
+                <h4>1.可以接收行内元素（style特性）样式和其他样式表层叠而来并影响到当前元素的样式信息。</h4>
+                <h5>getComputedStyle()方法（除了IE都支持）</h5>
+                <p>
+                    接受两个参数：要取得计算样式的元素和一个伪元素字符串（例如：after）,如果不需要伪元素信息，第二个参数可以是null
+                </p>
+                <h5>一个小例子</h5>
+                <p class="code">
+                    var computedStyle = document.defaultView.getComputedStyle(P,null);//或者window.defaultView.getComputedStyle(P,null)<br>
+                    alert(computedStyle);//[object CSSStyleDeclaration]<br>
+                    alert(computedStyle.backgroundColor);//rgb(0, 0, 0)<br>
+                    alert(computedStyle.color);rgb(255, 192, 203);//就是在行内定义的pink<br>
+                </p>
+                <p>
+                    document.defaultView属性返回当前 document 对象所关联的 window 对象，如果没有，会返回 null。IE9以下不支持。
+                    基本上用<span class="strong">window.getComputedStyle()</span>就可以了，只有一种情况必须用defaultView，
+                    就是在firefox3.6上访问子框架内的样式 (iframe)
+                </p>
+                <p class="strong">
+                    注意：computedStyle.border不会在所有浏览器中都返回值（因为不同浏览器解释综合属性（如border）的方式不同，
+                    因为设置这种属性实际上会设计很多其他属性），但是computedStyle.borderLeftWidth会返回值。
+                </p>
+                <h5>currentStyle属性（IE支持，类似getComputedStyle()方法）</h5>
+                <p class="code">
+                    var computedStyle = P.currentStyle;<br>
+                    alert(computedStyle);//[object]<br>
+                    alert(computedStyle.backgroundColor);//black<br>
+                    alert(computedStyle.color);rgb(255, 192, 203);//pink<br>
+                </p>
+                <p class="strong">
+                    注意：无论在哪个浏览器中，所有计算的样式都是只读的，不能修改计算后样式对象中的CSS属性，此外，计算后的样式也包含属于浏览器内部样式表的样式信息，因此任何具有默认值的CSS属性都会表现在计算后的样式中。
+                </p>
+                <p class="ps">
+                    PS：不要指望某个CSS属性的默认值在不同浏览器中是相同的，如果你需要元素具有某个特定的默认值，应该手工在样式表中指定该值。
+                </p>
+                <h4>2.操作样式表：</h4>
+                <p>CSSStyleSheet类型表示的是样式表，包括通过<\link>元素包含的样式表和在<\style>元素中定义的样式表。</p>
+                <p>
+                    除了属性disabled：表示样式表是否禁用的布尔值。是可读可写的。其他的属性、方法一律只可读。
+                </p>
+                <p>
+                    应用于文档的所有样式表是通过<span class="strong">document.styleSheets</span>集合来表示的。
+                    通过这个集合的length属性可以获知文档中样式表的数量，而通过方括号语法或item()方法可以访问每一个样式表。
+                </p>
+                <p class="code">
+                    var sheet = document.styleSheets[0];<br>
+                    alert(sheet.href);//file:///G:/17%20vacation/example.css<br>
+                </p>
+                <h5>sheet||styleSheet</h5>
+                <p>
+                    DOM规定了一个包含 CSSStyleSheet对象的属性，名叫sheet（不兼容IE）;IE支持styleSheet属性
+                </p>
+                <h5>例子：在不同浏览器中都能取得样式表对象的一个函数</h5>
+                <p class="code">
+                    function getStyleSheet(element) {<br>
+                    return element.sheet || element.styleSheet;<br>
+                    }<br>
+                    var link = document.getElementsByTagName("link")[0];<br>
+                    var sheet = getStyleSheet(link);<br>
+                    alert(sheet.href);//file:///G:/17%20vacation/example.css<br>
+                </p>
+                <h5>CSS规则</h5>
+                <p class="code">
+                    var sheet = document.styleSheets[0];<br>
+                    var rules = sheet.cssRules || sheet.rules;<br>
+                    var rule = rules[0];<br>
+                    alert(rule.selectorText);//p<br>
+                    alert(rule.style.color);//red<br>
+                    alert(rule.cssText);//p { color: red; background: black none repeat scroll 0% 0%; }<br>
+                    alert(rule.style.cssText);//color: red; background: black none repeat scroll 0% 0%;<br>
+                </p>
+                <p>
+                    在本地运行时，chrome报错
+                    <span class="strong">example1.js:201 Uncaught TypeError: Cannot read property '0' of null</span>
+                    ff和ie表现正常。<br>
+                </p>
+                <h5>style.cssText属性和cssText属性</h5>
+                <p>
+                    style.cssText属性和cssText属性类似，但不相同，前者只包含样式信息，后者还包含选择符文本和围绕样式信息的花括号。<br>
+                <p class="code">
+                    rule.style.backgroundColor = "grey";<br>
+                </p>
+                <p class="strong">
+                    注意：以这种方式修改规则会影响页面中适用于该规则的所有元素。
+                </p>
+                <p>
+                    就是说，有多少个p元素，就会有多少个p元素应用这个样式。<br>
+                </p>
+                <h5>创建规则insertRule()方法</h5>
+                <p>
+                    insertRule()方法，接受两个参数：规则文本和表示在哪里插入规则的索引.
+                </p>
+                <h5>addRule()方法</h5>
+                <p>
+                    为了兼容IE8及以下，再加一个addRule()
+                </p>
+                <p>
+                    该方法接受三个参数:两个必选参数：选择符文本和CSS样式信息；一个可选参数：插入规则的位置。
+                </p>
+                <p class="code">sheet.addRule("body", "background-color: grey", 0);</p>
+                <p>
+                    有关这个方法的规定中说，最多可以使用addRule()添加4095条样式规则，超过这个上限的调用会导致错误。
+                    (如果要添加那么多条的话，干脆用动态加载技术就好了)
+                </p>
+                <p>
+                    跨浏览器的函数：接受四个参数,要向其中添加规则的样式表以及addRule（）方法的三个参数
+                </p>
+                <p class="code">
+                    function insertRule(sheet, selectorText, cssText, position) {<br>
+                    if(sheet.insertRule){<br>
+                    sheet.insertRule(selectorText + "{" + cssText + "}", position);<br>
+                    }else if(sheet.addRule){<br>
+                    sheet.addRule(selectorText,cssText,position)<br>
+                    }<br>
+                    }<br>
+                    insertRule(document.styleSheets[0],"body","background-color: red",0);<br>
+                </p>
+                <p>
+                    虽然可以像这样添加规则，但是随着要添加规则的增多，这种方法就会变得非常繁琐，因此，如果要添加的规则非常多，建议用<span class="strong">动态加载样式表</span>的技术。
+                </p>
+                <h5>删除规则deleteRule()</h5>
+                <p>deleteRule()接受一个参数,要删除的规则的位置。</p>
+                <h5>removeRule()</h5>
+                <p>由于IE又有一个自己的方法removeRule(),所以再写一个兼容函数</p>
+                <p class="code">
+                    function deleteRule(sheet, index) {<br>
+                    if (sheet.deleteRule){<br>
+                    sheet.deleteRule(index);<br>
+                    } else if (sheet.removeRule){<br>
+                    sheet.removeRule(index)<br>
+                    }<br>
+                    }<br>
+                    deleteRule(document.styleSheets[0],0);<br>
+                </p>
+                <p class="strong">删除规则可能会影响CSS层叠的效果，谨慎使用！！</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

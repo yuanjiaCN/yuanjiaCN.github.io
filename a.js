@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-       "<a href='dataStructureAndAlgorithmsSet.html' class='set' value='2017.9.23'>数据结构与算法的合集</a>"
+       "<a href='fiftyNinth.html' class='book' value='2017.10.1'>DOM2样式</a>"
+     + "<a href='dataStructureAndAlgorithmsSet.html' class='set' value='2017.9.23'>数据结构与算法的合集</a>"
      + "<a href='fiftyEighth.html' class='book' value='2017.9.23'>数据结构与算法（1）——一些基本概念</a>"
      + "<a href='gitSet.html' class='set' value='2017.9.9'>探索git的合集</a>"
      + "<a href='fiftySeventh.html' class='book' value='2017.9.9'>探索Git(16)——rebase和merge区别</a>"
