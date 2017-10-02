@@ -224,13 +224,32 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  }
  }
  deleteRule(document.styleSheets[0],0);
+
+ var inner = document.getElementById("inner");
+ var outer = document.getElementById("outer");
+ setInterval(function () {
+ var scrollLeft = inner.scrollLeft;
+ alert(scrollLeft)
+ alert(inner.getBoundingClientRect().left);
+ },1000)
 */
-var inner = document.getElementById("inner");
-var outer = document.getElementById("outer");
-setInterval(function () {
-    var scrollLeft = inner.scrollLeft;
-    alert(scrollLeft)
-    alert(inner.getBoundingClientRect().left);
-},1000)
+var support = document.implementation.hasFeature("Range","2.0");
+var alsoSupport = typeof document.createRange === "function";//书上写的是var alsoSupport = （typeof document.createRange == "function"）
+alert(alsoSupport)
+var range1 = document.createRange();
+var range2 = document.createRange();
+var p1 = document.getElementById("p1");
+var r1 = range1.selectNode(p1);
+var r2 = range2.selectNodeContents(p1);
+alert(range1.startOffset);//1
+alert(range1.endOffset)//2
+alert(range2.startOffset);//0
+alert(range2.endOffset)//2
+//alert(r1);//undefined
+//alert(r2)//undefined
+
+
+
+
 
 

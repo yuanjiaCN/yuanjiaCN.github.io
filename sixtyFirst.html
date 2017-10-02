@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>DOM2范围</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='domSet.html' class='book contentLink' value='2017.10.2'>☞dom2、3相关合集</a>
+                <h4>0.范围</h4>
+                <p>DOM2级在Document类型中定义了createRange()方法</p>
+                <p class="code">
+                    var support = document.implementation.hasFeature("Range","2.0");
+                    var alsoSupport = typeof document.createRange === "function";//书上写的是var alsoSupport = （typeof document.createRange == "function"）
+                </p>
+                <p>
+                    测试一下浏览器是否兼容，除了IE以外，alert一下都返回true，IE有自己实现的方法，一会写。
+                </p>
+
+                <h4>1.创建范围</h4>
+                <p class="code">var range1 = document.createRange();</p>
+                <p>
+                    与节点类似，新创建的范围也直接和创建它的文档关联在一起，不能用于其他文档。
+                </p>
+                <p>每个范围由一个Range类型的实例表示，这个实例拥有许多方法和属性，以下属性提供了当前范围在文档中的位置信息。</p>
+                <h5>startContainer:</h5>
+                <p>startContainer:包含范围起点的节点（即选区中第一个节点的父节点）。</p>
+                <h5>startOffset:</h5>
+                <p>startOffset:范围在startContainer中起点的偏移量。如果startContainer是文本节点、注释节点或CDATA节点，那么startOffset就是范围起点之前跳过的字符数量。否则，startOffset就是范围中第一个子节点的索引（注意索引是从0开始算的）。</p>
+                <h5>endContainer:</h5>
+                <p>endContainer:包含范围终点的节点（即选区中最后一个节点的父节点）。</p>
+                <h5>endOffset:</h5>
+                <p>endOffset: 范围在endContainer中终点的偏移量。（与startOffset遵循同样的取值规则）。</p>
+                <h5>commonAncestorContainer:</h5>
+                <p>commonAncestorContainer:startContainer和endContainer共同的祖先节点在文档树种位置最深的那个。（p是深，body是浅）</p>
+
+                <h4>2.用DOM范围实现简单选择</h4>
+                <p>
+                    要使用范围来选择文档的一部分，最简单的方法就是使用selectNode()或selectNodeContents()。
+                    这两个方法都接受一个参数，即一个DOM节点，然后使用该节点中的信息来填充范围。
+                </p>
+                <h5>selectNode()</h5>
+                <p>selectNode()选择整个节点，包括其子节点。</p>
+                <h5>selectNodeContexts()</h5>
+                <p>selectNodeContexts()方法，只选择节点的子节点</p>
+                <h5>一个小例子</h5>
+                <p>html</p>
+                <p class="code">
+                <\body><br>
+                <\p id="p1"><\b>Hello<\/b> world!<\/p><br>
+                <\/body>  <br>
+                </p>
+                <p>js</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var range2 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var r1 = range1.selectNode(p1);<br>
+                    var r2 = range2.selectNodeContents(p1);<br>
+                </p>
+                <p>
+                    range1包含了P元素及其所有的子元素，而range2包括了b元素及其子节点（Hello）以及文本节点world!。
+                </p>
+                <p>
+                    在调用selectNode()时，startContainer，endContainer ，commonAncestorContainer:startContainer都等于传入节点的父节点，
+                    也就是整个例子中的document.body，
+                    而startOffset属性等于给定节点在其父节点childNodes集合中的索引（在和这个例子中是1，因为空格节点也是文本节点，它是0索引，所以p节点就是1索引），
+                    endOffset等于startOffset加1（这是书上写的，个人理解，可以把endOffset的值理解为子节点的数量，那么一个空格文本节点+一个p节点就是2了）
+                </p>
+                <p>
+                    在调用selectNodeContents()时，startContainer，endContainer ，commonAncestorContainer:startContainer都等于传入节点的父节点，
+                    也就是整个例子中的p元素，而startOffset属性始终等于0，因为b元素是p元素的第一个子节点，索引为0。
+                    endOffset等于子节点的数量(node.childNodes.length)，在这个例子中是2（一个元素节点b,一个文本节点world!,Hello是个孙元素，不算的）
+                </p>
+                <p class="code">
+                    alert(range1.startOffset);//1<br>
+                    alert(range1.endOffset)//2<br>
+                    alert(range2.startOffset);//0<br>
+                    alert(range2.endOffset)//2<br>
+                </p>
+                <p class="strong">注意！有startOffset等等属性的是range,不是range.selectNode()</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
