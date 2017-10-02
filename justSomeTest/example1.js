@@ -225,5 +225,12 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  }
  deleteRule(document.styleSheets[0],0);
 */
-var inner = document.getElementById("inner")
-alert(inner.offsetTop)
+var inner = document.getElementById("inner");
+var outer = document.getElementById("outer");
+setInterval(function () {
+    var scrollLeft = inner.scrollLeft;
+    alert(scrollLeft)
+    alert(inner.getBoundingClientRect().left);
+},1000)
+
+

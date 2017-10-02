@@ -5,16 +5,22 @@
 #outer{
     background: black;
     color: white;
+    margin: 10px;
+    border: 15px solid red;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
     overflow: auto;
-    width: 20px;
-    height: 20px;
+
 }
 #inner{
+    background: red;
     color: blue;
-    margin: 1px;
-    padding: 20px;
-    border:20px solid black;
-    overflow: auto;
-    width: 20px;
+    margin: 15px;
+    padding: 30px;
+    border:40px solid blue;
+    width: 60px;
     height: 20px;
+    overflow: auto;
+
 }
