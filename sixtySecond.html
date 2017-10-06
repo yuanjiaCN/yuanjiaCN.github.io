@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>DOM2范围——endOffset相关</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='domSet.html' class='book contentLink' value='2017.10.2'>☞dom2、3相关合集</a>
+                <h4>0.endOffset的困扰</h4>
+                <h5>endOffset:</h5>
+                <p>
+                    endOffset:范围在endContainer中终点的偏移量（与startOffset遵循相同的取值规则）
+                </p>
+                <p>
+                    一直不知道怎么算！之前包括元素节点的时候，
+                    就假装range.endOffset的值是子元素索引数+1或者直接从1（而不是0）数到所需子元素，但是也是知其然而不知其所以然。
+                </p>
+                <p>
+                    现在正儿八经的选文本节点的范围，这个问题就又来了，结果在我苦思冥想之际，竟然发现计算endOffset的真正（更好用的）方法！
+                </p>
+                <p>
+                    比如，这样一个P元素节点中包含了一个hello的文本节点，如果我取
+                </p>
+                <p class="code">
+                    range1.setStart(p1Text,1);<br>
+                    range1.setEnd(p1Text,4);<br>
+                </p>
+                <p>
+                    会如何?实践出真知吧！
+                </p>
+                <p>HTML：</p>
+                <p class="code">
+                <\p id="p1">hello<\/p>
+                </p>
+                <p>js:</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var p1Text = p1.firstChild;<br>
+                    range1.setStart(p1Text,1);<br>
+                    range1.setEnd(p1Text,4);<br>
+                    alert(range1)//ell<br>
+                </p>
+                <p>
+                    这样一看，我觉得startOffset和endOffset应该这么理解（先卖个关子让我再分析分析），先放上书中原句
+                </p>
+                <h5>startOffset</h5>
+                <p>
+                    startOffset:范围在startContainer中起点的偏移量。
+                    如果startContainer是文本节点、注释节点或CDATA节点，那么startOffset就是范围起点之前跳过的字符数量。
+                    否则，startOffset就是范围中第一个子节点的索引（注意索引是从0开始算的）。
+                </p>
+                <p>重点是这句：<span class="strong">那么startOffset就是范围起点之前跳过的字符数量。</span></p>
+                <p>
+                    字符数量指的应该是是从1开始而不是0，但是红宝书335页又是从0开始标记的，所以还是以实践的335页为标准吧。
+                </p>
+                <h4>1.一些例子解决关于range.endOffset具体数值的困扰</h4>
+                <p>正式写我的理解：</p>
+                <p>
+                    我之后是这么理解的，其实在range这一章，不应该以一个字符为一个索引
+                    （这么说有点歧义，总之我认为在range这一章不应该使用索引这个词，感觉这与真正想报答的概念有点不太一样），
+                    范围的索引应该是和slice（）方法类似的，是在字符前后的，如：
+                </p>
+                <p style="color: coral">
+                    0 h 1 e 2 l 3 l 4 o 5
+                </p>
+                <p>
+                    这样就很好理解了，范围就是用开始和结尾两个界限框起来的范围嘛，那么我要找一个1到4的范围还不容易?
+                </p>
+                <p style="color: coral">
+                    很显然是1 e 2 l 3 l 4
+                </p>
+                <p>
+                    去掉这些人为标注的1 2 3 4，答案不就是ell了嘛
+                </p>
+                <h4>2.扩展一下range.endOffset关于元素节点时候的求值</h4>
+                <p>
+                    而包含元素子节点的也可以这么算，但是要注意一下换行符的问题。
+                </p>
+                <p>比如：html</p>
+                <p class="code">
+                <\p id="p1"><br>
+                    <\b><\/b><\span><\/span><br>
+                <\/p><br>
+                </p>
+                <p>js:</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    range1.selectNodeContents(p1)<br>
+                    alert(range1.endOffset)//4<br>
+                    alert(range1.startOffset)//0<br>
+                </p>
+                <p>
+                    范围框定的是从p元素的开始标签的右边括号>到p元素的结束标签的左边括号<
+                </p>
+                <h5>
+                    一共框定了这些东西：
+                </h5>
+                <p>
+                    一个换行符、b元素、span元素、一个换行符
+                </p>
+                <p>
+                    写成前面文本的形式就是
+                </p>
+                <p style="color: coral">
+                    0 换行符 1 b元素 2 span元素 3 换行符 4
+                </p>
+                <p>
+                    所以是startOffset和endOffset返回0和4没毛病啊！的确是0和4把这些东西框了进去！
+                </p>
+
+
+
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

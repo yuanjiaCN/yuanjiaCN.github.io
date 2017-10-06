@@ -272,20 +272,27 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  alert(range1.endOffset)//4。 因为有很多个空格算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
  range1.setStartBefore(pOuter);
  alert(range1.startContainer)// Argument 1 of Range.setStartBefore is not an object.
+
+ var range1 = document.createRange();
+ var p1 = document.getElementById("p1");
+ var p0 = document.getElementById("p0");
+ var b = document.getElementById("b")
+ var pOuter = document.getElementById("pOuter");
+ range1.setStartBefore(p1);
+ range1.setEndBefore(p1);
+ alert(range1);//alert空
+ range1.setEndAfter(p1);
+ alert(range1);//some paragraphs Hello world!
+ alert(range1.endOffset);//4。 因为有很多个换行符也被dom算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
+ alert(range1.startOffset)//3。因为算上换行符和第一个文本节点，所以是3，如果把换行符都删除，则是1（第一个p0子节点是索引0，p1是索引1）
 */
 
 var range1 = document.createRange();
 var p1 = document.getElementById("p1");
-var p0 = document.getElementById("p0");
-var b = document.getElementById("b")
-var pOuter = document.getElementById("pOuter");
-range1.setStartBefore(p1);
-range1.setEndBefore(p1);
-alert(range1);//alert空
-range1.setEndAfter(p1);
-alert(range1);//some paragraphs Hello world!
-alert(range1.endOffset);//4。 因为有很多个换行符也被dom算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
-alert(range1.startOffset)//3。因为算上换行符和第一个文本节点，所以是3，如果把换行符都删除，则是1（第一个p0子节点是索引0，p1是索引1）
+range1.selectNodeContents(p1)
+alert(range1.endOffset)//4
+alert(range1.startOffset)//0
+
 
 
 
