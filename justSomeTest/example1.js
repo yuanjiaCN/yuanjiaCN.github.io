@@ -232,21 +232,63 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  alert(scrollLeft)
  alert(inner.getBoundingClientRect().left);
  },1000)
+ var support = document.implementation.hasFeature("Range","2.0");
+ var alsoSupport = typeof document.createRange === "function";//书上写的是var alsoSupport = （typeof document.createRange == "function"）
+ alert(alsoSupport)
+ var range1 = document.createRange();
+ var range2 = document.createRange();
+ var p1 = document.getElementById("p1");
+ var r1 = range1.selectNode(p1);
+ var r2 = range2.selectNodeContents(p1);
+ alert(range1.startOffset);//1
+ alert(range1.endOffset)//2
+ alert(range2.startOffset);//0
+ alert(range2.endOffset)//2
+ //alert(r1);//undefined
+ //alert(r2)//undefined
+
+
+ var range1 = document.createRange();
+ var p1 = document.getElementById("p1");
+ var p0 = document.getElementById("p0");
+ var b = document.getElementById("b")
+ var pOuter = document.getElementById("pOuter");
+ alert(range1);//啥都没有
+ range1.selectNode(p1);
+ alert(range1);//some paragraphs Hello world!
+ alert(range1.startContainer);//[object HTMLDivElement]
+ range1.setStartBefore(b);
+ alert(range1.startContainer);//[object HTMLParagraphElement]
+ alert(range1.endContainer);//[object HTMLDivElement]
+ alert(range1);//Hello world!
+ range1.setStartAfter(b);
+ alert(range1.startContainer)//[object HTMLParagraphElement]亲测就算把world!这个文本节点删除了，还是返回一样的结果，原因setStartAfter的介绍说明了。
+ alert(b.nextSibling);//[object Text],删除world!显示null
+ alert(range1);//world!亲测如果把world!这个文本节点删除了，就什么都不alert了。
+ range1.setStartBefore(p1);
+ alert(range1.startContainer);//[object HTMLDivElement]
+ alert(range1)//some paragraphs Hello world!
+ range1.setEndAfter(p1);
+ alert(range1.endOffset)//4。 因为有很多个空格算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
+ range1.setStartBefore(pOuter);
+ alert(range1.startContainer)// Argument 1 of Range.setStartBefore is not an object.
 */
-var support = document.implementation.hasFeature("Range","2.0");
-var alsoSupport = typeof document.createRange === "function";//书上写的是var alsoSupport = （typeof document.createRange == "function"）
-alert(alsoSupport)
+
 var range1 = document.createRange();
-var range2 = document.createRange();
 var p1 = document.getElementById("p1");
-var r1 = range1.selectNode(p1);
-var r2 = range2.selectNodeContents(p1);
-alert(range1.startOffset);//1
-alert(range1.endOffset)//2
-alert(range2.startOffset);//0
-alert(range2.endOffset)//2
-//alert(r1);//undefined
-//alert(r2)//undefined
+var p0 = document.getElementById("p0");
+var b = document.getElementById("b")
+var pOuter = document.getElementById("pOuter");
+range1.setStartBefore(p1);
+range1.setEndBefore(p1);
+alert(range1);//alert空
+range1.setEndAfter(p1);
+alert(range1);//some paragraphs Hello world!
+alert(range1.endOffset);//4。 因为有很多个换行符也被dom算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
+alert(range1.startOffset)//3。因为算上换行符和第一个文本节点，所以是3，如果把换行符都删除，则是1（第一个p0子节点是索引0，p1是索引1）
+
+
+
 
 
 

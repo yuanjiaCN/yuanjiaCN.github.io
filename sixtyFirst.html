@@ -98,6 +98,76 @@
                     alert(range2.endOffset)//2<br>
                 </p>
                 <p class="strong">注意！有startOffset等等属性的是range,不是range.selectNode()</p>
+
+                <p>
+                    为了更精确的控制将哪些节点包含在范围中，还可以使用下列方法。
+                </p>
+                <h5>setStartBefore(refNode):</h5>
+                <p>setStartBefore(refNode):将范围的起点设置在refNode之前，因此refNode也就是范围选区中的第一个子节点。同时会将startContainer属性设置为refNode.prentNode,将startOffset属性设置为refNode在其父节点的childNodes集合中的索引。</p>
+                <h5>setStartAfter(refNode): </h5>
+                <p>setStartAfter(refNode): 将范围的起点设置在refNode之后，因此refNode也就不在范围之内了，其下一个同辈节点才是范围选区中的第一个子节点。同时会将startContainer属性设置为refNode.prentNode,将startOffset属性设置为refNode在其父节点的childNodes集合中的索引加1。（因为第一个节点的索引是refNode的索引+1）。</p>
+                <h5>setEndBefore(refNode):</h5>
+                <p>setEndBefore(refNode):将范围的终点设置在refNode之前，因此refNode也就不在范围内了，上一个同辈节点才是范围选取中的最后一个子节点。同时会将endContainer属性设置为refNode.prentNode,将endOffset属性设置为refNode在其父节点的childNodes集合中的索引。</p>
+                <h5>setEndAfter(refNode):</h5>
+                <p>setEndAfter(refNode):将范围的终点设置在refNode之前，因此refNode也就是范围选区中的最后一个子节点。同时会将endContainer属性设置为refNode.prentNode,将endOffset属性设置为refNode在其父节点的childNodes集合中的索引加1（记成子元素的数量也可以）。</p>
+
+                <h5>一些测试，和之前学的selectNode()以及selectNodeContexts()方法联合起来用</>
+                <p>html(注意有很多换行符，这在dom中是算作文本节点的)</p>
+                <p class="code">
+                    <\div id="outer"><br>
+                    <\p id="outerP">outer paragraph<\/p><br>
+                    <\/div><br>
+                    <\div id="inner"><br>
+                    <\p id="p0">inner paragraph<\/p><br>
+                    <\p id="p1">some paragraphs <b id="b">Hello</b> world!<\/p><br>
+                    <\/div><br>
+                </p>
+                <p>js</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var p0 = document.getElementById("p0");<br>
+                    var b = document.getElementById("b")<br>
+                    var pOuter = document.getElementById("pOuter");<br>
+                    alert(range1);//啥都没有<br>
+                    range1.selectNode(p1);<br>
+                    alert(range1);//some paragraphs Hello world!<br>
+                    alert(range1.startContainer);//[object HTMLDivElement]<br>
+                    range1.setStartBefore(b);<br>
+                    alert(range1.startContainer);//[object HTMLParagraphElement]<br>
+                    alert(range1.endContainer);//[object HTMLDivElement]<br>
+                    alert(range1);//Hello world!<br>
+                    range1.setStartAfter(b);<br>
+                    alert(range1.startContainer)//[object HTMLParagraphElement]亲测就算把world!这个文本节点删除了，还是返回一样的结果，原因setStartAfter的介绍说明了。<br>
+                    alert(b.nextSibling);//[object Text],删除world!显示null<br>
+                    alert(range1);//world!亲测如果把world!这个文本节点删除了，就什么都不alert了。<br>
+                    range1.setStartBefore(p1);<br>
+                    alert(range1.startContainer);//[object HTMLDivElement]<br>
+                    alert(range1)//some paragraphs Hello world!<br>
+                    range1.setEndAfter(p1);<br>
+                    alert(range1.endOffset)// 4。 因为有很多个空格算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。<br>
+                    range1.setStartBefore(pOuter);<br>
+                    alert(range1.startContainer)// Argument 1 of Range.setStartBefore is not an object.<br>
+                </p>
+                <h5>单独使用这几个方法的测试</h5>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var p0 = document.getElementById("p0");<br>
+                    var b = document.getElementById("b")<br>
+                    var pOuter = document.getElementById("pOuter");<br>
+                    range1.setStartBefore(p1);<br>
+                    range1.setEndBefore(p1);<br>
+                    alert(range1);//alert空<br>
+                    range1.setEndAfter(p1);<br>
+                    alert(range1);//some paragraphs Hello world!<br>
+                    alert(range1.endOffset);//4。 因为有很多个换行符也被dom算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。<br>
+                    alert(range1.startOffset)//3。因为算上换行符和第一个文本节点，所以是3，如果把换行符都删除，则是1（第一个p0子节点是索引0，p1是索引1）<br>
+                </p>
+
+
+
+
             </article>
         </content>
     </section>
