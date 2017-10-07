@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>DOM2范围(3)——复杂选择、操作</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='domSet.html' class='book contentLink' value='2017.10.2'>☞dom2、3相关合集</a>
+                <h4>0.用DOM范围实现复杂选择</h4>
+                <h5>setStart()和setEnd()</h5>
+                <p>要创建复杂的范围就得使用setStart()和setEnd()方法。这两个方法都接受两个参数：一个参照节点和一个偏移量值。</p>
+                <p>
+                    对setStart()来说，参照节点会变成startContainer。
+                    而偏移量值会变成startoffset。对于setEnd()来说，参照节点会变成endContainer，而偏移量值会变成endOffset。
+                    可以使用这两个方法来模仿selectNode()和selectNodeContents(),但是这没意义，它的强大之处在于能够选择节点的一部分。
+                </p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var b = p1.children[0];<br>
+                    var span = p1.children[1];<br>
+                    range1.setStart(b.firstChild,1);<br>
+                    range1.setEnd(span.firstChild,5);<br>
+                    alert(range1);//ello worl<br>
+                </p>
+                <p>
+                    具体关于为什么最后range1显示ello worl，我在上一篇的博客中已经写了详细的原因
+                </p>
+                <a href='sixtySecond.html' class='book contentLink' value='2017.10.6'>☞此处应有链接</a>
+                <h4>1.操作DOM范围中的内容</h4>
+                <p>在创建范围时，内部会为这个范围创建一个文档片段，范围所属的全部节点都被添加到了这个文档片段中。</p>
+                <p>
+                    为了创建这个文档片段，范围内容的格式必须正确有效。
+                    在前面的例子中，创建的选区分别开始和结束于两个文本节点的内部，因此不能算是格式良好的DOM结构，也就无法通过DOM来表示。
+                    但是，范围知道自身缺少哪些开标签和闭标签，它能够重新构建有效的DOM结构以便对其进行操作.
+                </p>
+                <p>
+                    对于前面的例子而言，范围经过计算知道选区中缺少一个开始的<\b>标签，因此就会在后台动态加入一个该标签，
+                    同时还会在前面加入一个表示结束的<\/b>标签以结束"H"。于是，修改后的DOM就变成了如下所示
+                </p>
+                <p class="code">
+                    <\b>ello<\/b><\span> worl<\/span>
+                </p>
+
+                <p>
+                    像这样创建了范围之后，就可以使用各种方法对范围的内容进行操作了
+                    <span class="strong">（注意！！！表示范围的内部片段中的所有节点，都只是指向文档中相应节点的指针！）。</span>
+                </p>
+                <h5>deleteContents()方法</h5>
+                <p>从文档中删除范围所包含的内容。</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var b = p1.children[0];<br>
+                    var span = p1.children[1];<br>
+                    range1.setStart(b.firstChild,1);<br>
+                    range1.setEnd(span.firstChild,5);<br>
+                    alert(range1);//ello worlv
+                    range1.deleteContents();// hd!<br>
+                </p>
+                <p>
+                    HTML代码显示
+                </p>
+                <p class="code">
+                    <\b>H<\/b><\span>d!<\/span>
+                </p>
+                <p>
+                    由于范围选取在修改底层DOM结构时能够保证格式良好，因此即使内容被删除了，最终的DOM结构依旧是格式良好的。
+                </p>
+                <h5>extractContents()方法</h5>
+                <p>
+                    和deleteContents()方法相似，也会从文档中移除范围选取，但是extractContents方法会返回范围的文档片段。
+                    利用这个返回的值，可以将范围的内容插入到文档中的其他地方。
+                </p>
+                <p class="code">
+                    var fragment = range1.extractContents();<br>
+                    p1.parentNode.appendChild(fragment);<br>
+                    //hd!<br>
+                    //ello worl<br>
+                </p>
+                <h5>cloneContents()</h5>
+                <p>
+                    cloneContents()创建范围对象的一个副本，然后再文档的其他地方插入该副本。
+                    cloneContents()返回的文档片段包含的是范围中<span class="strong">节点的副本</span>，而不是实际的节点.
+                </p>
+                <p class="code">
+                    var fragment = range1.cloneContents();<br>
+                    p1.parentNode.appendChild(fragment);<br>
+                    //hello world!<br>
+                    //ello worl<br>
+                </p>
+                <p>
+                    PS:在将文档片段传入appendChild()方法中时，添加到文档中的只是片段的<span class="strong">子节点</span>，而非片段本身。
+                </p>
+                <p>
+                    注意！在调用上面介绍的方法之前，拆分的节点并不会产生格式良好的文档片段。换句话说，原始的HTML在DOM被修改之前会始终保持不变。
+                </p>
+                <h5>
+                    个人理解
+                </h5>
+                <p>
+                    就是在使用这些方法之前，HTML还是完整的，像这样
+                </p>
+                <p class="code">
+                    <\b>hello<\/b><\span> world!<\/span>
+                </p>
+                <p>
+                    而不会变成
+                </p>
+                <p class="code">
+                    <\b>he<\/b><\b>llo<\/b><\span> world!<\/span>
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

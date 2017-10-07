@@ -285,20 +285,24 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  alert(range1);//some paragraphs Hello world!
  alert(range1.endOffset);//4。 因为有很多个换行符也被dom算作文本节点，所以是4；如果把换行都删除，则是2，是父元素div的子节点数量。
  alert(range1.startOffset)//3。因为算上换行符和第一个文本节点，所以是3，如果把换行符都删除，则是1（第一个p0子节点是索引0，p1是索引1）
-*/
 
+ var range1 = document.createRange();
+ var p1 = document.getElementById("p1");
+ range1.selectNodeContents(p1)
+ alert(range1.endOffset)//4
+ alert(range1.startOffset)//0
+*/
 var range1 = document.createRange();
 var p1 = document.getElementById("p1");
-range1.selectNodeContents(p1)
-alert(range1.endOffset)//4
-alert(range1.startOffset)//0
-
-
-
-
-
-
-
+var b = p1.children[0];
+var span = p1.children[1];
+range1.setStart(b.firstChild,1);
+range1.setEnd(span.firstChild,5);
+alert(range1);//ello worl
+var fragment = range1.cloneContents();
+p1.parentNode.appendChild(fragment);
+//hello world!
+//ello worl
 
 
 
