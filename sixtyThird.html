@@ -47,7 +47,7 @@
                     具体关于为什么最后range1显示ello worl，我在上一篇的博客中已经写了详细的原因
                 </p>
                 <a href='sixtySecond.html' class='book contentLink' value='2017.10.6'>☞此处应有链接</a>
-                <h4>1.操作DOM范围中的内容</h4>
+                <h4 id="DOM1">1.操作DOM范围中的内容</h4>
                 <p>在创建范围时，内部会为这个范围创建一个文档片段，范围所属的全部节点都被添加到了这个文档片段中。</p>
                 <p>
                     为了创建这个文档片段，范围内容的格式必须正确有效。
@@ -130,7 +130,74 @@
                 <p class="code">
                     <\b>he<\/b><\b>llo<\/b><\span> world!<\/span>
                 </p>
-
+                <h4>2.插入DOM范围中的内容</h4>
+                <h5>insertNode()方法</h5>
+                <p>
+                    向范围选区的开始处插入一个节点
+                </p>
+                <p>惯例写一个小例子</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var b = p1.children[0];<br>
+                    var span = p1.children[1];<br>
+                    range1.setStart(b.firstChild,1);<br>
+                    range1.setEnd(span.firstChild,5);<br>
+                    var sp = document.createElement("span");<br>
+                    sp.style.color = "red";<br>
+                    sp.appendChild(document.createTextNode("Inserted text"));<br>
+                    range1.insertNode(sp);<br>
+                </p>
+                <p>效果</p>
+                <p id="p1"><b>h<span style="color: red;">Inserted text</span>ello</b><span> world!</span></p>
+                <p>HTML代码显示：</p>
+                <p class="code">
+                    <\p id="p1"><\b>h<\span style="color: red;">Inserted text<\/span>ello<\/b><\span> world!<\/span><\/p>
+                </p>
+                <p>
+                    <span class="strong">注意：</span>"span"元素正好被插入到了h之后，而被拆分的hello并没有多出一对b元素来，
+                    是因为这里没有使用我之前说的（小标题<a href="#DOM1">1.操作DOM范围中的内容</a>）那些方法。
+                </p>
+                <h5>surroundContents()方法</h5>
+                <p>
+                    环绕范围插入内容，这个方法接受一个参数，即环绕范围内容的节点。
+                </p>
+                <ul>
+                    <li>提取出范围中的内容（类似于执行extractContent()）;</li>
+                    <li>将给定节点插入到文档中原来范围所在的位置上；</li>
+                    <li>将文档片段的内容添加到给定节点中.</li>
+                </ul>
+                <p>例子</p>
+                <p class="code">
+                    var range1 = document.createRange();<br>
+                    var p1 = document.getElementById("p1");<br>
+                    var b = p1.children[0];<br>
+                    var span = p1.children[1];<br>
+                    range1.setStart(b.firstChild,1);<br>
+                    range1.setEnd(b.firstChild,4);<br>
+                    var sp = document.createElement("span");<br>
+                    sp.style.color = "red";<br>
+                    range1.surroundContents(sp); <br>
+                </p>
+                <p>效果</p>
+                <p id="p1"><b>h<span style="color: red;">ell<span>o</b><span> world!</span></p>
+                <p>HTML显示：</p>
+                <p class="code">
+                <\p id="p1"><\b>h<\span style="color: red;">ell<\span>o<\/b><\span> world!<\/span><\/p>
+                </p>
+                <p>
+                    书上说：<span>为了插入span,范围必须包含整个DOM选区（不能仅仅包含选中的DOM节点）</span>
+                </p>
+                <p>并不明白这句话的意思，那就试一下呗。</p>
+                <p>经过测试，整个方法不能跨标签使用，也就是说，如果我这么写代码</p>
+                <p class="code">
+                    range1.setStart(b.firstChild,1);<br>
+                    range1.setEnd(span.firstChild,4);<br>
+                </p>
+                <p>马上就能美滋滋的获得一个报错！</p>
+                <p class="ps">InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable</p>
+                <p>然后百度了一下，说是这个方法和selectNode()方法更配！</p>
+                <p>但是测试下来就算不是一个完整的标签也可以用这个surroundContents()方法呀！美滋滋的实践出真知，只是不能跨标签，可惜了。</p>
             </article>
         </content>
     </section>
