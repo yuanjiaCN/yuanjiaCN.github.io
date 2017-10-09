@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-       "<a href='sixtyThird.html' class='book' value='2017.10.7'>DOM2范围(3)——复杂选择、操作</a>"
+       "<a href='sixtyFourth.html' class='book' value='2017.10.9'>DOM2范围(4)——折叠、比较、复制、清理DOM范围</a>"
+     + "<a href='sixtyThird.html' class='book' value='2017.10.7'>DOM2范围(3)——复杂选择、操作</a>"
      + "<a href='sixtySecond.html' class='book' value='2017.10.6'>DOM2范围(2)——endOffset相关</a>"
      + "<a href='domSet.html' class='set' value='2017.10.2'>dom2、3相关合集</a>"
      + "<a href='sixtyFirst.html' class='book' value='2017.10.2'>DOM2范围(1)</a>"

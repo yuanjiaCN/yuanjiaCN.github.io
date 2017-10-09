@@ -315,18 +315,50 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  sp.appendChild(document.createTextNode("Inserted text"));
  range1.insertNode(sp);
 
+ var range1 = document.createRange();
+ var p1 = document.getElementById("p1");
+ var b = p1.children[0];
+ var span = p1.children[1];
+ range1.setStart(b.firstChild,1);
+ range1.setEnd(span.firstChild,4);
+ //range1.setEnd(b.firstChild,4);
+ var sp = document.createElement("span");
+ sp.style.color = "red";
+ range1.surroundContents(sp);
 
+ var range1 = document.createRange();
+ var p1 = document.getElementById("p1");
+ var b = p1.children[0];
+ var span = p1.children[1];
+ range1.setStart(b.firstChild,1);
+ range1.setEnd(b.firstChild,4);
+ //range1.setEnd(b.firstChild,4);
+ var sp = document.createElement("span");
+ sp.style.color = "red";
+ range1.surroundContents(sp);
+ range1.collapse(true);
+ alert(range1.collapsed);
+ alert(range1);//空
+
+ var range1 = document.createRange();
+ var range2 = document.createRange();
+ var b = p1.children[0];
+ var span = p1.children[1];
+ range1.setStartBefore(b);
+ range1.setEndAfter(span);
+ range2.setStartAfter(b);
+ range2.setEndAfter(span);
+ alert(range1.compareBoundaryPoints(Range.START_TO_START,range2));//-1
+ alert(range1.compareBoundaryPoints(Range.END_TO_END,range2));//0
 */
 var range1 = document.createRange();
-var p1 = document.getElementById("p1");
-var b = p1.children[0];
-var span = p1.children[1];
-range1.setStart(b.firstChild,1);
-range1.setEnd(span.firstChild,4);
-//range1.setEnd(b.firstChild,4);
-var sp = document.createElement("span");
-sp.style.color = "red";
-range1.surroundContents(sp);
+var newRange = range1.cloneRange();
+var fragment = range1.cloneContents();
+alert(newRange);//空
+alert(fragment);//[object DocumentFragment]
+
+
+
 
 
 
