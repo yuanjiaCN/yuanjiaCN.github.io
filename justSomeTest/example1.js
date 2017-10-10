@@ -350,16 +350,22 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  range2.setEndAfter(span);
  alert(range1.compareBoundaryPoints(Range.START_TO_START,range2));//-1
  alert(range1.compareBoundaryPoints(Range.END_TO_END,range2));//0
+
+ var range1 = document.createRange();
+ var newRange = range1.cloneRange();
+ var fragment = range1.cloneContents();
+ alert(newRange);//空
+ alert(fragment);//[object DocumentFragment]
 */
-var range1 = document.createRange();
-var newRange = range1.cloneRange();
-var fragment = range1.cloneContents();
-alert(newRange);//空
-alert(fragment);//[object DocumentFragment]
-
-
-
-
-
-
-
+var range1 = document.body.createTextRange();
+var p1 = document.getElementById("p1");
+range1.moveToElementText(p1);
+alert(range1.text);//hello world!
+range1.moveStart("character",1);
+alert(range1.text);//ello world!
+range1.expand("word");
+alert(range1.text);//hello world!
+range1.moveStart("word",1);
+alert(range1.text);//world!
+range1.move("character",1);
+alert(range1.text);//空
