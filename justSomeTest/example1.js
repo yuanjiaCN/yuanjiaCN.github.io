@@ -356,16 +356,36 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  var fragment = range1.cloneContents();
  alert(newRange);//空
  alert(fragment);//[object DocumentFragment]
-*/
-var range1 = document.body.createTextRange();
-var p1 = document.getElementById("p1");
-range1.moveToElementText(p1);
-alert(range1.text);//hello world!
-range1.moveStart("character",1);
-alert(range1.text);//ello world!
-range1.expand("word");
-alert(range1.text);//hello world!
-range1.moveStart("word",1);
-alert(range1.text);//world!
-range1.move("character",1);
-alert(range1.text);//空
+
+ var range1 = document.body.createTextRange();
+ var p1 = document.getElementById("p1");
+ range1.moveToElementText(p1);
+ alert(range1.text);//hello world!
+ range1.moveStart("character",1);
+ alert(range1.text);//ello world!
+ range1.expand("word");
+ alert(range1.text);//hello world!
+ range1.moveStart("word",1);
+ alert(range1.text);//world!
+ range1.move("character",1);
+ alert(range1.text);//空
+
+ var input1 = document.getElementById("input1");
+ input1.select();//选中文本框中所有文本
+ input1.focus();//焦点在文本上，但是不选中
+ input1.onselect = function () {
+ alert(input1.value.substring(input1.selectionStart,input1.selectionEnd));
+ }
+ var input1 = document.getElementById("input1");
+
+ input1.onselect = function () {
+ alert(document.selection.createRange().text)
+ }
+ //因为substring()方法基于字符串的偏移量执行操作，所以将selectionStart和selectionEnd直接传给它就可以取得选中的文本
+
+ */
+
+var newOption = new Option("5","5");
+var selectBox = document.forms[0].elements["number"]
+//selectBox.remove(0);//还剩2 3 4
+selectBox.removeChild(selectBox.options[0]);

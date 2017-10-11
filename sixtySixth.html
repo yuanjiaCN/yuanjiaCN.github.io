@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>表单脚本的一些DOM和HTML5方法</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h5>select()方法</h5>
+                <p>select()方法，这个方法用于选择文本框中的所有文本</p>
+                <p class="code">
+                    var input1 = document.getElementById("input1");<br>
+                    input1.select();//选中文本框中所有文本<br>
+                </p>
+                <h5>和focus()的区别</h5>
+                <p class="code">input1.focus();//焦点在文本上，但是不选中</p>
+                <h5>select事件</h5>
+                <p>在选择了文本框中的文本、或者调用select()方法时，就会触发select事件，</p>
+                <h5>selectionStart和selectionEnd属性</h5>
+                <p>selectionStart和selectionEnd属性，可以知道用户选择了什么文本。</p>
+                <p>这两个属性保存的是基于0的数值，表示所选择的文本的范围（即文本选区开头和结尾的偏移量）具体算法参照另一篇博客。</p>
+                <a href='sixtySecond.html' class='book contentLink' value='2017.10.6'>☞点我点我</a><br>
+                <br>
+                <p class="code">
+                    input1.onselect = function () {<br>
+                    alert(input1.value.substring(input1.selectionStart,input1.selectionEnd));//被选中的文本内容<br>
+                    }<br>
+                    //因为substring()方法基于字符串的偏移量执行操作，所以将selectionStart和selectionEnd直接传给它就可以取得选中的文本<br>
+                </p>
+                <h5>document.selection对象</h5>
+                <p>
+                    除了IE8及以下，都支持这两个属性，IE8支持document.selection对象，其中保存着整个文档范围内选择的文本信息，也就是说，无法确定用户选择的是页面中哪个部位的文本。不过，在与select事件一起使用的时候，可以假定是用户选择了文本框中的文本，因而触发了该事件。
+                </p>
+                <p class="code">
+                    input1.onselect = function () {<br>
+                    alert(document.selection.createRange().text)//返回一个字母<br>
+                    }<br>
+                </p>
+                <p class="strong">
+                    但是使用这个会有点问题，因为在IE8及更早版本中，鼠标按下就会直接触发select,所以在这个例子中，每次只要我选择了一个字母，就会马上有个alert。慎用！
+                </p>
+                <h5>type=”email”</h5>
+                <p class="ps">注意要用form包裹input</p>
+                <p>html</p>
+                <p class="code">
+                    <\form><br>
+                        <\input type="email" id="input1" value="something" name="input1" \/><br>
+                        <\input type="submit" \/><br>
+                    <\/form><br>
+                </p>
+                <p>直接用默认值something提交，会显示一大段话，大意就是格式不对呗。</p>
+                <h4>0.添加选项</h4>
+                <p>
+                    Option()构造函数来创建新选项，这个构造函数实在DOM之前就有的，接受两个参数：文本（text）和值（value）；第二个参数可选。
+                </p>
+                <p>现在我想要给select选项框在最后一个option后追加一个新的option。</p>
+                <h5>add()方法</h5>
+                <p>添加新选项的方式add()方法。</p>
+                <p>
+                    DOM规定这个方法接受两个参数：要添加的新选项和将位于新选项之后的选项。如果想在列表的最后添加一个选项，应该将第二个参数设置为null，在IE对add()方法的实现中，第二个参数是可选的，而且如果指定，该参数必须是新选项之后选项的索引。
+                </p>
+                <p class="strong">所以为第二个参数传入undefined是最佳实践。</p>
+                <p>HTML</p>
+                <p class="code">
+                    <\form>
+                        <\select name="number" id="number"><br>
+                            <\option value="1">1<\/option><br>
+                            <\option value="2">2<\/option><br>
+                            <\option value="3">3<\/option><br>
+                            <\option value="4">4<\/option><br>
+                        <\/select>
+                    <\/form>
+                </p>
+                <p>JS</p>
+                <p class="code">
+                    var newOption = new Option("5","5");<br>
+                    var selectBox = document.forms[0].elements["number"]<br>
+                    selectBox.add(newOption,undefined);<br>
+                </p>
+                <p>如果想将新选项添加到其他位置，就应该使用标准的DOM技术和insertBefore()方法。</p>
+                <h4>1.移除选项</h4>
+                <h5>remove()</h5>
+                <p>选择框的remove()方法，接受一个参数，即要移除选项的索引</p>
+                <p class="code">
+                    var newOption = new Option("5","5");<br>
+                    var selectBox = document.forms[0].elements["number"]<br>
+                    selectBox.remove(0);//还剩2 3 4<br>
+                </p>
+                <h5>removeChild()方法</h5>
+                <p class="code">
+                    selectBox.removeChild(selectBox.options[0]);<br>
+                </p>
+                <p>也移除了第一个选项</p>
+                <p class="strong"></p>
+                <p class="strong">注意！option的索引是动态的，0位被删除了以后，1位会顶上0位的位置，下次再删除0位，就会删除原来的1位。</p>
+                <p>
+                    所以如果想要删除选项框中所有的项，只要不停地清除0位就可以了，否则就把长度存在一个变量里，再使用for循环清除选项框中的项。
+                </p>
+                <p>
+                    另外，把selectBox.option[0] = null;也不失为一种办法。
+                </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
