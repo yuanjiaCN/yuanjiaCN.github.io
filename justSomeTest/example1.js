@@ -383,9 +383,20 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  }
  //因为substring()方法基于字符串的偏移量执行操作，所以将selectionStart和selectionEnd直接传给它就可以取得选中的文本
 
- */
+ var newOption = new Option("5","5");
+ var selectBox = document.forms[0].elements["number"]
+ //selectBox.remove(0);//还剩2 3 4
+ selectBox.removeChild(selectBox.options[0]);
 
-var newOption = new Option("5","5");
-var selectBox = document.forms[0].elements["number"]
-//selectBox.remove(0);//还剩2 3 4
-selectBox.removeChild(selectBox.options[0]);
+ */
+var div = document.getElementById("richedit");
+div.contentEditable = "true";
+window.onload = function () {
+    setInterval(function () {
+        document.execCommand("bold",false,null);
+        alert(document.queryCommandEnabled("bold"))
+    },1000)
+}
+
+
+

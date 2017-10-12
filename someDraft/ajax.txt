@@ -1,0 +1,11 @@
+变量未定义，alert会报错
+属性未定义，只是undefined
+
+JS中：
+同步：事情一件一件来
+异步：多个事情一起做
+AJAX负责异步
+
+chrome不可以在本地浏览器下打开ajax
+
+记得localhost
