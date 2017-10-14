@@ -1,0 +1,79 @@
+事件处理程序
+DOM0
+
+function example() {
+    var DIV = document.getElementById("example");
+    DIV.onclick = function(){       
+        alert("1");
+    }
+    DIV.onclick = function(){
+        alert("2");
+    }
+}
+window.onload = example;
+
+点击后，只弹框2
+
+var DIV = document.getElementById("example");
+DIV.onclick = function () {
+    alert("1");
+    alert("2");
+}
+点击后弹框1和2
+
+function example() {
+    var DIV = document.getElementById("example");
+    DIV.onclick = (function(){
+        alert("1");
+    })()
+    DIV.onclick = function(){
+        alert("2");
+    }
+}
+window.onload = example
+
+刷新后直接弹框1（第一个alert是自动执行的），点击弹框2
+*如果没有加window.onload = example或者example()，则无论点击还是刷新都没反应
+只有这个函数被加载（执行），才会执行内部的自动执行函数，当然如果没有外面那层example()，则点击和刷新不需
+window.onload = example也有反映。
+
+
+DOM2级事件处理程序（IE9，Firefox,Safari,Chrome和Opera支持）
+addEventListener(),removeEventListener()用于处理指定和删除时间处理程序的操作
+接受三个参数
+要处理的事件名、作为事件处理程序的函数和一个布尔值
+布尔值参数如果是true，表示在捕获阶段调用时间处理程序；
+如果是false，表示在冒泡阶段调用事件处理程序
+
+removeEventListener()移除时传入的参数与添加处理程序时使用的参数相同
+**意味着通过addEventListener()添加的匿名函数将无法移除
+function example() {
+    var DIV = document.getElementById("example");
+    DIV.addEventListener("click",function () {//这里用的是click
+        alert(this.id);
+    },false);
+    DIV.addEventListener("click",function () {
+        alert("hello world");
+    },false);
+}
+example();
+点击一次可以弹出这两个弹框
+
+**不建议在事件捕获截断注册事件处理程序，兼容性不好。
+
+
+IE事件处理程序（IE和Opera）
+attachEvent()和detachEvent()，这两个方法接受相同的两个参数：
+事件处理程序名称
+事件处理程序函数
+由于IE8及更早版本只支持事件冒泡，所以通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段
+Chrome点击出现example1.js:31 Uncaught TypeError: DIV.attachEvent is not a function
+这个是IE和Opera才可以用(亲测ie9可以用)
+var DIV = document.getElementById("example");
+DIV.attachEvent("onclick",function () {
+    alert("clicked1");
+})
+DIV.attachEvent("onclick",function () {
+    alert("clicked2");
+})
+先弹出clicked2再弹出clicked1，this指向window，也不能移除添加的匿名函数

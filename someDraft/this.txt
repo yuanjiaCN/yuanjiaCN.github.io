@@ -1,0 +1,120 @@
+this指向直接调用它的对象
+1.
+如果函数作为对象的一个属性时，并且作为对象的一个属性被调用时，函数中的this指向该对象。
+var example = "window example";
+var x = "window x";
+var obj = {
+    x: "obj x",
+    fn: function () {
+        var example = "obj example";
+        alert(example);//object example
+        alert(this);//object object
+        alert(this.x);//object x
+        return function () {
+            alert(example);//obj example
+            alert(this);//这个this指向window,object window
+            alert(this.x);//window x
+        }
+    }
+};
+obj.fn();// object example
+         // object object
+         // object x
+var f1 =obj.fn();
+f1();   // object example
+        // object object
+        // object x
+        // window example
+        // object window
+        // window x
+
+这种情况下,如果obj.fn()，那么fn这个函数就是直接被obj调用的，它是obj的一个属性（方法），
+它的this就指向obj，
+但是，obj.fn()()，也就是
+var f1 =obj.fn();
+f1();
+是通过调用obj的方法fn的匿名函数。这中间多了一层，就不是直接调用了，这时候this就指向window
+注意：找变量的时候是一层一层作用域往上找的，和this不同	
+个人理解：
+由于函数作为对象的一个属性被调用时，函数中的this才指向该对象。
+obj.fn()()
+本身fn的匿名函数就不是obj的属性，它是obj的属性（方法）fn的匿名函数。
+而且如果分开看，obj.fn()赋值给f1，f1在全局中，通过f1调用，也就是f1()，
+f1是个全局变量，那可以理解为window.f1
+既然在全局中调用，那么，this当然指向window
+
+2.
+如果函数作为构造函数用，那么其中的this就代表它即将new出来的对象。
+function A() {
+    this.name = '袁佳';
+    this.age = '1996';
+}
+var person = new A();
+alert(person.name); //袁佳
+
+3.
+普通函数在调用时，其中的this也都是window。
+比如构造函数直接被调用，它的this就指向window
+function A() {
+    this.name = '袁佳';
+    this.age = '1996';
+    alert(this);
+}
+A();//object window
+
+4.
+apply和call情况
+当一个函数被call和apply调用时，this的值就取传入的对象的值。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+对象中的方法形不形成闭包
+个人认为：形成！
+首先，看了个概念,在《JavaScript高级程序设计》中，闭包指的是：
+有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式，就是在一个函数内部创建另一个函数
+
+首先，在对象中定义的方法，能够访问到对象中的变量吗？
+答案是可以！
+
+其次，对象是否是函数呢？
+对象是由函数创建的，比如说
+var obj = {
+name:'袁佳',
+age:'1996',
+getNameFunc:function () {
+        return this.name  ;  
+    }
+}
+其实也可以这么写
+var obj = new Object();
+obj.name = '袁佳';
+obj.age='1996';
+obj.getNameFunc =function () {
+        return this.name  ;  
+    };
+
+最后总结一下，个人认为，对象内的方法形成的闭包，起码是拥有闭包的性质的，而且也具备闭包的优点——
+从外部可以通过这个对象内的方法，得到这个对象中的私有变量。
+
+
+
+
+
+
+
+
+
+

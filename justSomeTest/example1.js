@@ -388,15 +388,29 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  //selectBox.remove(0);//还剩2 3 4
  selectBox.removeChild(selectBox.options[0]);
 
+ var div = document.getElementById("richedit");
+ div.contentEditable = "true";
+ window.onload = function () {
+ setInterval(function () {
+ document.execCommand("bold",false,null);
+ alert(document.queryCommandEnabled("bold"))
+ },1000)
+ }
+
+ 'use strict';
+ console.log("Hello, world.");
  */
-var div = document.getElementById("richedit");
-div.contentEditable = "true";
-window.onload = function () {
-    setInterval(function () {
-        document.execCommand("bold",false,null);
-        alert(document.queryCommandEnabled("bold"))
-    },1000)
-}
+var a = {name:1};
+var b = a;
+console.log(a.name);
+console.log(b.name);
+b.name = 3;
+console.log(a.name);
+a = {value:100};
+console.log(b.name);
+console.log(a.name);
+
+
 
 
 

@@ -1,0 +1,1 @@
+head.style.cssText="width:200px;height:70px;display:block"; 

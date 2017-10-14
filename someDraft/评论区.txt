@@ -1,0 +1,138 @@
+<section class="comment">
+    <h4>最新评论</h4>
+    <p>目前还没有评论</p>
+</section>
+<form>
+    <h3>评论区(随便玩，反正刷新下就没了)</h3>
+    <fieldset>
+        <legend>信息</legend>
+        <div>
+            <label for="author">昵称*:</label>
+            <input name="author" id="author" type="text" value="你叫啥呀"/>
+        </div>
+        <div>
+            <label for="address">哪里人呀:</label>
+            <input name="address" id="address" type="text" value="你是哪里人呀"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>评论</legend>
+        <div>
+            <label for="comment">说点什么吧*:</label>
+            <textarea name="comment" id="comment" type="text" rows="7" cols="60">求你了，说点什么吧</textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>保存信息</legend>
+        <div>
+            <label for="rememberYes">是</label>
+            <input name="remember" id="rememberYes" type="radio">
+            <label for="rememberNo">否</label>
+            <input name="remember" id="rememberNo" type="radio">
+        </div>
+    </fieldset>
+    <input type="button" value="提交" id="button">
+</form>
+
+
+fieldset{
+    width: 40%;
+    line-height: 2em;
+    padding: 2%;
+    background-color: #e5c79c;
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    color: #423b3b;
+}
+fieldset input[type="text"],textarea{
+    display: block;
+    width: 80%;
+}
+form input[type="button"]{
+    background: transparent;
+    border: 1px solid #ba9077;
+    font-size: 1.2em;
+    padding: 1% 2%;
+    margin-top:2% ;
+    border-radius:15%;
+}
+
+
+
+
+$(function () {
+    var $hasComment = $(".comment div");
+    if($hasComment>0){
+        $(".comment>p").hide();
+    }else {
+        $(".comment>p").show();
+    }
+    $("#author").focus(function () {
+        if($(this).val()==this.defaultValue ||"不告诉我名字就不让你评论哼！"){
+            $(this).val("");
+            $(this).css({
+                color:"black"
+            })
+        }
+    });
+    $("#author").blur(function () {
+        if($(this).val()==""){
+            $(this).val("你叫啥呀");
+        }
+    });
+    $("#address").focus(function () {
+        if($(this).val()==this.defaultValue){
+            $(this).val("");
+        }
+    });
+    $("#address").blur(function () {
+        if($(this).val()==""){
+            $(this).val("你是哪里人呀");
+        }
+    });
+    $("#comment").focus(function () {
+        if($(this).val()==this.defaultValue ||"真的不说点什么吗！嘤嘤嘤"){
+            $(this).val("");
+            $(this).css({
+                color:"black"
+            })
+        }
+    });
+    $("#comment").blur(function () {
+        if($(this).val()==""){
+            $(this).val("求你了，说点什么吧");
+        }
+    });
+    $("#button").click(function () {
+        var $name = $("#author").val();
+        if($("#address").val()=="你是哪里人呀"){
+            $address = "不明地区";
+        }else{
+            $address = $("#address").val();
+        }
+        var $comment = $("#comment").val();
+        if($name=="你叫啥呀"||$name=="不告诉我名字就不让你评论哼！"){
+            $("#author").val("不告诉我名字就不让你评论哼！");
+            $("#author").css({
+                color: "red"
+            })
+        }else if($comment=="求你了，说点什么吧"||$comment=="真的不说点什么吗！嘤嘤嘤"){
+            $("#comment").val("真的不说点什么吗！嘤嘤嘤");
+            $("#comment").css({
+                color: "red"
+            })
+        }else{
+            alert("评论成功");
+            $(".comment>p").hide();
+            $(".comment").append("<img src='picture/head.jpg'>");
+            $(".comment").append("<span>来自"+" "+$address+" "+"的"+" "+$name+" "+"在2017.07评论</span>");
+            $(".comment").append("<div style='border-bottom: 1px dotted #64706c'>"+$comment+"</div>");
+            if(!$("#rememberYes").is(":checked")){
+                $("#author").val("你叫啥呀");
+                $("#comment").val("求你了，说点什么吧");
+                $("#address").val("你是哪里人呀");
+            }
+        }
+    });
+

@@ -1,0 +1,10 @@
+javaScript
+
+如果有两个页面都使用同一个文件，那么这个文件只需下载一次。
+<noscript>
+<p>本页面需要浏览器支持（启用）JavaScript</p>
+</noscript>
+
+
+直接alert()数组，会得到与直接调用toString()方法相同的结果，因为他会在后台调用toString()方法
+调用数组的toLocaleString()方法时，它会调用数组每一项的toLocaleString（）方法
