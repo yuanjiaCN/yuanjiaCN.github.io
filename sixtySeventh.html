@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>关于按值传递、按引用传递和共享传递</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p>
+                    一直认为在JavaScirpt中，数据只有两种访问方式：基本类型数据是按值访问的，而引用类型的值是按引用访问的。
+                </p>
+                <p>让我第一次对这种分法产生疑惑的是红宝书上说：传递参数时，<span class="strong">不论是什么类型的值</span>，它们都是按值传递的。</p>
+                <h5>按值传递(call by value)</h5>
+                <p>按值传递(call by value)是最常用的求值策略：函数的形参是被调用时所传实参的副本。修改形参的值并不会影响实参。</p>
+                <h5>按引用传递(call by reference)</h5>
+                <p>
+                    按引用传递(call by reference)时，函数的形参接收实参的隐式引用，而不再是副本。
+                    这意味着函数形参的值如果被修改，实参也会被修改。同时两者指向相同的值。
+                </p>
+                <p>书上举了个例子：</p>
+                <p class="code">
+                    function setName(obj) {<br>
+                    obj.name = "Nicholas";<br>
+                    obj = new Object();<br>
+                    obj.name = "Greg";<br>
+                    }<br>
+                    var person = new Object();<br>
+                    setName(person);<br>
+                    alert(person.name); //Nicholas<br>
+                </p>
+                <p>
+                    第一次看到这章的时候，我看的云里雾里的，也查了不少资料，最后在旁边写了两行注释：
+
+                </p>
+                <p style="background-color: aliceblue">在不为person赋值时，函数内外地址相同，所以操作可以反应在外部；反之，地址不同，则内外联系就断了。</p>
+                <p>
+                    但是总感觉说的还不到位，而且事实上我自己也并不理解这句话的具体意思。但是我当时学的不多（虽然现在依然是菜鸟），
+                    也不知道网上什么是对的什么是错的，也就放着了。
+                </p>
+                <p>
+                    今天我又突然想到了这个问题，也搜了不少资料，知道了共享传递这个名词：（接下来是一段引用）
+                </p>
+                <p class="ps">
+                    准确的说，JS中的基本类型按值传递，对象类型按共享传递的(call by sharing，也叫按对象传递、按对象共享传递)。
+                    最早由Barbara Liskov. 在1974年的GLU语言中提出。该求值策略被用于Python、Java、Ruby、JS等多种语言。
+                </p>
+                <p class="ps">
+                    该策略的重点是：调用函数传参时，函数接受对象实参引用的副本(既不是按值传递的对象副本，也不是按引用传递的隐式引用)。
+                    它和按引用传递的不同在于：在共享传递中对函数形参的赋值，不会影响实参的值。
+                </p>
+                <h5>接下来是我的理解</h5>
+                <p>
+                    其实对象A在被赋值到变量B的时候，复制的是一份指向在堆内存的对象Object的指针给B，现在对象A和B都指向对象Object，
+                    如果我单纯的给A或者B加上一个属性，比如A.name = "Nicholas"，那么是不影响他们指针的指向的，他们依然指向Object，那么既然他们还引用同一个对象，
+                    那么属性当然共享，所以B也会有name属性。但是现在如果有一句B = {name:Lisa}，这句语句代表什么呢？其实可以拆开来看：
+                </p>
+                <p class="code">
+                    var C = {name:Lisa};<br>
+                    B = C;<br>
+                </p>
+                <p>
+                    现在B已经不再指向A指向的那个Object了，他现在指向C指向的Object1,既然指针都变了，那么这次改变B，
+                    当然对A毫无影响，A还是指向Object,有自己的name属性Nicholas而非Lisa，但是B和C的name属性将是Lisa，
+                    而且如果之后再有属性上的变化，他们也会一起变。
+                </p>
+                <h5>接下来还有最后一个问题</h5>
+                <p>
+                    在我自己的测试下，我感觉在函数传参是按值传递和按共享传递（与按引用传递无关）这句话并<span class="strong">不完整</span>。
+                    我觉得更完整的说法是，在JavaScript中，其实并没有按引用传递这种说法，我们认为的按引用传递，事实上都是按共享传递
+                </p>
+                <p>再来一个简陋的例子</p>
+                <p class="code">
+                    var a = {name:1};<br>
+                    var b = a;<br>
+                    console.log(a.name);//1<br>
+                    console.log(b.name);//1<br>
+                    b.name = 3;<br>
+                    console.log(a.name);//3<br>
+                    a = {value:100};<br>
+                    console.log(b.name);//3<br>
+                    console.log(a.name);//undefined<br>
+                </p>
+                <p>
+                    简单的变量赋值也和在函数中参数的表现一样，所以我觉得在JavaScript中依然只有两种数据传递方式：基本类型数据按值传递，
+                    引用类型数据（如Object）按共享传递。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

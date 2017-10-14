@@ -402,15 +402,22 @@ insertRule(document.styleSheets[0],"body","background-color: red",0);
  */
 var a = {name:1};
 var b = a;
-console.log(a.name);
-console.log(b.name);
+console.log(a.name);//1
+console.log(b.name);//1
 b.name = 3;
-console.log(a.name);
+console.log(a.name);//3
 a = {value:100};
-console.log(b.name);
-console.log(a.name);
+console.log(b.name);//3
+console.log(a.name);//undefined
 
 
-
+function setName(obj) {
+    obj.name = "Nicholas";
+    obj = new Object();
+    obj.name = "Greg";
+}
+var person = new Object();
+setName(person);
+alert(person.name); //Nicholas
 
 

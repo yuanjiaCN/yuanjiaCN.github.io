@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-       "<a href='sixtySixth.html' class='book' value='2017.10.11'>表单脚本的一些DOM和HTML5方法</a>"
+       "<a href='sixtySeventh.html' class='book' value='2017.10.14'>关于按值传递、按引用传递和共享传递</a>"
+     + "<a href='sixtySixth.html' class='book' value='2017.10.11'>表单脚本的一些DOM和HTML5方法</a>"
      + "<a href='sixtyFifth.html' class='book' value='2017.10.10'>DOM2范围(5)——IE8及以下兼容(部分方法吐血)</a>"
      + "<a href='sixtyFourth.html' class='book' value='2017.10.9'>DOM2范围(4)——折叠、比较、复制、清理DOM范围</a>"
      + "<a href='sixtyThird.html' class='book' value='2017.10.7'>DOM2范围(3)——复杂选择、操作</a>"
