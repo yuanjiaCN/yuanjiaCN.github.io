@@ -1,0 +1,59 @@
+#outer{
+   background: url(4.jpg);
+    height: 7px;
+}
+.inner{
+    background: url(5.jpg);
+    height: 7px;
+    width: 285px;
+    margin: 70px 20px;
+}
+#outerBottom{
+    background: url(5.jpg);
+    height: 7px;
+}
+#leftLeft{
+    background: url(right.jpg);
+    width: 7px;
+    height: 470px;
+    float: left;
+}
+#leftRight{
+    background: url(left.jpg);
+    width: 7px;
+    height: 470px;
+    float: left;
+}
+#rightLeft{
+    background: url(right.jpg);
+    width: 7px;
+    height: 462px;
+    position: absolute;
+    left:327px;
+    top:7px
+}
+#rightRight{
+    background: url(left.jpg);
+    width: 7px;
+    height: 462px;
+    position: absolute;
+    left:320px;
+    top:7px
+}
+#outerBottomTop{
+    background: url(4.jpg);
+    height: 7px;
+    position: absolute;
+    top:455px;
+    width: 330px;
+}
+#outerBottomBottom{
+    background: url(5.jpg);
+    height: 7px;
+    position: absolute;
+    top:462px;
+    width: 330px;
+}
+#outerOuter{
+    margin: 30px;
+}
