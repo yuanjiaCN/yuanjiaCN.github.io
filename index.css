@@ -163,8 +163,8 @@ html,body,#index{
 /*首页介绍部分*/
 #index>article{
     text-align: center;
-    margin: 10%;
-    padding: 0 15%;
+    margin: 5%;
+    padding: 0 10%;
 }
 #index>article:hover header{
     animation: leftAndRight 1.5s;
@@ -175,6 +175,36 @@ article section{
 article header{
     font-size: 2em;
 }
+article ul li{
+    list-style: none;
+    line-height: 2em;
+    float: left;
+    width: 33.33%;
+}
+article img{
+    width: 50%;
+    padding-top:10% ;
+}
+
+article ul a{
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    width: 90%;
+    text-decoration: none;
+    color: rgb(148,171,145);
+    transition: all 0.5s;
+    font-size: 1.5em;
+}
+article ul a:visited{
+    color:rgb(241,0,97);
+}
+article ul a:hover{
+    color: darkslategrey;
+    transform: translate(0,-20%);
+}
+
 /*精选博文*/
 .listDecoration{
     margin:0 9%;
