@@ -23,7 +23,6 @@ $(function all () {
      + "<a href='fiftyFirst.html' class='book' value='2017.9.3'>前端代码规范(1)——代码检查、注释、命名</a>"
      + "<a href='fiftieth.html' class='book' value='2017.9.1'>小时钟第三版(3)</a>"
      + "<a href='setTimeoutSet.html' class='set' value='2017.8.31'>用到和被setTimeout坑到合集</a>"
-     + "<a href='photoAlbum.html' class='set' value='日常更新'>生活图集</a>"
      + "<a href='MVCSet.html' class='set' value='2017.8.31'>探索MVC的合集</a>"
      + "<a href='fortyNinth.html' class='book' value='2017.8.31'>小时钟第二版(2)</a>"
      + "<a href='fortyEighth.html' class='book' value='2017.8.31'>canvas绘制图像、使用图像数据遇到的坑、一个简易灰阶过滤器</a>"

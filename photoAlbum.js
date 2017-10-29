@@ -37,7 +37,11 @@ $(function () {
     })
 
     $("#album>article").append(
-          "<img date='sixtyNinth' value='gardening' src='picture/gardening30(little).jpg' original='picture/original/gardening30.jpg'/>"
+          "<img date='seventyEighth' value='gardening' src='picture/gardening34(little).jpg' original='picture/original/gardening34.jpg'/>"
+        + "<img date='seventySeventh' value='gardening' src='picture/gardening33(little).jpg' original='picture/original/gardening33.jpg'/>"
+        + "<img date='seventySeventh' value='gardening' src='picture/gardening32(little).jpg' original='picture/original/gardening32.jpg'/>"
+        + "<img date='seventySixth' value='gardening' src='picture/gardening31(little).jpg' original='picture/original/gardening31.jpg'/>"
+        + "<img date='sixtyNinth' value='gardening' src='picture/gardening30(little).jpg' original='picture/original/gardening30.jpg'/>"
         + "<img date='sixtyEighth' value='gardening' src='picture/gardening29(little).jpg' original='picture/original/gardening29.jpg'/>"
         + "<img date='fiftySeventh' value='gardening' src='picture/gardening28(little).jpg' original='picture/original/gardening28.jpg'/>"
         + "<img date='fortyNinth' value='gardening' src='picture/gardening27(little).jpg' original='picture/original/gardening27.jpg'/>"
