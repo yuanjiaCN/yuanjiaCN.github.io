@@ -48,24 +48,69 @@
  console.log("ok");
  }
  });
+
+ fs.stat('sample.txt', function (err, stat) {
+ if (err) {
+ console.log(err);
+ } else {
+ // 是否是文件:
+ console.log('isFile: ' + stat.isFile());
+ // 是否是目录:
+ console.log('isDirectory: ' + stat.isDirectory());
+ if (stat.isFile()) {
+ // 文件大小:
+ console.log('size: ' + stat.size);
+ // 创建时间, Date对象:
+ console.log('birth time: ' + stat.birthtime);
+ // 修改时间, Date对象:
+ console.log('modified time: ' + stat.mtime);
+ }
+ }
+ });
+
+ 'use strict';
+
+ var fs = require('fs');
+
+ var ws1 = fs.createWriteStream('output1.txt', 'utf-8');
+ ws1.write('使用Stream写入文本数据...\n');
+ ws1.write('END.');
+ ws1.end();
+
+ var ws2 = fs.createWriteStream('output2.txt');
+ ws2.write(new Buffer('使用Stream写入二进制数据...\n', 'utf-8'));
+ ws2.write(new Buffer('END.', 'utf-8'));
+ ws2.end();
+
+ "use strict";
+ var fs = require("fs");
+ var rs = fs.createReadStream("readyFor.txt");
+ var ws = fs.createWriteStream("copied.txt");
+ rs.pipe(ws);
+
+ "use strict"
+ var http = require("http");
+ var server = http.createServer(function (request,response) {
+ console.log(request.method + ":" + request.url);
+ response.writeHead(200,{"Content-Type":"text/html"});
+ response.end("<h1>Hello world!</h1>");
+ });
+ server.listen(8080);
+ console.log("Server is running at http://127.0.0.1:8080/");
+
+ "use strict";
+ var url = require("url");
+ console.log(url.parse("http://user:pass@host.com:8080/path/to/file?query=string#hash"))
+
  */
-"use strict";
-var fs  = require("fs");
-fs.stat('sample.txt', function (err, stat) {
-    if (err) {
-        console.log(err);
-    } else {
-        // 是否是文件:
-        console.log('isFile: ' + stat.isFile());
-        // 是否是目录:
-        console.log('isDirectory: ' + stat.isDirectory());
-        if (stat.isFile()) {
-            // 文件大小:
-            console.log('size: ' + stat.size);
-            // 创建时间, Date对象:
-            console.log('birth time: ' + stat.birthtime);
-            // 修改时间, Date对象:
-            console.log('modified time: ' + stat.mtime);
-        }
-    }
-});
+'use strict';
+
+var path = require('path');
+
+// 解析当前目录:
+var workDir = path.resolve('.'); // '/Users/michael'
+
+// 组合完整的文件路径:当前目录+'pub'+'index.html':
+var filePath = path.join(workDir, 'pub', 'index.html');
+// '/Users/michael/pub/index.html'
+console.log(filePath)
