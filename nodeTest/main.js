@@ -102,15 +102,71 @@
  var url = require("url");
  console.log(url.parse("http://user:pass@host.com:8080/path/to/file?query=string#hash"))
 
+ 'use strict';
+
+ var path = require('path');
+
+ // 解析当前目录:
+ var workDir = path.resolve('.'); // '/Users/michael'
+
+ // 组合完整的文件路径:当前目录+'pub'+'index.html':
+ var filePath = path.join(workDir, 'pub', 'index.html');
+ // '/Users/michael/pub/index.html'
+ console.log(filePath)
+
+ "use strict";
+
+ var http = require('http');
+ var server = http.createServer(function (request, response) {
+ console.log(request.method + ":" + request.url);
+ response.writeHead(200, {"Content-Type":"text/html"});
+ response.end("<h1>Hello world!</h1>")
+ });
+ server.listen(8080);
+ console.log("Server is running at http://127.0.0.1:8080/");
+
+ 'use strict';
+
+ var path = require('path');
+
+ var workDir = path.resolve('.'); // '/Users/michael'
+ console.log(workDir);
+ var filePath = path.join(workDir,"pub","index.html");
+ console.log(filePath);
+
+ "use strict";
+ var
+ fs = require("fs"),
+ url = require("url"),
+ path = require("path"),
+ http = require("http");
+ var root = path.resolve(process.argv[2] || ".");
+ console.log("Static root dir :" + root);
+
+ var server = http.createServer(function (request, response) {
+ var pathname = url.parse(request.url).pathname;
+ var filepath = path.join(root, pathname);
+
+ fs.stat(filepath,function (err, stats) {
+ if(!err && stats.isFile()){
+ console.log("200" + request.url);
+ response.writeHead(200);
+ fs.createReadStream(filepath).pipe(response);
+ } else {
+ console.log("404" + request.url);
+ response.writeHead(404);
+ response.end("404 not found");
+ }
+ })
+ });
+ server.listen(8080);
+ console.log("Server is runnning at http://127.0.0.1:8080/");
+
+
+ console.log("Hello, world!");
+
  */
-'use strict';
 
-var path = require('path');
-
-// 解析当前目录:
-var workDir = path.resolve('.'); // '/Users/michael'
-
-// 组合完整的文件路径:当前目录+'pub'+'index.html':
-var filePath = path.join(workDir, 'pub', 'index.html');
-// '/Users/michael/pub/index.html'
-console.log(filePath)
+var greet = require("hello");
+var s = "Yuan";
+greet(s);//Hello, Yuan!

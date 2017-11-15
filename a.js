@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-       "<a href='sixtyEighth.html' class='book' value='2017.11.15'>一些node.js的注意事项 + 第一个小程序(1)</a>"
+       "<a href='sixtyNinth.html' class='book' value='2017.11.15'>node模块(2)</a>"
+     + "<a href='sixtyEighth.html' class='book' value='2017.11.15'>一些node.js的注意事项 + 第一个小程序(1)</a>"
      + "<a href='sixtySeventh.html' class='book' value='2017.10.14'>关于按值传递、按引用传递和共享传递</a>"
      + "<a href='sixtySixth.html' class='book' value='2017.10.11'>表单脚本的一些DOM和HTML5方法</a>"
      + "<a href='sixtyFifth.html' class='book' value='2017.10.10'>DOM2范围(5)——IE8及以下兼容(部分方法吐血)</a>"

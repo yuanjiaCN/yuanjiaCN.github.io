@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>node模块(2)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.什么是模块</h4>
+                <p>在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。</p>
+                <p>
+                    为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。在Node环境中，一个.js文件就称之为一个模块（module）。
+                </p>
+                <h4>1.使用模块有什么好处？</h4>
+                <p>最大的好处是大大提高了代码的可维护性。其次，编写代码不必从零开始。当一个模块编写完毕，就可以被其他地方引用。我们在编写程序的时候，也经常引用其他模块，包括Node内置的模块和来自第三方的模块。</p>
+                <p>使用模块还可以避免函数名和变量名冲突。相同名字的函数和变量完全可以分别存在不同的模块中，因此，我们自己在编写模块时，不必考虑名字会与其他模块冲突。</p>
+                <h5>一个小例子</h5>
+                <p>编写hello.js文件</p>
+                <p class="code">
+                    var s ="Hello";<br>
+                    function greet(name) {<br>
+                    console.log(s + "," + name + "!");<br>
+                    }<br>
+                    module.exports = greet;<br>
+                </p>
+                <p>最后一行就是说：把函数greet作为模块的输出暴露出去，这样其他模块就可以使用greet函数了。</p>
+                <h5>再编写一个main.js文件调用hello模块的greet函数</h5>
+                <p class="code">
+                    var greet = require("./hello");<br>
+                    var s = "Yuan";<br>
+                    greet(s);//Hello, Yuan!<br>
+                </p>
+                <p>其中的greet变量就是在hello.js文件中用module.exports = greet输出的greet函数.</p>
+                <p>这样，main.js就成功的引用了hello.js模块中定义的greet()函数，接下来就可以调用引用它了。</p>
+                <p class="strong">在使用require()引入模块的时候，请注意模块的相对路径。因为main.js和hello.js位于同一个目录，所以用了当前目录.：</p>
+                <p class="code">var greet = require('./hello'); // 不要忘了写相对目录!</p>
+                <p class="ps">如果只写模块名：</p>
+                <p class="code">var greet = require('hello');</p>
+                <p>则Node会依次在内置模块、全局模块和当前模块下查找hello.js，很可能会得到一个错误：</p>
+                <img src="picture/sixtyNinth1.jpg"/>
+                <h4>2.CommonJS规范</h4>
+                <p>这种模块加载机制被称为CommonJS规范。在这个规范下，每个.js文件都是一个模块，它们内部各自使用的变量名和函数名都互不冲突，例如，hello.js和main.js都申明了全局变量var s = 'xxx'，但互不影响。</p>
+                <p>一个模块想要对外暴露变量（函数也是变量），可以用module.exports = variable;，一个模块要引用其他模块暴露的变量，用var ref = require('module_name');就拿到了引用模块的变量。</p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
