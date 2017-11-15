@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>一些node.js的注意事项 + 第一个小程序(1)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.一些注意事项</h4>
+                <p>第一行总是写上'use strict';是因为我们总是以严格模式运行JavaScript代码，避免各种潜在陷阱。</p>
+                <p>记得把命令行窗口的起始位置改到你的文件存放目录，不然就会一直报错啦↓（如图）</p>
+                <img src="picture/sixtyEighth1.jpg"/>
+                <h4>1.写一个简单node.js程序</h4>
+                <p>在webstrom中编辑文件main.js</p>
+                <p class="code">
+                    "use strict";<br>
+                    console.log("Hello, world!");<br>
+                </p>
+                <p>命令行窗口中输入：node main.js</p>
+                <p>打印出</p>
+                <p class="code">
+                    H:\yuanjiaCN.github.io\nodeTest>node main.js<br>
+                    Hello, world!<br>
+                </p>
+                <h4>2.命令行模式和Node交互模式</h4>
+                <h5>注意区分命令行模式和Node交互模式。</h5>
+                <p>看到类似H:\yuanjiaCN.github.io\nodeTest>是在Windows提供的命令行模式：</p>
+                <img src="picture/sixtyEighth2.jpg"/>
+                <p>输入node可进入Node交互式环境，在此环境下，可以直接输入JavaScritp代码并立即执行。</p>
+                <p>
+                    此外，在命令行模式运行.js文件和在Node交互式环境下直接运行JavaScript代码有所不同。
+                    Node交互式环境会把每一行JavaScript代码的结果自动打印出来，
+                    但是，直接运行JavaScript文件却不会。
+                </p>
+                <h5>例如，在Node交互式环境下，输入：</h5>
+                <p class="code">
+                    > 100 + 200 + 300;<br>
+                    600<br>
+                </p>
+                <p>直接可以看到结果600。</p>
+                <h5>但是，写一个main.js的文件，内容如下：</h5>
+                <p class="code">100 + 200 + 300;</p>
+                <p>然后在命令行模式下执行：</p>
+                <p class="code"> H:\yuanjiaCN.github.io\nodeTest>>node main.js</p>
+                <p class="strong">发现什么输出都没有。</p>
+                <p>这是正常的。想要输出结果，必须自己用console.log()打印出来。把main.js改造一下：</p>
+                <p class="code">console.log(100 + 200 + 300);</p>
+                <p>再执行，就可以看到结果：</p>
+                <p class="code">H:\yuanjiaCN.github.io\nodeTest>>node main.js</p>
+                <p>输出</p>
+                <p class="code">600</p>
+                <h4>3.使用严格模式</h4>
+                <p>如果在JavaScript文件开头写上'use strict';，
+                    那么Node在执行该JavaScript时将使用严格模式。
+                    但是，在服务器环境下，如果有很多JavaScript文件，每个文件都写上'use strict';
+                    很麻烦。我们可以给Nodejs传递一个参数，让Node直接为所有js文件开启严格模式：
+                </p>
+                <p class="code">node --use_strict main.js</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
