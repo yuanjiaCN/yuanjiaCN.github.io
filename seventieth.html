@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>node模块原理(3)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.如何实现不同模块可以使用相同的变量名</h4>
+                <p>当我们编写JavaScript代码时，我们可以申明全局变量：</p>
+                <p class="code">var s = 'global';</p>
+                <p>
+                    在浏览器中，大量使用全局变量可不好。如果你在a.js中使用了全局变量s，那么，在b.js中也使用全局变量s，将造成冲突，b.js中对s赋值会改变a.js的运行逻辑。
+                </p>
+                <p>
+                    也就是说，JavaScript语言本身并没有一种模块机制来保证不同模块可以使用相同的变量名。
+                </p>
+                <h5>那Node.js是如何实现这一点的？</h5>
+                <p>
+                    其实要实现“模块”这个功能，并不需要语法层面的支持。Node.js也并不会增加任何JavaScript语法。
+                </p>
+                <p>
+                    实现“模块”功能的奥妙就在于JavaScript是一种函数式编程语言，它支持闭包。如果我们把一段JavaScript代码用一个函数包装起来，这段代码的所有“全局”变量就变成了函数内部的局部变量。
+                </p>
+                <p>我们编写的hello.js代码是这样的：</p>
+                <p class="code">
+                    var s = 'Hello';var name = 'world'; <br>
+                    console.log(s + ' ' + name + '!');<br>
+                </p>
+                <p>Node.js加载了hello.js后，它可以把代码包装一下，变成这样执行：</p>
+                <p class="code">
+                    (function () {<br>
+                    // 读取的hello.js代码:<br>
+                    var s = 'Hello';<br>
+                    var name = 'world';<br>
+                    console.log(s + ' ' + name + '!');<br>
+                    // hello.js代码结束<br>
+                    })();<br>
+                </p>
+                <p>这样一来，原来的全局变量s现在变成了匿名函数内部的局部变量。如果Node.js继续加载其他模块，这些模块中定义的“全局”变量s也互不干扰。</p>
+                <p>所以，Node利用JavaScript的函数式编程的特性，轻而易举地实现了模块的隔离。</p>
+                <h4>1.但是，模块的输出module.exports怎么实现？</h4>
+                <p>这个也很容易实现，Node可以先准备一个对象module：</p>
+                <p class="code">
+                    // 准备module对象:var module = {<br>
+                    id: 'hello',<br>
+                    exports: {}<br>
+                    };var load = function (module) {<br>
+                    // 读取的hello.js代码:<br>
+                    function greet(name) {<br>
+                    console.log('Hello, ' + name + '!');<br>
+                    }<br>
+                    module.exports = greet;<br>
+                    // hello.js代码结束<br>
+                    return module.exports;<br>
+                    };var exported = load(module);// 保存module:<br>
+                    save(module, exported);<br>
+                </p>
+                <p>可见，变量module是Node在加载js文件前准备的一个变量，并将其传入加载函数，我们在hello.js中可以直接使用变量module原因就在于它实际上是函数的一个参数：</p>
+                <p class="code">module.exports = greet;</p>
+                <p>通过把参数module传递给load()函数，hello.js就顺利地把一个变量传递给了Node执行环境，Node会把module变量保存到某个地方。</p>
+                <p>由于Node保存了所有导入的module，当我们用require()获取module时，Node找到对应的module，把这个module的exports变量返回，这样，另一个模块就顺利拿到了模块的输出：</p>
+                <p class="code">var greet = require('./hello');</p>
+                <p>以上是Node实现JavaScript模块的一个简单的原理介绍。</p>
+                <p class="code">module.exports vs exports</p>
+                <p>很多时候，你会看到，在Node环境中，有两种方法可以在一个模块中输出变量：</p>
+                <h5>方法一：对module.exports赋值：</h5>
+                <p class="code">
+                    // hello.js<br>
+                    function hello() {<br>
+                    console.log('Hello, world!');<br>
+                    }<br>
+                    function greet(name) {<br>
+                    console.log('Hello, ' + name + '!');<br>
+                    }<br>
+
+                    module.exports = {<br>
+                    hello: hello,<br>
+                    greet: greet<br>
+                    };<br>
+                </p>
+                <h5>方法二：直接使用exports：</h5>
+                <p  class="code">
+                    // hello.js<br>
+                    function hello() {<br>
+                    console.log('Hello, world!');<br>
+                    }<br>
+                    function greet(name) {<br>
+                    console.log('Hello, ' + name + '!');<br>
+                    }<br>
+                    function hello() {<br>
+                    console.log('Hello, world!');<br>
+                    }<br>
+
+                    exports.hello = hello;<br>
+                    exports.greet = greet;<br>
+                </p>
+                <p>但是你不可以直接对exports赋值：</p>
+                <p class="code">
+                    // 代码可以执行，但是模块并没有输出任何变量:<br>
+                    exports = {<br>
+                    hello: hello,<br>
+                    greet: greet<br>
+                    };<br>
+                </p>
+                <p>如果你对上面的写法感到十分困惑，不要着急，我们来分析Node的加载机制：</p>
+                <p>首先，Node会把整个待加载的hello.js文件放入一个包装函数load中执行。在执行这个load()函数前，Node准备好了module变量：</p>
+                <p class="code">
+                    var module = {<br>
+                    id: 'hello',<br>
+                    exports: {}<br>
+                    };<br>
+                    load()函数最终返回module.exports：<br>
+                    var load = function (exports, module) {<br>
+                    // hello.js的文件内容<br>
+                    ...<br>
+                    // load函数返回:<br>
+                    return module.exports;<br>
+                    };<br>
+
+                    var exported = load(module.exports, module);<br>
+                </p>
+                <p>也就是说，默认情况下，Node准备的exports变量和module.exports变量实际上是同一个变量，并且初始化为空对象{}，于是，我们可以写：</p>
+                <p class="code">
+                    exports.foo = function () { return 'foo'; };<br>
+                    exports.bar = function () { return 'bar'; };<br>
+                </p>
+                <p>也可以写：</p>
+                <p class="code">
+                    module.exports.foo = function () { return 'foo'; };<br>
+                    module.exports.bar = function () { return 'bar'; };<br>
+                </p>
+                <p>换句话说，Node默认给你准备了一个空对象{}，这样你可以直接往里面加东西。</p>
+                <p>但是，如果我们要输出的是一个函数或数组，那么，只能给module.exports赋值：</p>
+                <p class="code">module.exports = function () { return 'foo'; };</p>
+                <p>给exports赋值是无效的，因为赋值后，module.exports仍然是空对象{}。
+                <h4>2.我对module.exports和exports的理解</h4>
+                <br>
+                <a href='sixtySeventh.html' class='book' value='2017.10.14'>☞关于按值传递、按引用传递和共享传递</a>
+                <br>
+                <br>
+                <p>配合 ↑ 阅读更加</p>
+                <p>我觉得，exports是指向module.exports的一个引用，exports可以有属性，有方法，但是不可以改变本身，否则就等于改变了它的指针指向，它不指向module.exports了，自然module.exports不会因为exports的改变而改变。</p>
+                <h4>3.结论</h4>
+                <p>如果要输出一个键值对象{}，可以利用exports这个已存在的空对象{}，并继续在上面添加新的键值；</p>
+                <p>如果要输出一个函数或数组，必须直接对module.exports对象赋值。</p>
+                <p>所以我们可以得出结论：直接对module.exports赋值，可以应对任何情况：</p>
+                <p class="code">
+                    module.exports = {<br>
+                    foo: function () { return 'foo'; }<br>
+                    };<br>
+                </p>
+                <p>或者：</p>
+                <p class="code">module.exports = function () { return 'foo'; };</p>
+                <p>最终，强烈建议使用module.exports = xxx的方式来输出模块变量，这样只需要记忆一种方法。</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
