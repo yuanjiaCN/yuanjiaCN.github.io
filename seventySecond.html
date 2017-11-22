@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>探索Git(17)——差点因为误用reset hard丢失了所有文件。。</h1>
+            <header class="content">
+            </header>
+            <article>
+                <p class="strong"><a href='gitSet.html' class='set  contentLink' value='2017.9.9'>☞探索git的合集</a></p>
+                <p>想把不同的文件分开commit，结果手一快被我全部用一样的备注提交了，然后想了想这种情况好像是用reset撤回，于是直接reset hard^。</p>
+                <p>喜闻乐见的事情出现了。。今天码的字都没了。。。于是我上网搜了一下，发现了这篇文章，终于搞定了！感谢这篇文章的作者！！！</p>
+                <p class="contentLink">http://www.jianshu.com/p/8b4c95677ee0</p>
+                <p>
+                    在使用Git的过程中，有时候会因为一些误操作，比如reset、rebase、merge等。特别是在Commit之后又执行了git reset --hard HEAD强制回滚本地记录以及文件到服务器版本，导致本地做的修改全部恢复到Git当前分支的服务器版本，同时自己的Commmit记录也消失了。碰到这种情况，不要慌，我们在Git上做的任何操作都只是在原来之前的操作上做修改，并且会被记录下来保存，也就是说无论你做了什么，对于Git来说都可以进行回滚操作。
+                </p>
+                <h4>0.找回Commit</h4>
+                <p>通过以下例子来了解下具体怎么回滚：</p>
+                <p class="code">
+                    $ git init<br>
+                    $ touch foo.txt<br>
+                    $ echo 'test data' >> foo.txt<br>
+                    $ git add foo.txt<br>
+                    $ git commit -m "initial commit"<br>
+
+                    $ echo 'new data' >> foo.txt<br>
+                    $ git commit -a -m "more stuff added to foo"<br>
+                </p>
+                <p>你现在看git的历史记录，你可以看到两次提交：</p>
+                <p class="code">
+                    $ git log<br>
+                    * 98abc5a (HEAD, master) more stuff added to foo<br>
+                    * b7057a9 initial commit<br>
+                </p>
+                <p>现在让我们来重置回第一次提交的状态：</p>
+                <p class="code">
+                    $ git reset --hard b7057a9<br>
+                    $ git log<br>
+                    * b7057a9 (HEAD, master) initial commit<br>
+                </p>
+                <h5>reflog</h5>
+                <p>这看起来我们是丢掉了我们第二次的提交，本地的修改也消失了，没有办法找回来了。但是 reflog 就是用来解决这个问题的。简单的说，它会记录所有HEAD的历史，也就是说当你做 reset，checkout等操作的时候，这些操作会被记录在reflog中。</p>
+                <p class="code">
+                    $ git reflog<br>
+                    b7057a9 HEAD@{0}: reset: moving to b7057a9<br>
+                    98abc5a HEAD@{1}: commit: more stuff added to foo<br>
+                    b7057a9 HEAD@{2}: commit (initial): initial commit<br>
+                </p>
+                <p>所以，我们要找回我们第二commit，只需要做如下操作：</p>
+                <p class="code">
+                    $ git reset --hard 98abc5a<br>
+                </p>
+                <p>再来看一下 git 记录：</p>
+                <p class="code">
+                    $ git log<br>
+                    * 98abc5a (HEAD, master) more stuff added to foo<br>
+                    * b7057a9 initial commit<br>
+                </p>
+                <p>同时本地对foo.txt做的修改也回复回来了。</p>
+                <p>PS:这里在提一下另一个找回Commit的操作git cherry-pick 98abc5a,这个操作与上面的reset操作区别在于后者只是单纯的提取98abc5a这个Commit进行回滚，如果在b7057a9和98abc5a之间还有其他的Commit操作，则会忽略中间的这些Commit做的修改，所以应用这个命令有可能会文件的冲突
+                </p>
+                <h4>1.git reset的具体用法</h4>
+                <p> git reset [--hard|soft|mixed|merge|keep] [<commit>或HEAD]</p>
+                <p>作用：将当前分支reset到指定的<commit>或者HEAD(默认为最新的一次提交，即重设到最新一次提交之前的版本)</p>
+                <h5> 备注：</h5>
+                <p>index，执行git add的操作，会对文件创建索引，所有被跟踪的文件索引会放入index，表示文件被修改待提交</p>
+                <p>working tree，当前工作区，被修改但未被add的文件，存储在工作区</p>
+                <p>ORIG_HEAD,用于指向前一个操作状态,每次的commit或者pull或者reset，git 都会把老的HEAD拷贝到.git/ORIG_HEAD，通过对ORIG_HEAD的引用可以指向前一次的操作状态</p>
+                <h5>1、hard(慎用)</h5>
+                <p>重设index和working tree,所有改变都会被丢弃，包括文件的修改、新增、删除等操作，并把HEAD指向<commit>，
+                    因此通过git log查看版本提交记录，被reset的版本记录会被丢弃，但可以通过git reflog查看</p>
+                <h5>2、soft</h5>
+                <p>不重设index和working tree,仅仅将HEAD指向<commit>,表示已经commit的文件会取消commit,
+                    通过git status查看，文件会处于待commit状态“Changes to be committed”</p>
+                <h5>3、mixed(默认)</h5>
+                <p>重设index,但不重设working tree,表示已经被add的文件，被取消add，
+                    通过git status查看，文件会处于待添加索引状态 “Changes not staged for commit”</p>
+                <h5>4、merge</h5>
+                <p>重设index，重设working tree中发生变化的文件，但是保留index和working tree不一致的文件</p>
+                <h5> 5、keep</h5>
+                <p> 重设index，重设working tree中发生变化的文件</p>
+                <h4>2.记录的保存问题</h4>
+                <p>我们前面说到在Git上做的所有操作都被保存到记录里，一般是从你本地Git库执行clone开始的所有操作都保存了下来，所以不用担心很久之前的一些Commit log找不到，你或许期望去为已删除的提交设置一个更长的保存周期。例如：</p>
+                <h5>$ git config gc.pruneexpire "30 days"</h5>
+                <p>意思是一个被删除的提交会在删除30天后，且运行 git gc 以后，被永久丢弃。</p>
+                <p>你或许还想关掉 git gc 的自动运行：</p>
+                <p>$ git config gc.auto 0</p>
+                <p>在这种情况下提交将只在你手工运行 git gc 的情况下才永久删除。</p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
