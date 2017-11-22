@@ -1,6 +1,8 @@
 $(function all () {
  $all =
-     "<a href='nodeJsSet.html' class='set' value='2017.11.16'>node.js学习的合集</a>"
+      "<a href='seventySecond.html' class='book' value='2017.11.22'>探索Git(17)——差点因为误用reset hard丢失了所有文件。。</a>"
+     + "<a href='seventyFirst.html' class='book' value='2017.11.22'>node.js fs模块(4)</a>"
+     + "<a href='nodeJsSet.html' class='set' value='2017.11.16'>node.js学习的合集</a>"
      + "<a href='seventieth.html' class='book' value='2017.11.16'>node模块原理(3)</a>"
      + "<a href='sixtyNinth.html' class='book' value='2017.11.15'>node模块(2)</a>"
      + "<a href='sixtyEighth.html' class='book' value='2017.11.15'>一些node.js的注意事项 + 第一个小程序(1)</a>"
