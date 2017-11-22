@@ -1,2 +1,1 @@
-使用Stream写入文本数据...
-END.
+Hello, Node.js

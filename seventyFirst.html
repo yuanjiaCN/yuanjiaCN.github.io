@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>node模块原理(3)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='nodeJsSet.html' class='book contentLink' value='2017.10.2'>☞node.js学习的合集</a>
+                <h4>0.global</h4>
+                <p>
+                    JavaScript有且仅有一个全局对象，在浏览器中，叫window对象。而在Node.js环境中，也有唯一的全局对象，但不叫window，而叫global，这个对象的属性和方法也和浏览器环境的window不同。进入Node.js交互环境，可以直接输入：
+                </p>
+                <p class="code">
+                    > global.consoleConsole {<br>
+                    log: [Function: bound ],<br>
+                    info: [Function: bound ],<br>
+                    warn: [Function: bound ],<br>
+                    error: [Function: bound ],<br>
+                    dir: [Function: bound ],<br>
+                    time: [Function: bound ],<br>
+                    timeEnd: [Function: bound ],<br>
+                    trace: [Function: bound trace],<br>
+                    assert: [Function: bound ],<br>
+                    Console: [Function: Console] }<br>
+                </p>
+                <h4>1.process</h4>
+                <p>
+                    process也是Node.js提供的一个对象，它代表当前Node.js进程。通过process对象可以拿到许多有用信息：
+                </p>
+                <p class="code">
+                    >process.version<br>
+                    ‘v8.7.0’<br>
+                    >process.cwd();<br>
+                    ‘H:\\yuanjiaCN.github.io\\nodeTest’<br>
+                </p>
+                <p></p>
+                <h5>process.nextTick()</h5>
+                <p>如果想要在下一次事件响应中执行代码，可以调用process.nextTick()：</p>
+                <p class="code">
+                    process.nextTick(function () {<br>
+                    console.log("第二句");<br>
+                    });<br>
+                    console.log("第一句");<br>
+                </p>
+                <p>
+                    这说明传入process.nextTick()的函数不是立刻执行，而是要等到下一次事件循环。
+                </p>
+                <h4>2.判断JavaScript执行环境</h4>
+                <p>有很多JavaScript代码既能在浏览器中执行，也能在Node环境执行，但有些时候，程序本身需要判断自己到底是在什么环境下执行的，常用的方式就是根据浏览器和Node环境提供的全局变量名称来判断：</p>
+                <p class="code">
+                    if(typeof (window) === <br>
+                    console.log("node.js");<br>
+                    } else <br>
+                    console.log("browser");<br>
+                    };<br>
+                </p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

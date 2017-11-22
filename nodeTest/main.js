@@ -165,8 +165,57 @@
 
  console.log("Hello, world!");
 
- */
 
-var greet = require("hello");
-var s = "Yuan";
-greet(s);//Hello, Yuan!
+ var greet = require("hello");
+ var s = "Yuan";
+ greet(s);//Hello, Yuan!
+
+ process.nextTick(function () {
+ console.log("第二句");
+ });
+ console.log("第一句");
+
+ if(typeof (window) === "undefined"){
+ console.log("node.js");
+ } else {
+ console.log("browser");
+ };
+ var fs = require("fs");
+ fs.readFile("sample.txt", "utf-8", function (err,data) {
+ if(err){
+ console.log(err);
+ }else{
+ console.log(data);
+ }
+ });
+ var fs = require("fs");
+ fs.readFile("unexist.txt", "utf-8", function (err,data) {
+ if(err){
+ console.log(err);
+ }else{
+ console.log(data);
+ }
+ });
+
+ var fs = require("fs");
+ fs.readFile("sample.jpg",function (err,data) {
+ if(err){
+ console.log(err);
+ } else {
+ console.log(data);
+ console.log(data.length + "bytes");
+ console.log(data.toString("utf-8"));
+ }
+ });
+
+ var fs = require("fs");
+ var data = fs.readFileSync("sample.txt","utf-8");
+ console.log(data);
+
+ var fs = require("fs");
+ var data = "Hello, Node.js";
+ fs.writeFileSync("output1.txt", data);
+ */
+var fs = require("fs");
+var txt = fs.statSync("sample.txt").size;
+console.log(txt);//31
