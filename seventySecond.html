@@ -88,8 +88,9 @@
                 <p>重设index和working tree,所有改变都会被丢弃，包括文件的修改、新增、删除等操作，并把HEAD指向<commit>，
                     因此通过git log查看版本提交记录，被reset的版本记录会被丢弃，但可以通过git reflog查看</p>
                 <h5>2、soft</h5>
-                <p>不重设index和working tree,仅仅将HEAD指向<commit>,表示已经commit的文件会取消commit,
-                    通过git status查看，文件会处于待commit状态“Changes to be committed”</p>
+                <p>不重设index和working tree,仅仅将HEAD指向commit,表示已经commit的文件会取消commit,
+                    通过git status查看，文件会处于待commit状态“Changes to be committed”
+                </p>
                 <h5>3、mixed(默认)</h5>
                 <p>重设index,但不重设working tree,表示已经被add的文件，被取消add，
                     通过git status查看，文件会处于待添加索引状态 “Changes not staged for commit”</p>

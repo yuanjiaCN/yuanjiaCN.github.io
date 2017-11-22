@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>Node.js——fs模块(5)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='nodeJsSet.html' class='book contentLink' value='2017.10.2'>☞node.js学习的合集</a>
+                <h4>0.fs模块</h4>
+                <p>Node.js内置的fs模块就是文件系统模块，负责读写文件。</p>
+                <p>和所有其它JavaScript模块不同的是，fs模块同时提供了异步和同步的方法。</p>
+                <p>回顾一下什么是异步方法。因为JavaScript的单线程模型，执行IO操作时，JavaScript代码无需等待，而是传入回调函数后，继续执行后续JavaScript代码。比如jQuery提供的getJSON()操作：</p>
+                <p class="code">
+                    $.getJSON('http://example.com/ajax', function (data) {<br>
+                    console.log('IO结果返回后执行...');<br>
+                    });<br>
+                    console.log('不等待IO结果直接执行后续代码...');<br>
+                </p>
+                <p>
+                    而同步的IO操作则需要等待函数返回：
+                </p>
+                <p class="code">
+                    // 根据网络耗时，函数将执行几十毫秒~几秒不等:<br>
+                    var data = getJSONSync('http://example.com/ajax');<br>
+                </p>
+                <p>
+                    同步操作的好处是代码简单，缺点是程序将等待IO操作，在等待时间内，无法响应其它任何事件。而异步读取不用等待IO操作，但代码较麻烦。
+                </p>
+                <h5>readFile() 异步读取文件：</h5>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    fs.readFile("sample.txt", "utf-8", function (err,data) {<br>
+                    if(err){<br>
+                    console.log(err);<br>
+                    }else{<br>
+                    console.log(data);<br>
+                    }<br>
+                    });<br>
+                </p>
+                <p>命令：</p>
+                <p class="code">
+                    node --use_strict main.js<br>
+                    Hello, Node.js<br>
+                    you are awesome<br>
+                </p>
+                <p class="strong">注意！！！use_strict之前不可以有空格，不然会报错、node之后--之前必须有空格，不然也会报错！</p>
+                <p>然后读取一个并不存在的文件试试</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    fs.readFile("unexist.txt", "utf-8", function (err,data) {<br>
+                    if(err){<br>
+                    console.log(err);<br>
+                    }else{<br>
+                    console.log(data);<br>
+                    }<br>
+                    });<br>
+                </p>
+                <img src="picture/seventyThird1.jpg"/>
+                <p>读取一个二进制文件</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    fs.readFile("sample.jpg",function (err,data) {<br>
+                    if(err){<br>
+                    console.log(err);<br>
+                    } else {<br>
+                    console.log(data);<br>
+                    console.log(data.length + "bytes");<br>
+                    }<br>
+                    });<br>
+                </p>
+                <img src="picture/seventyThird2.jpg"/>
+                <p>当读取二进制文件时，不传入文件编码时，回调函数的data参数将返回一个Buffer对象。在Node.js中，Buffer对象就是一个包含零个或任意个字节的数组（注意和Array不同）。</p>
+                <h5>buffer对象</h5>
+                <p>Buffer对象可以和String作转换，例如，把一个Buffer对象转换成String：</p>
+                <p class="code">
+                    // Buffer -> Stringvar text = data.toString('utf-8');<br>
+                    console.log(text); <br>
+                </p>
+                <p>或者把一个String转换成Buffer：</p>
+                <p class="code">
+                    // String -> Buffervar buf = Buffer.from(text, 'utf-8');<br>
+                    console.log(buf); <br>
+                </p>
+                <br>
+                <img src="picture/seventyThird3.jpg"/>
+                <p class="strong">建议不要这么做！！！buffer转string后,直接程序无响应了。。。电脑还发出滴滴滴的声音我的妈</p>
+                <h5>readFileSync()同步读文件</h5>
+                <p>
+                    除了标准的异步读取模式外，fs也提供相应的同步读取函数。同步读取的函数和异步函数相比，多了一个Sync后缀，并且不接收回调函数，函数直接返回结果。
+                </p>
+                <p>用fs模块同步读取一个文本文件的代码如下：</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var data = fs.readFileSync("sample.txt","utf-8");<br>
+                    console.log(data);<br>
+                </p>
+                <p>写文件将数据写入文件是通过fs.writeFile()实现的：</p>
+                <h5>writeFile()</h5>
+                <p> writeFile()的参数依次为文件名、数据和回调函数。如果传入的数据是String，默认按UTF-8编码写入文本文件，如果传入的参数是Buffer，则写入的是二进制文件。回调函数由于只关心成功与否，因此只需要一个err参数。</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var data = "Hello, Node.js";<br>
+                    fs.writeFile("output.txt", data, function (err) {<br>
+                    if(err){<br>
+                    console.log(err);<br>
+                    } else {<br>
+                    console.log("ok");<br>
+                    }<br>
+                    })<br>
+                </p>
+                <p>
+                    本来没有这个output.txt也可以，这段程序会自动生成一个。
+                    执行很多次也只会有一条hello, node.js，不会有很多句hello, node.js
+                    不论本来这文件里有什么，都会被覆盖为hello, node.js
+                </p>
+                <h5>wirteFileSync()</h5>
+                <p>和readFile()类似，writeFile()也有一个同步方法，叫writeFileSync()：</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var data = "Hello, Node.js";<br>
+                    fs.writeFileSync("output1.txt", data); <br>
+                </p>
+                <h5>stat</h5>
+                <p>如果我们要获取文件大小，创建时间等信息，可以使用fs.stat()，它返回一个Stat对象，能告诉我们文件或目录的详细信息：</p>
+                <p class="code">
+                    'use strict';<br>
+                    var fs = require('fs');<br>
+                    fs.stat('sample.txt', function (err, stat) {<br>
+                    if (err) {<br>
+                    console.log(err);<br>
+                    } else {<br>
+                    // 是否是文件:<br>
+                    console.log('isFile: ' + stat.isFile());<br>
+                    // 是否是目录:<br>
+                    console.log('isDirectory: ' + stat.isDirectory());<br>
+                    if (stat.isFile()) {<br>
+                    // 文件大小:<br>
+                    console.log('size: ' + stat.size);<br>
+                    // 创建时间, Date对象:<br>
+                    console.log('birth time: ' + stat.birthtime);<br>
+                    // 修改时间, Date对象:<br>
+                    console.log('modified time: ' + stat.mtime);<br>
+                    }<br>
+                    }<br>
+                    });<br>
+                </p>
+                <h5>statSync()</h5>
+                <p>
+                    stat()也有一个对应的同步函数statSync()
+                </p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var txt = fs.statSync("sample.txt").size;<br>
+                    console.log(txt);//31<br>
+                </p>
+                <h4>1.异步还是同步</h4>
+                <p>在fs模块中，提供同步方法是为了方便使用。那我们到底是应该用异步方法还是同步方法呢？</p>
+                <p>
+                    由于Node环境执行的JavaScript代码是服务器端代码，所以，绝大部分需要在服务器运行期反复执行业务逻辑的代码，必须使用异步代码，否则，同步代码在执行时期，服务器将停止响应，因为JavaScript只有一个执行线程。
+                </p>
+                <p>
+                    服务器启动时如果需要读取配置文件，或者结束时需要写入到状态文件时，可以使用同步代码，因为这些代码只在启动和结束时执行一次，不影响服务器正常运行时的异步执行。
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
