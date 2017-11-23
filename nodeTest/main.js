@@ -241,9 +241,44 @@
  ws2.write(new Buffer("使用Stream写入二进制数据...\n","utf-8"));
  ws2.write(new Buffer("END","utf-8"));
  ws2.end();
- */
-var fs = require("fs");
-var rs = fs.createReadStream("text1.txt");
-var ws = fs.createWriteStream("text2.txt");
-rs.pipe(ws);
 
+ var fs = require("fs");
+ var rs = fs.createReadStream("text1.txt");
+ var ws = fs.createWriteStream("text2.txt");
+ rs.pipe(ws);
+
+ */
+
+var fs = require("fs");
+var url = require("url");
+var path = require("path");
+var http = require("http");
+
+var root = path.resolve(process.argv[2] || ".");
+console.log("static root dir:" + root);
+
+var server = http.createServer(function (request, response) {
+    var pathname = url.parse(request.url).pathname;
+        console.log("这是啥"+ pathname);
+    var filepath = path.join(root, pathname);
+        console.log("这又是啥"+ filepath);
+
+    fs.stat(filepath, function (err, stats) {
+        if(!err && stats.isFile()){
+            console.log("200" + request.url);
+            response.writeHead(200);
+            fs.createReadStream(filepath).pipe(response);
+        } else if(!err && stats.isDirectory) {
+            console.log("200" + request.url + "index.html");
+            filepath = path.join(root, "index.html");
+            response.writeHead(200);
+            fs.createReadStream(filepath).pipe(response);
+        } else {
+            console.log("404" + request.url);
+            response.writeHead(404);
+            response.end("404 Not Found");
+        }
+    });
+});
+server.listen(8080);
+console.log("Server is running at http://127.0.0.1:8080/")

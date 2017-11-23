@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class = "right">
+            <h1>Node.js——http模块(7)</h1>
+            <header class="content">
+            </header>
+            <article>
+                <a href='nodeJsSet.html' class='book contentLink' value='2017.10.2'>☞node.js学习的合集</a>
+                <h4>0.HTTP服务器</h4>
+                <p>
+                    要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+                </p>
+                <h5>request对象</h5>
+                <p>
+                    request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；
+                </p>
+                <h5>response对象</h5>
+                <p>
+                    response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。
+                </p>
+                <h4>1.文件服务器</h4>
+                <p>
+                    让我们继续扩展一下上面的Web程序。我们可以设定一个目录，然后让Web程序变成一个文件服务器。要实现这一点，我们只需要解析request.url中的路径，然后在本地找到对应的文件，把文件内容发送出去就可以了。
+                </p>
+                <h5>url模块</h5>
+                <p>
+                    解析URL需要用到Node.js提供的url模块，它使用起来非常简单，通过parse()将一个字符串解析为一个Url对象：
+                </p>
+                <p class="code">
+                    'use strict';<br>
+                    var url = require('url');<br>
+                    console.log(url.parse('http://user:pass@host.com:8080/path/to/file?query=string#hash'));<br>
+                </p>
+                <p> 结果如下：</p>
+                <p class="code">
+                    Url {<br>
+                    protocol: 'http:',<br>
+                    slashes: true,<br>
+                    auth: 'user:pass',<br>
+                    host: 'host.com:8080',<br>
+                    port: '8080',<br>
+                    hostname: 'host.com',<br>
+                    hash: '#hash',<br>
+                    search: '?query=string',<br>
+                    query: 'query=string',<br>
+                    pathname: '/path/to/file',<br>
+                    path: '/path/to/file?query=string',<br>
+                    href: 'http://user:pass@host.com:8080/path/to/file?query=string#hash' }<br>
+                </p>
+                <h5>path模块</h5>
+                <p>处理本地文件目录需要使用Node.js提供的path模块，它可以方便地构造目录：</p>
+                <p class="code">
+                    'use strict';<br>
+                    var path = require('path');<br>
+                    // 解析当前目录:<br>
+                    var workDir = path.resolve('.');// 'H:/yuanjiaCN.github.io/nodeTest'<br>
+                    // 组合完整的文件路径:当前目录+'pub'+'index.html':<br>
+                    var filePath = path.join(workDir, 'pub', 'index.html');// 'H:/yuanjiaCN.github.io/nodeTest/index.html'<br>
+                </p>
+                <p>
+                    使用path模块可以正确处理操作系统相关的文件路径。在Windows系统下，返回的路径类似于H:/yuanjiaCN.github.io/nodeTest/index.html，这样，我们就不关心怎么拼接路径了。
+                </p>
+                <p>最后，实现一个文件服务器main.js：</p>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var url = require("url");<br>
+                    var path = require("path");<br>
+                    var http = require("http");<br>
+
+                    var root = path.resolve(process.argv[2] || ".");<br>
+                    console.log("static root dir:" + root);<br>
+
+                    var server = http.createServer(function (request, response) {<br>
+                    var pathname = url.parse(request.url).pathname;<br>
+                    console.log("这是啥"+ pathname);<br>
+                    var filepath = path.join(root, pathname);<br>
+                    console.log("这又是啥"+ filepath);<br>
+                    fs.stat(filepath, function (err, stats) {<br>
+                    if(!err && stats.isFile()){<br>
+                    console.log("200" + request.url);<br>
+                    response.writeHead(200);<br>
+                    fs.createReadStream(filepath).pipe(response);<br>
+                    } else {<br>
+                    console.log("404" + request.url);<br>
+                    response.writeHead(404);<br>
+                    response.end("404 Not Found");<br>
+                    }<br>
+                    });<br>
+                    });<br>
+                    server.listen(8080);<br>
+                    console.log("Server is running at http://127.0.0.1:8080/")<br>
+                </p>
+                <p>
+                    没有必要手动读取文件内容。由于response对象本身是一个Writable Stream，直接用pipe()方法就实现了自动读取文件内容并输出到HTTP响应。
+                </p>
+                <p>
+                    在命令行运行node main.js /path/to/dir，把/path/to/dir改成你本地的一个有效的目录，然后在浏览器中输入http://localhost:8080/index.html：
+                </p>
+                <p class="strong">注意！index.html可以替换成其他文件，这里我用的是output.txt</p>
+                <p>
+                    这样就很清楚了，pathname = url.parse(request.url).pathname;
+                    pathname是文件名。
+                </p>
+                <p>filepath = path.join(root, pathname);这是整个目录+文件名</p>
+                <h4>2.另外！关于命令行输出</h4>
+                <p>只要不关闭命令行，每刷新一次网页，</p>
+                <p class="code">
+                    这是啥/ ……<br>
+                    这又是啥……<br>
+                    200/output.txt<br>
+                </p>
+                <p>之类的就会再出现一次,包括刚才寝室的网不稳定，一度出现了几句</p>
+                <p class="code">
+                    这是啥/ ……<br>
+                    这又是啥……<br>
+                    404/<br>
+                </p>
+                <p>
+                    试了一下，发现如果只输入http://localhost:8080/就会报错，而正常我的这个博客，目录url不就是index.html文件的url嘛！那么我来增强一下它的性能。
+                </p>
+                <h5>如果发现我输入的是目录，就自动找一下目录下的index.html文件，并显示它。</h5>
+                <p class="code">
+                    var fs = require("fs");<br>
+                    var url = require("url");<br>
+                    var path = require("path");<br>
+                    var http = require("http");<br>
+
+                    var root = path.resolve(process.argv[2] || ".");<br>
+                    console.log("static root dir:" + root);<br>
+
+                    var server = http.createServer(function (request, response) {<br>
+                    var pathname = url.parse(request.url).pathname;<br>
+                    console.log("这是啥"+ pathname);<br>
+                    var filepath = path.join(root, pathname);<br>
+                    console.log("这又是啥"+ filepath);<br>
+
+                    fs.stat(filepath, function (err, stats) {<br>
+                    if(!err && stats.isFile()){<br>
+                    console.log("200" + request.url);<br>
+                    response.writeHead(200);<br>
+                    fs.createReadStream(filepath).pipe(response);<br>
+                    } else if(!err && stats.isDirectory) {<br>
+                    console.log("200" + request.url + "index.html");<br>
+                    filepath = path.join(root, "index.html");<br>
+                    response.writeHead(200);<br>
+                    fs.createReadStream(filepath).pipe(response);<br>
+                    } else {<br>
+                    console.log("404" + request.url);<br>
+                    response.writeHead(404);<br>
+                    response.end("404 Not Found");<br>
+                    }<br>
+                    });<br>
+                    });<br>
+                    server.listen(8080);<br>
+                    console.log("Server is running at http://127.0.0.1:8080/")<br>
+                </p>
+                <p>写的不是很优雅。。见谅</p>
+                <p>第一个测试直接输入http://localhost:8080/</p>
+                <p>事实上获取的是http://localhost:8080/index.html</p>
+                <p>第二个测试我输入了http://localhost:8080/1</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
