@@ -246,39 +246,64 @@
  var rs = fs.createReadStream("text1.txt");
  var ws = fs.createWriteStream("text2.txt");
  rs.pipe(ws);
+ var fs = require("fs");
+ var url = require("url");
+ var path = require("path");
+ var http = require("http");
 
+ var root = path.resolve(process.argv[2] || ".");
+ console.log("static root dir:" + root);
+
+ var server = http.createServer(function (request, response) {
+ var pathname = url.parse(request.url).pathname;
+ console.log("这是啥"+ pathname);
+ var filepath = path.join(root, pathname);
+ console.log("这又是啥"+ filepath);
+
+ fs.stat(filepath, function (err, stats) {
+ if(!err && stats.isFile()){
+ console.log("200" + request.url);
+ response.writeHead(200);
+ fs.createReadStream(filepath).pipe(response);
+ } else if(!err && stats.isDirectory) {
+ console.log("200" + request.url + "index.html");
+ filepath = path.join(root, "index.html");
+ response.writeHead(200);
+ fs.createReadStream(filepath).pipe(response);
+ } else {
+ console.log("404" + request.url);
+ response.writeHead(404);
+ response.end("404 Not Found");
+ }
+ });
+ });
+ server.listen(8080);
+ console.log("Server is running at http://127.0.0.1:8080/")
+
+ var filename = "hello.jpg"
+ var file = new Array();
+ file = filename.split(".");
+ for(var i = 0;i < file.length; i++){
+ var te = file[file.length-1];
+ var ts = file[0];
+ if(ts){
+ if (te !== ts){
+ console.log("." + te) ;
+ } else {
+ console.log("") ;
+ }
+ }
+ }
+
+ (function () {
+ var i =1;
+ setInterval(function () {
+
+ var number = (function (name) {
+ console.log("为" + name + "+" + i + "s");
+ i++
+ })("小明");
+ },1000);
+ })();
  */
 
-var fs = require("fs");
-var url = require("url");
-var path = require("path");
-var http = require("http");
-
-var root = path.resolve(process.argv[2] || ".");
-console.log("static root dir:" + root);
-
-var server = http.createServer(function (request, response) {
-    var pathname = url.parse(request.url).pathname;
-        console.log("这是啥"+ pathname);
-    var filepath = path.join(root, pathname);
-        console.log("这又是啥"+ filepath);
-
-    fs.stat(filepath, function (err, stats) {
-        if(!err && stats.isFile()){
-            console.log("200" + request.url);
-            response.writeHead(200);
-            fs.createReadStream(filepath).pipe(response);
-        } else if(!err && stats.isDirectory) {
-            console.log("200" + request.url + "index.html");
-            filepath = path.join(root, "index.html");
-            response.writeHead(200);
-            fs.createReadStream(filepath).pipe(response);
-        } else {
-            console.log("404" + request.url);
-            response.writeHead(404);
-            response.end("404 Not Found");
-        }
-    });
-});
-server.listen(8080);
-console.log("Server is running at http://127.0.0.1:8080/")

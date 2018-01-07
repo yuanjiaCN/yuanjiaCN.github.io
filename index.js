@@ -6,9 +6,9 @@ $(function () {
         section = workSection[0].getElementsByTagName("section"),
         div = section[0].getElementsByTagName("div");
     $("#index>section.works>section").append($all);
-
     $("#index>section.works>section a").wrap("<div></div>");
 
+    $("#index>article>section").append("<span>"+ $reader +"</span>");
     section[0].innerHTML = section[0].innerHTML + section[0].innerHTML;
 //复制一份全体div
     section[0].style.width = div[0].offsetWidth * div.length + 2 * div.length + "px";
@@ -34,4 +34,7 @@ $(function () {
         }, 10)
     }
     example();
+
+
+
 });
