@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class = "right">
+            <h1>每天学点Vue（1）-- 双向数据绑定</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.简单说一下对Vue的理解</h4>
+                <p>使用的是MVVM设计模式。M-Model,V-View,VM-ViewModel</p>
+                <ul>
+                    <li>Model 层代表数据模型，也可以在Model中定义数据修改和操作的业务逻辑；(.js文件)</li>
+                    <li>View 代表UI 组件，它负责将数据模型转化成UI 展现出来;(.html文件)</li>
+                    <li>ViewModel 是一个同步View 和 Model的对象(vue.js文件)</li>
+                </ul>
+                <p>V和M之间无联系，使用VM将两者联系起来，实现双向交互，即改变V或者M，另一项随之改变，或者说，同步。</p>
+                <p>因此，写代码时候不用考虑DOM和数据状态的同步问题的操作，解决了DOM性能差和数据状态难同步这两大痛点。</p>
+                <h5>一个简单例子</h5>
+                <p>View 层 - HTML 代码</p>
+                <p class="code">
+                <\div id="app"><br>
+                    {{ message }}<br>
+                <\/div>
+                </p>
+                <p>Model 层 - JavaScript 代码</p>
+                <p class="code">
+                    new Vue({<br>
+                    el:'#app',<br>
+                    data: {<br>
+                    message:'Hello World!'<br>
+                    }<br>
+                    });<br>
+                </p>
+                <h4>1.v-model双向数据绑定</h4>
+                <p>View 层 - HTML 代码</p>
+                <p class="code">
+                <\div id="example-1">
+                    <\div>{{ message }}<\/div>
+                    <\input v-model = "message">
+                <\/div>
+                </p>
+                <p>Model 层 - JavaScript 代码</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#example-1",<br>
+                    data:{<br>
+                    message:"hello,world!"<br>
+                    }<br>
+                    });<br>
+                </p>
+                <p>这里的话，在input里写东西，div中的message也会随之改变</p>
+                <h5>如果不想让它改变，就把div行写为</h5>
+                <div class="code">
+                    <\div v-once>{{ message }}<\/div>
+                </div>
+                <p>这是vue2.0的写法，如果是1.0的版本，则写为{{ * message }}</p>
+                <h5>结合一点简单的表达式</h5>
+                <p>View 层 - HTML 代码</p>
+                <p class="code">
+                    <\div>{{message.split("")}}<\/div>//[ "h", "e", "l", "l", "o", ",", "w", "o", "r", "l", "d", "!" ]<br>
+                    <\div>{{message.split("").reverse()}}<\/div>//[ "!", "d", "l", "r", "o", "w", ",", "o", "l", "l", "e", "h" ]<br>
+                    <\div>{{message.split("").reverse().join("")}}<\/div>//!dlrow,olleh<br>
+                </p>
+                <p>Model 层 - JavaScript 代码</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#example-1",<br>
+                    data:{<br>
+                    message:"hello,world!"<br>
+                    }<br>
+                    });<br>
+                </p>
+                <p class="ps">注意！使用split直接会把字符串转变为字符串数组</p>
+                <p>由于在数组中，所以每一项的字符串，都要用""包裹起来，以逗号隔开，再在最外面加上[]</p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

@@ -1,0 +1,12 @@
+#box{
+    overflow: hidden;
+    background: yellow;
+}
+#box div{
+    float:left;
+    width: 20%;
+    word-wrap:break-word;
+    background:red;
+    padding-bottom: 200px;
+    margin-bottom: -200px;
+}

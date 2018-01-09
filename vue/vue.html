@@ -1,0 +1,14 @@
+<html>
+<head>
+    <link rel="stylesheet" href="vue.css">
+</head>
+<body>
+    <div id="example-1">
+        <div>{{message.split(",")}}</div><!--[ "h", "e", "l", "l", "o", ",", "w", "o", "r", "l", "d", "!" ]-->
+        <div>{{message.split("").reverse()}}</div><!--[ "!", "d", "l", "r", "o", "w", ",", "o", "l", "l", "e", "h" ]-->
+        <div>{{message.split("").reverse().join("")}}<!--!dlrow,olleh-->
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="vue.js"></script>
+</body>
+</html>

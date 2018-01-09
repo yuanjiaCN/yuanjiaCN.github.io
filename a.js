@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-     "<a href='seventyFifth.html' class='book' value='2017.11.23'>Node.js——http模块(7)</a>"
+     "<a href='seventySixth.html' class='book' value='2018.01.09'>每天学点Vue（1）-- 双向数据绑定</a>"
+     + "<a href='seventyFifth.html' class='book' value='2017.11.23'>Node.js——http模块(7)</a>"
      + "<a href='seventyFourth.html' class='book' value='2017.11.22'>Node.js——fs模块(6)</a>"
      + "<a href='seventyThird.html' class='book' value='2017.11.22'>Node.js——fs模块(5)</a>"
      + "<a href='seventySecond.html' class='book' value='2017.11.22'>探索Git(17)——差点因为误用reset hard丢失了所有文件。。</a>"
