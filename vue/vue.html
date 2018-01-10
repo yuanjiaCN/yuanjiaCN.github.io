@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="vue.css">
 </head>
 <body>
     <div id="example-1">
-        <div v-if="type === 'A'">{{ messageA }}</div>
-        <div v-else-if="type === 'B'">{{ messageB }}</div>
-        <div v-else="type === 'C'">{{ messageC }}</div>
+        <div v-show="ok">Hello</div>
     </div>
     <script src="vue.min.js"></script>
     <script src="vue.js"></script>
