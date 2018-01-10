@@ -1,7 +1,9 @@
 var vm = new Vue({
     el:"#example-1",
     data:{
-        message:"hello,world!"
+        messageA:"i am A",
+        messageB:"i am B",
+        messageC:"i am C",
+        type : "B"
     }
 });
-console.log(typeof (vm.message))

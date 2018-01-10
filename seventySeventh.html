@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class = "right">
+            <h1>每天学点Vue（2）-- v-bind、v-if、v-on、过滤器、v-else</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h5>v-bind 控制HTML的属性</h5>
+                <p>
+                    冒号后的是指令.
+                </p>
+                <p class="strong">
+                    注意！！冒号前后别打空格！不然代码无效
+                </p>
+                <p>HTML</p>
+                <p class="code">
+                <\div v-bind:id = "'list-' + id">Hello, World!<\/div>
+                </p>
+                <p>CSS</p>
+                <p class="code">
+                    #list-1{<br>
+                    color:red<br>
+                    }<br>
+                </p>
+                <p>JS</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#app",<br>
+                    data:{<br>
+                    id : 1<br>
+                    }<br>
+                    })<br>
+                </p>
+                <h5>v-bind指令也可以缩写，比如上面的可以改成</h5>
+                <p class="code">
+                <\div :id="'list-' + id">Hello, World!<\/div>
+                </p>
+                <p>算是给这个经常用到的指令的福利吧</p>
+                <h5>指令v-if 例子是根据seen的值判断是否要让元素显示</h5>
+                <p>HTML</p>
+                <p class="code">
+                    <\div id="app"><br>
+                    <\p v-if="seen">now you can't see me<\/p><br>
+                    <\/div><br>
+                </p>
+                <p>JS</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#app",<br>
+                    data:{<br>
+                    seen: false<br>
+                    }<br>
+                    })<br>
+                </p>
+                <h5>v-on监听事件，对用户的操作进行响应</h5>
+                <p>html</p>
+                <p class="code">
+                    <\div id="app"><br>
+                        <\p>{{ message }}<\/p><br>
+                        <\button v-on:click="reverseMessage">反转字符串<\/button><br>
+                    <\/div><br>
+                </p>
+                <p>js</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#app",<br>
+                    data:{<br>
+                    message:"hello, world!"<br>
+                    },<br>
+                    methods:{<br>
+                    reverseMessage:function () {<br>
+                    this.message = this.message.split('').reverse().join('')<br>
+                    }<br>
+                    }<br>
+                    })<br>
+                </p>
+                <p>点击后：!dlrow ,olleh</p>
+                <h5>一点旁白。。。</h5>
+                <p>
+                    如果
+                </p>
+                <p class="code">
+                    this.message = this.message.split('').reverse()<br>
+                </p>
+                <p>
+                    没有加上.join(''),
+                    那还是和昨天使用的，直接在message上写方法一样，返回
+                </p>
+                <p>[ "!", "d", "l", "r", "o", "w", " ", ",", "o", "l", "l", "e", "h" ]一个字符串数组</p>
+                <h5>v-on也有一个简写形式，比如上式可以改成</h5>
+                <p class="code">
+                    <\button @click="reverseMessage">反转字符串<\/div><br>
+                </p>
+                <h5>过滤器</h5>
+                <p>html</p>
+                <p class="code">
+                    <\div id="app"><br>
+                        <\p>{{ message | capitalize }}<\/p><br>
+                    <\/div><br>
+                </p>
+                <p>js</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#app",<br>
+                    data:{<br>
+                    message:"hello, world!"<br>
+                    },<br>
+                    filters:{<br>
+                    capitalize: function (value) {<br>
+                    if(!value){<br>
+                    return ""<br>
+                    } else {<br>
+                    value = value.toString()<br>
+                    return value.charAt(0).toUpperCase() + value.slice(1)<br>
+                    }<br>
+                    }<br>
+                    }<br>
+                    })<br>
+                </p>
+                <p>charAt(0),取得了第一个字符，并把它变成大写，再和后续字符链接。</p>
+                <h5>过滤器可以串联</h5>
+                <p>
+                    如：<br>
+                    {{ message | filterA | filterB }}<br>
+                </p>
+                <p>
+                    也可以接受参数<br>
+                    {{ message | filterA('arg1', arg2)}}<br>
+                </p>
+                <h5>v-if v-else指令</h5>
+                <p>html</p>
+                <p class="code">
+                    <\div id="app"><br>
+                        <\div v-if="Math.random()>0.5">{{ message1 }}<\/div><br>
+                        <\div v-else>{{ message2 }}<\/div><br>
+                    <\/div><br>
+                </p>
+                <p>js</p>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#app",<br>
+                    data:{<br>
+                    message1:"hello, world!",<br>
+                    message2:"sorry"<br>
+                    }<br>
+                    })<br>
+                </p>
+                <p>
+                    Math.random()取0.0到1.0之间的一个随机数
+                </p>
+                <h5> vue2.1以后还增加了一个v-if的else-if块，可以链式的多次使用:</h5>
+                <p class="code">
+                    <\div id="example-1"><br>
+                        <\div v-if="type === 'A'">{{ messageA }}<\/div><br>
+                        <\div v-else-if="type === 'B'">{{ messageB }}<\/div><br>
+                        <\div v-else="type === 'C'">{{ messageC }}<\/div><br>
+                    <\/div><br>
+                </p>
+                <br>
+                <p class="code">
+                    var vm = new Vue({<br>
+                    el:"#example-1",<br>
+                    data:{<br>
+                    messageA:"i am A",<br>
+                    messageB:"i am B",<br>
+                    messageC:"i am C",<br>
+                    type : "B"<br>
+                    }<br>
+                    });<br>
+                </p>
+                <p>打印出的是：i am B</p>
+
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

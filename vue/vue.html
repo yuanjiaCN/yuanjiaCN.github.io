@@ -4,9 +4,9 @@
 </head>
 <body>
     <div id="example-1">
-        <div>{{message.split(",")}}</div><!--[ "h", "e", "l", "l", "o", ",", "w", "o", "r", "l", "d", "!" ]-->
-        <div>{{message.split("").reverse()}}</div><!--[ "!", "d", "l", "r", "o", "w", ",", "o", "l", "l", "e", "h" ]-->
-        <div>{{message.split("").reverse().join("")}}<!--!dlrow,olleh-->
+        <div v-if="type === 'A'">{{ messageA }}</div>
+        <div v-else-if="type === 'B'">{{ messageB }}</div>
+        <div v-else="type === 'C'">{{ messageC }}</div>
     </div>
     <script src="vue.min.js"></script>
     <script src="vue.js"></script>
