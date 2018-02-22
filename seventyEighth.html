@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>在webpack的门口试探（1）</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.安装webpack</h4>
+                <p>最近工作要用到Webpack，对它一无所知的萌新瑟瑟发抖。。于是找来网上的教程写一下练练手,并记下一些坑和心得体会。</p>
+                <p>首先装一下Webpack</p>
+                <p class="code">
+                    //全局安装<br>
+                    npm install -g webpack<br>
+                    //安装到项目目录<br>
+                    npm install --save-dev webpack<br>
+                </p>
+                <h5>插一句本地安装和全局安装的区别</h5>
+                    <p>
+                        全局安装：全局安装-g 就是只安装一次就行了，一般像工具类的需要全局安装,
+                        一般会安装在 /usr/local 或者你 node 安装的目录。
+                    </p>
+                    <p>
+                        一般安装在全局的都是有命令行需求的 package，比如说之后我需要用到的webpack，
+                        我需要在命令行中使用 webpack 这个命令。
+                    </p>
+                    <p>本地安装：项目中的库都不会全局安装，npm install 时安装在 ./node_modules 里，
+                        简单说就是安装位置不一样
+                        这些库你只需要 require() 就能用了。
+                    </p>
+                <h5>为什么已经全局安装了，还需要本地安装呢？ </h5>
+                <p>
+                    1、仅仅是全局安装够用吗？:
+                    　　通常情况下的引入模块是分为两种来寻找的，一种就是全局模块，通过NODE_PATH下去寻找；还有一种就是通过./node_modules去寻找。
+                </p>
+                <p>
+                    如果在项目中，我们希望使用require来表现这种明显的依赖关系，那么我们就必须使用本地安装来进行require，当然也是可以将全局安装的文件复制过来，但是这是非常麻烦的。
+                </p>
+                <p>
+                    或者是使用..、.、/等这种相对或者绝对的方式来引入，这些无疑都是比较麻烦的，所以全局安装不够用。
+                </p>
+                <p>
+                    另外，我们也许在不同的项目中所需要的模块的版本是不同的，或者可能对某些模块进行重新命名，这就导致一个项目的重命名影响全局，这是不划算的。
+                </p>
+                <p>
+                    2、本地安装的重要性:
+                    　　因为我们需要的包可能有十个，他们之间相互依赖的，如果我们使用全局包，那么每次包的升级、更新等就会影响你的多个项目，那么依赖关系就会被破坏，所以使用本地安装有利于不同项目之间的独立性。
+                </p>
+                <p>接下来，需要创建一个package.json文件，以下是关于package.json的说明：</p>
+                <p>
+                    每个项目的根目录下面，一般都有一个package.json文件，定义了这个项目所需要的各种模块，以及项目的配置信息（比如名称、版本、许可证等元数据）。npm install命令根据这个配置文件，自动下载所需的模块，也就是配置项目所需的运行和开发环境。
+                </p>
+                <p class="ps">说一句，如果文件夹名称包含空格，会只生成name和version，且会报错</p>
+                <p class="code">npm ERR! Callback called more than once.</p>
+                <p>原因是:
+                    当encodeURIComponent() 函数把name作为 URI 组件进行编码时，出现了错误！因为encodeURIComponent不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。其他字符（比如 ：;/?:@&=+$,# 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换的。
+                </p>
+                <p>于是我改了文件夹的名称后，成功生成package.json文件</p>
+                <p>我再在本地install webpack,即</p>
+                <p class="code">npm install --save-dev webpack</p>
+                <p>自动生成了一个package-lock.json文件，并且package.json自动更新，多了一句</p>
+                <p class="code">
+                    "devDependencies": {<br>
+                    "webpack": "^3.11.0"<br>
+                    }<br>
+                </p>
+                <p>
+                    1.回到之前的空文件夹，并在里面创建两个文件夹,app文件夹和public文件夹，app文件夹用来存放原始数据和我们将写的JavaScript模块，public文件夹用来存放之后供浏览器读取的文件（包括使用webpack打包生成的js文件以及一个index.html文件）。接下来我们再创建三个文件:
+                </p>
+                <ul>
+                    <li>index.html --放在public文件夹中;</li>
+                    <li>Greeter.js-- 放在app文件夹中;</li>
+                    <li>main.js-- 放在app文件夹中;</li>
+                </ul>
+                <h5>最简陋（划掉）基础的Index.html</h5>
+                <p>
+                   有个id为root的div以及一个引入bundle.js的script即可
+                </p>
+                <h5>Greeter.js中这样写</h5>
+                <p class="code">
+                    //Greeter.js<br>
+                    module.exports = function() {<br>
+                    var greet = document.createElement('div');<br>
+                    greet.textContent = "Hi there and greetings!";<br>
+                    return greet;<br>
+                    };<br>
+                </p>
+                <p>↑就是暴露出一个返回一句问候语的function为一个模块</p>
+                <h5>Main.js文件中，把Greeter.js取到，并插入到id为root的标签下。</h5>
+                <p class="code">
+                    const greeter = require('./Greeter.js');<br>
+                    document.querySelector("#root").appendChild(greeter()) ;<br>
+                </p>
+                <p>这样就可以开始使用webpack了！！</p>
+                <h5>在终端中的命令为</h5>
+                <p>
+                    {extry file}出填写入口文件的路径，本文中就是上述main.js的路径，{destination for bundled file}处填写打包文件的存放路径# 填写路径的时候不用添加{}
+                    webpack {entry file} {destination for bundled file}
+                </p>
+                <p>指定入口文件后，webpack将自动识别项目所依赖的其它文件，不过需要注意的是如果你的webpack不是全局安装的，那么当你在终端中使用此命令时，需要额外指定其在node_modules中的地址，继续上面的例子，在终端中输入如下命令
+                </p>
+                <h5>webpack非全局安装的情况</h5>
+                <p class="code">node_modules/.bin/webpack app/main.js public/bundle.js</p>
+                <p class="ps">所以才要全局安装一次、本地安装一次啊！</p>
+                <p>所以我这样在全局和本地都安装的就可以在这里直接输入</p>
+                <p class="code">webpack ./app/main.js public/bundle.js</p>
+                <p>反馈为：</p>
+                <p class="code">
+                    Hash: 02e52ebc330d8837a5d0<br>
+                    Version: webpack 3.11.0<br>
+                    Time: 62ms<br>
+                    Asset     Size  Chunks             Chunk Names<br>
+                    bundle.js  2.82 kB       0  [emitted]  main<br>
+                    [0] ./app/main.js 108 bytes {0} [built]<br>
+                    [1] ./app/Greeter.js 166 bytes {0} [built]<br>
+                </p>
+                <p>这表示webpack打包了main.js和Greeter.js文件，编译为bundle.js文件</p>
+                <p>此时打开index.html可以看到Hi there and greetings!字样</p>
+                <p>
+                    这就算是用Webpack成功打包了一个文件啦！但是这样冗长的命令实在是容易出错，所以还有一种webpack更加常见的方法！
+                </p>
+                <p>
+                    但是这篇已经很长了！所以下一篇再说吧！
+                </p>
+
+
+
+
+                   </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
