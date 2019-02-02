@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（2）</h1>
+            <header class="content">
+            </header>
+            <article>
+                <h4>0.安装Sass</h4>
+                <p>查了一下，Sass的功能比Less多一些，在服务器上跑，性能可能也会好一些？所以学一下吧</p>
+                <p>装个Ruby一路回车就OK,然后用gem装sass</p>
+                <p class="code">gem install sass</p>
+                <p>再装个解析css样式的loader</p>
+                <p class="code">npm i node-sass sass-loader -D</p>
+                <h5>Sass在webpack中配置</h5>
+                <p class="code">
+                    {<br>
+                        test:/\.scss$/,<br>
+                        use:["style-loader", "css-loader","sass-loader"]<br>
+                    },<br>
+                    {<br>
+                        test:/\.css$/,<br>
+                        use:["style-loader","css-loader"]<br>
+                    },<br>
+                </p>
+                <p>引入时候sass或者css都可以引</p>
+                <p class="code">
+                    import './css/style.css';   // 引入css <br>
+                    import './sass/style.scss'; // 引入scss
+                </p>
+                <p>尝试写了一下嵌套，webpack dev server和webpack打包都能正常解析，sass配置搞定！</p>
+                <h4>1.拆分CSS在webpack中配置</h4>
+                <h5>extract-text-webpack-plugin插件</h5>
+                <p>上述方法打包后的css文件是以行内样式style的标签写进打包后的html页面中，如果样式很多的话，我们更希望直接用link的方式引入进去，这时候需要把css拆分出来。</p>
+                <p>extract-text-webpack-plugin插件它的功效就在于会将打包到js里的css文件进行一个拆分,单独提取css</p>
+                <p class="code">
+                    const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');<br>
+                    {<br>
+                        test:/\.scss$/,<br>
+                        use: ExtractTextWebpackPlugin.extract({<br>
+                            fallback:"style-loader",<br>
+                            use:["css-loader",'sass-loader']<br>
+                        })<br>
+                    },<br>
+                    {<br>
+                        test:/\.css$/,<br>
+                        use: ExtractTextWebpackPlugin.extract({<br>
+                            fallback:"style-loader",<br>
+                            use:["css-loader"]<br>
+                        })<br>
+                    },<br>
+                    plugins: [<br>
+                        ...<br>
+                        new ExtractTextWebpackPlugin('css/style.css')<br>
+                    ],
+                </p>
+                <p>这是个插件，所以一开始要const引入</p>
+                <p>此时，style-loader已经不需要了，因为现在已经用插件让css用link的方式引入了</p>
+                <p>现在打包一下（还是用之前写的嵌套sass），用webpack打包，可在dist文件中看到一个css文件夹、一个index.html和一个js文件，
+                    css文件夹中有一个.css文件。</p>
+                <p>打开html文件，能看到在head中有这样一句代码</p>
+                <p class="code">
+                    <"link href="css/style.css" rel="stylesheet"/>
+                </p>
+                <p>这样css文件或者sass文件就会通过link引入了</p>
+                <p>在plugins中设置的是路径，css文件会放在这个路径中，且规定好了名字。</p>
+                <h4>2.装个babel-polyfill插件</h4>
+                <p>
+                    Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。
+                    举例来说，ES6在Array对象上新增了Array.from方法。Babel就不会转码这个方法。如果想让这个方法运行，必须使用babel-polyfill，为当前环境提供一个垫片。
+                </p>
+                <p>emmm想到美好的Set方法，看来这个插件也是不得不装了</p>
+                <p class="code">npm install --save-dev babel-polyfill</p>
+                <p>看网上说可以通过webpack引入，或者在第一个js文件的顶部引入，我用webpack吧</p>
+                <p class="code">
+                    entry: ["babel-polyfill","./src/index.js"]
+                </p>
+                <p>OK,这就安排上了，具体有没有效，那之后写代码的时候再测试吧</p>
+                   </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
