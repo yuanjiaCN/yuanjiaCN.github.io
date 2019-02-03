@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+            <h1>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（3结束）</h1>
+            <header class="content">
+            </header>
+            <article>
+                <br>
+                <p class="strong">
+                    这个搭建的demo代码已经上传到这个仓库下的webpack-react文件夹中啦，
+                    包括webpack4.x的配置、babel配置、Sass配置，搭了一个简单的react-router4.x，
+                    配了一个简单的Redux（过两天学一下saga和thunk吧）
+                </p>
+                <p>npm install 以后npm run dev就能跑啦</p>
+                <h4>0.BrowserRouter</h4>
+                <p>使用react-router4.x的BrowserRouter,链接可以跳转，但是手动刷新后，显示cannot get</p>
+                <p>解决方法：webpack.config.js中的devServer中设置</p>
+                <p class="code">
+                    devServer: {
+                        ...
+                    historyApiFallback:true
+                    }
+                </p>
+                <p>设置完以后，记得重新启动webpack dev server</p>
+                <p>原因这篇文章有些https://blog.csdn.net/zwkkkk1/article/details/83411071</p>
+                <p>
+                    但是这种解决方法有一个缺点，就是使用webpack打包时，因为browserHistory是依赖服务器的，
+                    如果懒得使用nginx还想要在本地跑，改成hashHistory就好了。
+                </p>
+                <h4>1.exact</h4>
+                <p>exact真的贼重要啊！它表示绝对匹配。如果不写的话，主页点击Link不跳转，都匹配到/（就是主页）去了</p>
+                <h4>2.mapStateToProps</h4>
+                <p>今天又研究了一下redux，遇到了一些坑，也弄明白了一些问题</p>
+                <h5>mapStateToProps中return的东西为什么都要用this.props才可以取到？</h5>
+                <p>
+                    因为，如果现在我写了一个傻瓜组件叫HOME,然后使用mapStateToProps并把它作为参数传入了connect。
+                    此时，connect返回的函数就是一个容器组件（高阶组件），它包裹在傻瓜组件HOME的外面，这个容器组件会去context中取出store，
+                    然后把store的数据通过props传递给Home组件所以傻瓜组件中，需要props才能取到具体数据
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

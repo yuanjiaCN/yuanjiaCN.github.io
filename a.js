@@ -1,6 +1,8 @@
 $(function all () {
  $all =
-     "<a href='eightieth.html' class='book' value='2019.02.02'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（2）</a>"
+     "<a href='webpackSet.html' class='set' value='2019.02.03'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo的合集</a>"
+     + "<a href='eightyFirst.html' class='book' value='2019.02.03'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（3结束）</a>"
+     + "<a href='eightieth.html' class='book' value='2019.02.02'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（2）</a>"
      + "<a href='seventyNinth.html' class='book' value='2019.02.01'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（1）</a>"
      + "<a href='seventyEighth.html' class='book' value='2018.02.22'>在webpack的门口试探（1）</a>"
      + "<a href='seventySeventh.html' class='book' value='2018.01.10'>每天学点Vue（2）-- v-bind、v-if、v-on、过滤器、v-else</a>"
