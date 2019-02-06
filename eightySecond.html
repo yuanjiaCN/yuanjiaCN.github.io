@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+
+            <h1>filter去重、强制转换布尔类型双叹号</h1>
+            <header class="content">
+            </header>
+            <article>
+                <br>
+                <h4>0.filter去重</h4>
+                <p>
+                    数组的filter方法有三个参数,比如说数组 arr=[0,1,2,2,3]
+                </p>
+                <ul>
+                    <li>第一个代表数组中的元素,代表的就是0、1、2、2、3</li>
+                    <li>第二个代表索引值，比如0的索引是0,1是1,2是2,2是3,3是4</li>
+                    <li>第三个值代表数组本身，也就是arr</li>
+                </ul>
+                <h5>去重：</h5>
+                <p class="code">
+                    let arr = [0,1,2,2,3]<br>
+                    let arr2 = arr.filter((x,index,self) => {<br>
+                    return self.indexOf(x) === index<br>
+                    })<br>
+                </p>
+                <h5>理解：</h5>
+                <p>
+                    indexOf方法会返回数组中第一次出现x的索引值。所以，会发生这样的事：<br>
+                    第一次x = 0, index = 0, indexOf(x) = 0<br>
+                    第二次x = 1, index = 1, indexOf(x) = 1<br>
+                    第三次x = 2, index = 2, indexOf(x) = 2<br>
+                    第四次x = 2, index = 3, indexOf(x) = 2 （不符合filter规则，去除,因为indexOf总是返回数组中第一次出现x的索引值）<br>
+                </p>
+                <h4>双叹号强制转换为布尔类型</h4>
+                <p>一个叹号转换为布尔值的取反值，再来一个叹号回到该变量真实的布尔值，如下</p>
+                <p class="code">
+                    // 强制转换为Boolean 用 !! <br>
+                    var bool = !!"c";<br>
+                    console.log(typeof bool); // boolean<br><br>
+
+                    // 强制转换为Number 用 +<br>
+                    var num = +"1234";<br>
+                    console.log(typeof num); // number<br><br>
+
+                    // 强制转换为String 用 ""+<br>
+                    var str = ""+ 1234;<br>
+                    console.log(typeof str); // string<br>
+                </p>
+                   </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>
