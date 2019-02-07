@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="indexContent.css">
+</head>
+<body>
+<header class="first">
+    <div id="home"><a href="index.html">HOME</a></div>
+    <div id="back"><a href="#home">↑</a></div>
+    <section>
+        <a href="allNavigation.html"><header>NAVIGATION</header></a>
+        <ul>
+            <li><a href="#set" id="set">各种集合</a></li>
+            <li><a href="#book" id="book">看书学习</a></li>
+            <li><a href="#blog" id="blog">博客搭建</a></li>
+        </ul>
+        <div class="clear"></div>
+    </section>
+</header>
+<section class="CONTENT">
+    <section>
+        <content class="right">
+
+            <h1>delete操作符</h1>
+            <header class="content">
+            </header>
+            <article>
+                <br>
+                <h4>0.delete操作符用法和规则</h4>
+                <p>delete 操作符用于删除对象的某个属性</p>
+                <p class="code">
+                    var person = {<br>
+                    name: 'abc'<br>
+                    age: 18<br>
+                    }<br>
+
+                    delete person.name<br>
+
+                    console.log(person) // {age: 18}<br>
+                </p>
+                <p>返回值就算是删除不存在的属性，delete因此没有生效也会返回true,但是也有例外的情况(返回false)，如果属性是不可配置属性,在非严格模式下返回false,严格模式下语法错误</p>
+                <h5>原型链上存在相同属性</h5>
+                <p class="code">
+                    // 构造函数<br>
+                    function Person() {<br>
+                    this.name = "张三",<br>
+                    this.job = "工程师"<br>
+                    }<br>
+
+                    Person.prototype.name = "李四"<br>
+                    // 创建实例对象<br>
+                    var p = new Person();<br>
+                    // 只删除p实例的name属性<br>
+                    delete p.name;<br>
+                    console.log(p) => // Person {job:'工程师'}<br>
+                    console.log(p.name) => // '张三' 依然可以访问到<br>
+                </p>
+                <h5>使用var声明的属性(包括函数)，不能从全局作用域或函数作用域中删除</h5>
+                <p>无论使用var声明函数或者属性，都无法使用delete,严格模式下语法错误，非严格模式下返回false</p>
+                <p>但是，在对象中定义的函数、属性是可以删除的</p>
+                <p class="code">
+                    var person = {<br>
+                    name: '张三',<br>
+                    showName: function () {<br>
+                    console.log(this.name);<br>
+                    }<br>
+                    }<br>
+                    delete person.showName<br>
+                    console.log(person.showName) // undefined<br>
+                </p>
+                <p>使用let、const声明的属性不能够从它被声明的作用域中删除</p>
+                <h5>Math, Array, Object等内置对象的属性不可删除,但是方法可以删除</h5>
+                <p class="code">
+                    delete Array.prototype //严格模式下抛出异常<br>
+                    console.log(Array.prototype) // 非严格模式下，prototype依然存在<br>
+                    console.log(Array.prototype.join); // 非严格模式下，join方法依然存在<br>
+                    console.log(Array.forEach); // 内置函数<br>
+                    delete Array.forEach // 不用区分严格模式与否<br>
+                    console.log(Array.forEach); // undefined<br>
+                </p>
+                <h5>Object.defineProperty()设置为不可设置的属性,不可删除</h5>
+                <p class="code">
+                    var person = {};<br>
+                    Object.defineProperty(person, 'name', {<br>
+                    value: '张三',<br>
+                    configurable: false<br>
+                    })<br>
+                    delete person.name // 严格模式下，抛出异常<br>
+                    console.log(person.name); // 张三<br>
+                    console.log(delete person.name); // 非严格模式false<br>
+                </p>
+                <h5>删除数组</h5>
+                <p>使用delete操作符删除数组总某项元素时，被删除的元素会从该数组中删除，但是数组的length并不会改变</p>
+                <p class="code">
+                    var arr = [1, 2, 3];<br>
+                    delete arr[1]<br>
+                    console.log(arr); // [1, undefined, 2]<br>
+                    console.log(delete arr[1]) // true<br>
+                    console.log(arr[1]); // undefined<br>
+                </p>
+                <p>但是这里存在一个问题</p>
+                <p class="code">
+                    console.log(1 in arr) // false<br>
+                </p>
+                <p>所以如果想把数组中某一项赋值成undefined时，不应该使用delete操作符,而是直接使用下边赋值</p>
+                <p class="code">
+                    arr[1] = undefined;<br>
+                    // 这样就可以解决上面的问题<br>
+                    console.log(1 in arr) // true<br>
+                </p>
+            </article>
+        </content>
+    </section>
+    <aside class="left">
+        <h2>其他文章推荐</h2>
+        <nav>
+        </nav>
+    </aside>
+
+    <div></div>
+</section>
+<section class="cut">
+</section>
+<script src="jquery-3.2product.js"></script>
+<script src="a.js"></script>
+<script src="content.js"></script>
+</body>

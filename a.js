@@ -1,6 +1,7 @@
 $(function all () {
  $all =
-     "<a href='eightySecond.html' class='book' value='2019.02.06'>filter去重、强制转换布尔类型双叹号</a>"
+     "<a href='eightyThird.html' class='book' value='2019.02.07'>delete操作符</a>"
+     + "<a href='eightySecond.html' class='book' value='2019.02.06'>filter去重、强制转换布尔类型双叹号</a>"
      + "<a href='webpackSet.html' class='set' value='2019.02.03'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo的合集</a>"
      + "<a href='eightyFirst.html' class='book' value='2019.02.03'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（3结束）</a>"
      + "<a href='eightieth.html' class='book' value='2019.02.02'>从零开始搭建一个webpack4.x+React+Redux+Sass的demo（2）</a>"
